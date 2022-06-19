@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="google.api.client.apache" type="repository">
+    <properties maven-id="com.google.api.client:google-api-client-apache:1.2.3-alpha" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/google/api/client/google-api-client-apache/1.2.3-alpha/google-api-client-apache-1.2.3-alpha.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/google/api/client/google-api-client-http/1.2.3-alpha/google-api-client-http-1.2.3-alpha.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/google/api/client/google-api-client-escape/1.2.3-alpha/google-api-client-escape-1.2.3-alpha.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/google/api/client/google-api-client-repackaged-com-google-common-base/1.2.3-alpha/google-api-client-repackaged-com-google-common-base-1.2.3-alpha.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/com/google/api/client/google-api-client-util/1.2.3-alpha/google-api-client-util-1.2.3-alpha.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpclient/4.0.1/httpclient-4.0.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpcore/4.0.1/httpcore-4.0.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/commons-codec/commons-codec/1.3/commons-codec-1.3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
