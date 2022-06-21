@@ -1,9 +1,32 @@
-import org.apache.*
+import org.apache.hc.client5.http.classic.methods.HttpGet;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
+import org.apache.hc.client5.http.impl.classic.HttpClients;
+import java.util.Scanner;
 
 public class Dota2Drafter {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
-        HttpGet g = new HttpGet("https");
-        //welp
+        String URL = "https://random-data-api.com/api/address/random_address";
+        try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
+            // Try with resources, makes sure to auto close httpClient
+            HttpGet httpGet = new HttpGet(URL);
+
+            try (CloseableHttpResponse httpResponse = httpClient.execute(httpGet)) {
+                // Got a response, could be invalid though
+
+                Scanner sc = new Scanner(httpResponse.getEntity().getContent());
+
+                //Printing the status line
+                while(sc.hasNext()) {
+                    System.out.println(sc.nextLine());
+                }
+
+
+            } catch (Exception e) {
+            System.out.println("Error! No response was given.");
+        }
+        } catch (Exception e) {
+            System.out.println("Error! Connection could not be established.");
+        }
     }
 }
