@@ -1,7 +1,12 @@
+import org.apache.commons.codec.Charsets;
 import org.apache.hc.client5.http.classic.methods.HttpGet;
+import org.apache.hc.client5.http.entity.mime.Header;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
+
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class Dota2Drafter {
@@ -14,12 +19,10 @@ public class Dota2Drafter {
             try (CloseableHttpResponse httpResponse = httpClient.execute(httpGet)) {
                 // Got a response, could be invalid though
 
-                Scanner sc = new Scanner(httpResponse.getEntity().getContent());
+                String encodingHeader = httpResponse.getEntity().getContentEncoding();
+                Charset encoding = encodingHeader == null ? StandardCharsets.UTF_8 :
+                Charsets.toCharset(encodingHeader);
 
-                //Printing the status line
-                while(sc.hasNext()) {
-                    System.out.println(sc.nextLine());
-                }
 
 
             } catch (Exception e) {
