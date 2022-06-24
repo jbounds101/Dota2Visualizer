@@ -19,7 +19,7 @@ public class Dota2Drafter {
             try (CloseableHttpResponse httpResponse = httpClient.execute(httpGet)) {
                 // Got a response, could be invalid though
 
-                String encodingHeader = httpResponse.getEntity().getContentEncoding();
+                //String encodingHeader = httpResponse.getEntity().getContentEncoding();
                 //Charset encoding = encodingHeader == null ? StandardCharsets.UTF_8 :
                 //Charsets.toCharset(encodingHeader);
 
