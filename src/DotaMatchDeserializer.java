@@ -5,9 +5,10 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.ArrayList;
 
-public class DotaMatchDeserializer extends StdDeserializer<DotaMatch> {
+public class DotaMatchDeserializer extends StdDeserializer<DotaMatch[]> {
    public DotaMatchDeserializer() {
        this(null);
    }
@@ -16,9 +17,9 @@ public class DotaMatchDeserializer extends StdDeserializer<DotaMatch> {
    }
 
     @Override
-    public DotaMatch deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
+    public DotaMatch[] deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
             throws IOException {
-        DotaMatch match = new DotaMatch();
+        //DotaMatch match = new DotaMatch();
         ObjectCodec codec = jsonParser.getCodec();
         JsonNode outsideNode = codec.readTree(jsonParser);
         JsonNode resultNode = outsideNode.get("result");
@@ -27,12 +28,28 @@ public class DotaMatchDeserializer extends StdDeserializer<DotaMatch> {
         int status = resultNode.get("status").asInt();
         assert (status == 1); // Status must be 1, or an error occurred during match collection
         int numMatches = resultNode.get("num_results").asInt();
-        assert (numMatches > 0); // Can't deserialize 0 matches
+        assert (numMatches == 1); // Can only deserialize once at a time
 
-        ArrayList<DotaMatch> matches = new ArrayList<>();
+        JsonNode matchesToParse = resultNode.get("matches");
+        DotaMatch[] matches = new DotaMatch[numMatches];
+
+        ArrayList<DotaPlayer> players = null;
+
+        for (int i = 0; i < numMatches; i++) {
+            JsonNode currentParse = matchesToParse.get(i);
+            BigInteger matchId = new BigInteger(currentParse.get("match_id").asText());
+            BigInteger matchSeqNum = new BigInteger(currentParse.get("match_seq_num").asText());
+            BigInteger startTime = new BigInteger(currentParse.get("start_time").asText());
+            int lobbyType = currentParse.get("lobby_type").asInt();
+            int radiantTeamId = currentParse.get("radiant_team_id").asInt();
+            int direTeamId = currentParse.get("dire_team_id").asInt();
+            DotaMatch match = new DotaMatch(matchId, matchSeqNum, startTime, lobbyType, radiantTeamId, direTeamId, players);
+            matches[i] = match;
+        }
 
 
-        return null;
+
+        return matches;
     }
 
 

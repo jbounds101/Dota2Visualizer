@@ -17,7 +17,7 @@ public class JsonParser {
             new SimpleModule("DotaMatchDeserializer", new Version(1, 0, 0,
                     null, null, null));
 
-        DotaMatchDeserializer.addDeserializer(DotaMatch.class, new DotaMatchDeserializer());
+        DotaMatchDeserializer.addDeserializer(DotaMatch[].class, new DotaMatchDeserializer());
         defaultObjectMapper.registerModule(DotaMatchDeserializer);
 
         return defaultObjectMapper;
@@ -27,8 +27,8 @@ public class JsonParser {
         return objectMapper.readTree(source);
     }
 
-    public static DotaMatch parseMatch(String source) throws IOException {
-        return objectMapper.readValue(source, DotaMatch.class);
+    public static DotaMatch[] parseMatch(String source) throws IOException {
+        return objectMapper.readValue(source, DotaMatch[].class);
     }
 
 }

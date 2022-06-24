@@ -1,7 +1,8 @@
+import java.math.BigInteger;
 import java.util.ArrayList;
 
 public class DotaMatch {
-    public DotaMatch(int matchId, int matchSeqNum, int startTime, int lobbyType, int radiantTeamId, int direTeamId, ArrayList<DotaPlayer> players) {
+    public DotaMatch(BigInteger matchId, BigInteger matchSeqNum, BigInteger startTime, int lobbyType, int radiantTeamId, int direTeamId, ArrayList<DotaPlayer> players) {
         this.matchId = matchId;
         this.matchSeqNum = matchSeqNum;
         this.startTime = startTime;
@@ -11,44 +12,44 @@ public class DotaMatch {
         this.players = players;
     }
     public DotaMatch() {
-        this.matchId = -1;
-        this.matchSeqNum = -1;
-        this.startTime = -1;
+        this.matchId = null;
+        this.matchSeqNum = null;
+        this.startTime = null;
         this.lobbyType = -1;
         this.radiantTeamId = -1;
         this.direTeamId = -1;
         this.players = null;
     }
 
-    private int matchId;
-    private int matchSeqNum;
-    private int startTime;
+    private BigInteger matchId;
+    private BigInteger matchSeqNum;
+    private BigInteger startTime;
     private int lobbyType;
     private int radiantTeamId;
     private int direTeamId;
     ArrayList<DotaPlayer> players;
 
-    public int getMatchId() {
+    public BigInteger getMatchId() {
         return matchId;
     }
 
-    public void setMatchId(int matchId) {
+    public void setMatchId(BigInteger matchId) {
         this.matchId = matchId;
     }
 
-    public int getMatchSeqNum() {
+    public BigInteger getMatchSeqNum() {
         return matchSeqNum;
     }
 
-    public void setMatchSeqNum(int matchSeqNum) {
+    public void setMatchSeqNum(BigInteger matchSeqNum) {
         this.matchSeqNum = matchSeqNum;
     }
 
-    public int getStartTime() {
+    public BigInteger getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(int startTime) {
+    public void setStartTime(BigInteger startTime) {
         this.startTime = startTime;
     }
 

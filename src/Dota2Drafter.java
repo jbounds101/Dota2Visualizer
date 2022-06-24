@@ -8,11 +8,12 @@ import org.apache.hc.core5.http.HttpEntity;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Dota2Drafter {
 
     public static void main(String[] args) {
-        String URL = "https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?matches_requested=1&key=81FDC9775199C7A7D7F8AA581B62EA4D";
+        String URL = "https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?matches_requested=10&key=81FDC9775199C7A7D7F8AA581B62EA4D";
         //JsonNode node = null;
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             // Try with resources, makes sure to auto close httpClient
@@ -25,9 +26,10 @@ public class Dota2Drafter {
                 String response = EntityUtils.toString(entity, "UTF-8");
                 //System.out.printf(response);
                 try {
-                    DotaMatch match = JsonParser.parseMatch(response);
+                    DotaMatch[] matches = JsonParser.parseMatch(response);
                     // TODO: Broken here, custom parsing does not work yet, check JsonParser.java
                     //node = JsonParser.parse(response);
+                    System.out.print("Check");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
