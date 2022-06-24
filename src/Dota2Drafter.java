@@ -26,6 +26,7 @@ public class Dota2Drafter {
                 //System.out.printf(response);
                 try {
                     DotaMatch match = JsonParser.parseMatch(response);
+                    // TODO: Broken here, custom parsing does not work yet, check JsonParser.java
                     node = JsonParser.parse(response);
                 } catch (IOException e) {
                     e.printStackTrace();
