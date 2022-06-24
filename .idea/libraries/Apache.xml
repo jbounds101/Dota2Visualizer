@@ -1,0 +1,24 @@
+<component name="libraryTable">
+  <library name="Apache">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/lib/commons-cli-1.4.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/commons-codec-1.15.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/httpclient5-5.1.3.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/httpclient5-cache-5.1.3.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/httpclient5-fluent-5.1.3.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/httpclient5-testing-5.1.3.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/httpclient5-win-5.1.3.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/httpcore5-5.1.3.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/httpcore5-h2-5.1.3.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/httpcore5-reactive-5.1.3.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/httpcore5-testing-5.1.3.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/jna-5.2.0.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/jna-platform-5.2.0.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/reactive-streams-1.0.3.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/rxjava-2.2.8.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/lib/slf4j-api-1.7.25.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
