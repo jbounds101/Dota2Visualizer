@@ -13,7 +13,7 @@ public class Dota2Drafter {
 
     public static void main(String[] args) {
         String URL = "https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/?matches_requested=1&key=81FDC9775199C7A7D7F8AA581B62EA4D";
-        JsonNode node = null;
+        //JsonNode node = null;
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             // Try with resources, makes sure to auto close httpClient
             HttpGet httpGet = new HttpGet(URL);
@@ -27,7 +27,7 @@ public class Dota2Drafter {
                 try {
                     DotaMatch match = JsonParser.parseMatch(response);
                     // TODO: Broken here, custom parsing does not work yet, check JsonParser.java
-                    node = JsonParser.parse(response);
+                    //node = JsonParser.parse(response);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -39,7 +39,7 @@ public class Dota2Drafter {
             System.out.println("Error! Connection could not be established.");
             e.printStackTrace();
         }
-        assert node != null;
+        //assert node != null;
 
         // Response was valid, node now contains the Json date
         //System.out.println(node.get("city").asText());
