@@ -1,3 +1,5 @@
+import Dota.resources.Match;
+import Dota.resources.Player;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.ObjectCodec;
 import com.fasterxml.jackson.databind.DeserializationContext;
@@ -8,18 +10,18 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.util.ArrayList;
 
-public class DotaMatchDeserializer extends StdDeserializer<DotaMatch[]> {
+public class DotaMatchDeserializer extends StdDeserializer<Match[]> {
    public DotaMatchDeserializer() {
        this(null);
    }
-   public DotaMatchDeserializer(Class<DotaMatch> a) {
+   public DotaMatchDeserializer(Class<Match> a) {
        super(a);
    }
 
     @Override
-    public DotaMatch[] deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
+    public Match[] deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
             throws IOException {
-        //DotaMatch match = new DotaMatch();
+        //Dota.resources.DotaMatch match = new Dota.resources.DotaMatch();
         ObjectCodec codec = jsonParser.getCodec();
         JsonNode outsideNode = codec.readTree(jsonParser);
         JsonNode resultNode = outsideNode.get("result");
@@ -31,9 +33,9 @@ public class DotaMatchDeserializer extends StdDeserializer<DotaMatch[]> {
         assert (numMatches == 1); // Can only deserialize once at a time
 
         JsonNode matchesToParse = resultNode.get("matches");
-        DotaMatch[] matches = new DotaMatch[numMatches];
+        Match[] matches = new Match[numMatches];
 
-        ArrayList<DotaPlayer> players = null;
+        ArrayList<Player> players = null;
 
         for (int i = 0; i < numMatches; i++) {
             JsonNode currentParse = matchesToParse.get(i);
@@ -43,8 +45,9 @@ public class DotaMatchDeserializer extends StdDeserializer<DotaMatch[]> {
             int lobbyType = currentParse.get("lobby_type").asInt();
             int radiantTeamId = currentParse.get("radiant_team_id").asInt();
             int direTeamId = currentParse.get("dire_team_id").asInt();
-            DotaMatch match = new DotaMatch(matchId, matchSeqNum, startTime, lobbyType, radiantTeamId, direTeamId, players);
-            matches[i] = match;
+           /* Dota.resources.DotaMatch match = new Dota.resources.DotaMatch(matchId, matchSeqNum, startTime, lobbyType, radiantTeamId,
+                    direTeamId, players);
+            matches[i] = match;*/
         }
 
 
