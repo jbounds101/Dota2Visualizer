@@ -1,5 +1,7 @@
-import Dota.resources.Match;
-import Dota.resources.Player;
+package main.resources;
+
+import main.resources.dotaobject.Match;
+import main.resources.dotaobject.Player;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.ObjectCodec;
 import com.fasterxml.jackson.databind.DeserializationContext;
@@ -21,7 +23,7 @@ public class DotaMatchDeserializer extends StdDeserializer<Match[]> {
     @Override
     public Match[] deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
             throws IOException {
-        //Dota.resources.DotaMatch match = new Dota.resources.DotaMatch();
+        //main.resources.resources.DotaMatch match = new main.resources.resources.DotaMatch();
         ObjectCodec codec = jsonParser.getCodec();
         JsonNode outsideNode = codec.readTree(jsonParser);
         JsonNode resultNode = outsideNode.get("result");
@@ -45,7 +47,7 @@ public class DotaMatchDeserializer extends StdDeserializer<Match[]> {
             int lobbyType = currentParse.get("lobby_type").asInt();
             int radiantTeamId = currentParse.get("radiant_team_id").asInt();
             int direTeamId = currentParse.get("dire_team_id").asInt();
-           /* Dota.resources.DotaMatch match = new Dota.resources.DotaMatch(matchId, matchSeqNum, startTime, lobbyType, radiantTeamId,
+           /* main.resources.resources.DotaMatch match = new main.resources.resources.DotaMatch(matchId, matchSeqNum, startTime, lobbyType, radiantTeamId,
                     direTeamId, players);
             matches[i] = match;*/
         }

@@ -1,14 +1,25 @@
-package Dota.resources;
+package main.resources.dotaobject;
 
 import java.util.HashMap;
 import java.util.Map;
 
-class Hero {
+public class Hero {
     // https://liquipedia.net/dota2/MediaWiki:Dota2webapi-heroes.json
-    private int id;
-    private String name;
-    private String localizedName;
-    private AttributeType primaryAttribute;
+
+    public Hero(int id, String name, String localizedName, AttributeType primaryAttribute, String attackType, String[] roles, int legs) {
+        this.id = id;
+        this.name = name;
+        this.localizedName = localizedName;
+        this.primaryAttribute = primaryAttribute;
+        this.attackType = attackType;
+        this.roles = roles;
+        this.legs = legs;
+    }
+
+    private final int id;
+    private final String name;
+    private final String localizedName;
+    private final AttributeType primaryAttribute;
     public enum AttributeType {
         STRENGTH("str"),
         AGILITY("agi"),
@@ -28,9 +39,7 @@ class Hero {
         }
     }
 
-    private String attackType;
-    private String[] roles;
-    private int legs;
-
-
+    private final String attackType;
+    private final String[] roles;
+    private final int legs;
 }

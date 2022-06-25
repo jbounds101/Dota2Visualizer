@@ -1,4 +1,6 @@
-import Dota.resources.Match;
+package main.resources;
+
+import main.resources.dotaobject.Match;
 import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,9 +21,9 @@ public class DotaParser {
     private static ObjectMapper createDefaultObjectMapper() {
         ObjectMapper defaultObjectMapper = new ObjectMapper();
 
-        // Add Dota.resources.DotaMatch deserializer to the ObjectMapper
+        // Add main.resources.resources.DotaMatch deserializer to the ObjectMapper
         SimpleModule DotaMatchDeserializer =
-            new SimpleModule("DotaMatchDeserializer", new Version(1, 0, 0,
+            new SimpleModule("main.resources.DotaMatchDeserializer", new Version(1, 0, 0,
                     null, null, null));
 
         DotaMatchDeserializer.addDeserializer(Match[].class, new DotaMatchDeserializer());
@@ -30,13 +32,22 @@ public class DotaParser {
         return defaultObjectMapper;
     }
 
-    public static JsonNode parse(String url) throws IOException {
+    public static JsonNode parse(String url) {
         String response = getJsonResponse(url);
-        return objectMapper.readTree(response);
+        try {
+            return objectMapper.readTree(response);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
-    public static Match[] parseMatch(String source) throws IOException {
-        return objectMapper.readValue(source, Match[].class);
+    public static Match[] parseMatch(String source) {
+        try {
+            return objectMapper.readValue(source, Match[].class);
+        } catch (IOException e) {
+            return null;
+        }
     }
 
     private static String getJsonResponse(String url) {

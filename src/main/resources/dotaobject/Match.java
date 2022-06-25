@@ -1,4 +1,4 @@
-package Dota.resources;
+package main.resources.dotaobject;
 
 import java.math.BigInteger;
 import java.util.HashMap;
