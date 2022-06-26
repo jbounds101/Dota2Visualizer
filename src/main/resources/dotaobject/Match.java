@@ -11,7 +11,7 @@ public class Match {
     private int barracksStatusDire;
     private int barracksStatusRadiant;
     // https://dev.dota2.com/forum/dota-2/spectating/replays/webapi/59075-this-is-how-to-interpret-the-barracks_status-and-tower_status-results-from-the-api#post948450
-    // chat?
+    // chat? TODO
     // cluster?
     // cosmetics?
     private int direScore; // Number of kills
@@ -49,6 +49,23 @@ public class Match {
     private int matchSeqNum;
     private int negativeVotes;
     // objectives?
+    private PickBan[] picksBans;
+    private int positiveVotes;
+    private int[] radiantGoldAdvantage; // This is equal to the difference in net-worth each minute
+    private int radiantScore;
+    private BigInteger radiantTeamId;
+    boolean radiantWin;
+    private int[] radiantXpAdvantage;
+    // skill?
+    // teamfights?
+    private int towerStatusDire;
+    private int towerStatusRadiant;
+    // version?
+    // replay salt?
+    // series id?
+    // series type?
+    // players TODO this is probably needed
+
 
 
 }

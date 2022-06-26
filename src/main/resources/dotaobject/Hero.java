@@ -38,8 +38,12 @@ public class Hero {
             return (Hero.AttributeType) map.get(value);
         }
     }
-
     private final String attackType;
     private final String[] roles;
     private final int legs;
+
+    @Override
+    public String toString() {
+        return this.localizedName;
+    }
 }
