@@ -6,14 +6,39 @@ import java.util.Map;
 public class Hero {
     // https://liquipedia.net/dota2/MediaWiki:Dota2webapi-heroes.json
 
-    public Hero(int id, String name, String localizedName, AttributeType primaryAttribute, String attackType, String[] roles, int legs) {
+
+    public Hero(int id, String name, String localizedName, AttributeType primaryAttribute, String attackType,
+                String[] roles, boolean captainsMode, int proBans, int proPicks, int proWins,
+                int heraldPicks, int heraldWins, int guardianPicks, int guardianWins,
+                int crusaderPicks, int crusaderWins, int archonPicks, int archonWins,
+                int legendPicks, int legendWins, int ancientPicks, int ancientWins, int divinePicks,
+                int divineWins, int immortalPicks, int immortalWins) {
         this.id = id;
         this.name = name;
         this.localizedName = localizedName;
         this.primaryAttribute = primaryAttribute;
         this.attackType = attackType;
         this.roles = roles;
-        this.legs = legs;
+        this.captainsMode = captainsMode;
+        this.proBans = proBans;
+        this.proWins = proWins;
+        this.proPicks = proPicks;
+        this.heraldPicks = heraldPicks;
+        this.heraldWins = heraldWins;
+        this.guardianPicks = guardianPicks;
+        this.guardianWins = guardianWins;
+        this.crusaderPicks = crusaderPicks;
+        this.crusaderWins = crusaderWins;
+        this.archonPicks = archonPicks;
+        this.archonWins = archonWins;
+        this.legendPicks = legendPicks;
+        this.legendWins = legendWins;
+        this.ancientPicks = ancientPicks;
+        this.ancientWins = ancientWins;
+        this.divinePicks = divinePicks;
+        this.divineWins = divineWins;
+        this.immortalPicks = immortalPicks;
+        this.immortalWins = immortalWins;
     }
 
     private final int id;
@@ -40,7 +65,28 @@ public class Hero {
     }
     private final String attackType;
     private final String[] roles;
-    private final int legs;
+    /*private final String img;
+    private final String icon; TODO need to fix this, these should be images */
+    private boolean captainsMode;
+    private int proBans;
+    private int proPicks;
+    private int proWins;
+    private int heraldPicks;
+    private int heraldWins;
+    private int guardianPicks;
+    private int guardianWins;
+    private int crusaderPicks;
+    private int crusaderWins;
+    private int archonPicks;
+    private int archonWins;
+    private int legendPicks;
+    private int legendWins;
+    private int ancientPicks;
+    private int ancientWins;
+    private int divinePicks;
+    private int divineWins;
+    private int immortalPicks;
+    private int immortalWins;
 
     @Override
     public String toString() {
