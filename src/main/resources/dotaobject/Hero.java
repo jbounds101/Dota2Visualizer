@@ -92,4 +92,41 @@ public class Hero {
     public String toString() {
         return this.localizedName;
     }
+    
+    public float getOverallWinPercentage() {
+        int totalPicks = proPicks + heraldPicks + guardianPicks + crusaderPicks + archonPicks + legendPicks + 
+                ancientPicks + divinePicks + immortalPicks;
+        int totalWins = proWins + heraldWins + guardianWins + crusaderWins + archonWins + legendWins + 
+                ancientWins + divineWins + immortalWins;
+        return (((float) totalWins) / ((float) totalPicks));
+    }
+    public float getProWinPercentage() {
+         return (((float) proWins) / ((float) proPicks));
+    }
+    public float getHeraldWinPercentage() {
+         return (((float) heraldWins) / ((float) heraldPicks));
+    }
+    public float getGuardianWinPercentage() {
+         return (((float) guardianWins) / ((float) guardianPicks));
+    }
+    public float getCrusaderWinPercentage() {
+         return (((float) crusaderWins) / ((float) crusaderPicks));
+    }
+    public float getArchonWinPercentage() {
+         return (((float) archonWins) / ((float) archonPicks));
+    }
+    public float getLegendWinPercentage() {
+         return (((float) legendWins) / ((float) legendPicks));
+    }
+    public float getAncientWinPercentage() {
+         return (((float) ancientWins) / ((float) ancientPicks));
+    }
+    public float getDivineWinPercentage() {
+         return (((float) divineWins) / ((float) divinePicks));
+    }
+    public float getImmortalWinPercentage() {
+         return (((float) immortalWins) / ((float) immortalPicks));
+    }
+
+    
 }
