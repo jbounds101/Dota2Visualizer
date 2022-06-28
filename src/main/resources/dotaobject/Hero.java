@@ -89,6 +89,7 @@ public class Hero {
     private int immortalWins;
 
     @Override
+    // TODO combine
     public String toString() {
         return this.localizedName;
     }
