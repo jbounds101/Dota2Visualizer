@@ -29,30 +29,30 @@ public class Heroes {
                 roles[j] = rolesNode.get(j).asText();
             }
             boolean captainsMode = current.get("cm_enabled").asBoolean();
+            int[] picks = new int[Player.PlayerRank.values().length];
+            int[] wins = new int[Player.PlayerRank.values().length];
+            picks[Player.PlayerRank.HERALD.ordinal()] = current.get("1_pick").asInt();
+            wins[Player.PlayerRank.HERALD.ordinal()] = current.get("1_win").asInt();
+            picks[Player.PlayerRank.GUARDIAN.ordinal()] = current.get("2_pick").asInt();
+            wins[Player.PlayerRank.GUARDIAN.ordinal()] = current.get("2_win").asInt();
+            picks[Player.PlayerRank.CRUSADER.ordinal()] = current.get("3_pick").asInt();
+            wins[Player.PlayerRank.CRUSADER.ordinal()] = current.get("3_win").asInt();
+            picks[Player.PlayerRank.ARCHON.ordinal()] = current.get("4_pick").asInt();
+            wins[Player.PlayerRank.ARCHON.ordinal()] = current.get("4_win").asInt();
+            picks[Player.PlayerRank.LEGEND.ordinal()] = current.get("5_pick").asInt();
+            wins[Player.PlayerRank.LEGEND.ordinal()] = current.get("5_win").asInt();
+            picks[Player.PlayerRank.ANCIENT.ordinal()] = current.get("6_pick").asInt();
+            wins[Player.PlayerRank.ANCIENT.ordinal()] = current.get("6_win").asInt();
+            picks[Player.PlayerRank.DIVINE.ordinal()] = current.get("7_pick").asInt();
+            wins[Player.PlayerRank.DIVINE.ordinal()] = current.get("7_win").asInt();
+            picks[Player.PlayerRank.IMMORTAL.ordinal()] = current.get("8_pick").asInt();
+            wins[Player.PlayerRank.IMMORTAL.ordinal()] = current.get("8_win").asInt();
+            picks[Player.PlayerRank.PRO.ordinal()] = current.get("pro_pick").asInt();
+            wins[Player.PlayerRank.PRO.ordinal()] = current.get("pro_win").asInt();
             int proBans = current.get("pro_ban").asInt();
-            int proPicks = current.get("pro_pick").asInt();
-            int proWins = current.get("pro_win").asInt();
-            int heraldPicks = current.get("1_pick").asInt();
-            int heraldWins = current.get("1_win").asInt();
-            int guardianPicks = current.get("2_pick").asInt();
-            int guardianWins = current.get("2_win").asInt();
-            int crusaderPicks = current.get("3_pick").asInt();
-            int crusaderWins = current.get("3_win").asInt();
-            int archonPicks = current.get("4_pick").asInt();
-            int archonWins = current.get("4_win").asInt();
-            int legendPicks = current.get("5_pick").asInt();
-            int legendWins = current.get("5_win").asInt();
-            int ancientPicks = current.get("6_pick").asInt();
-            int ancientWins = current.get("6_win").asInt();
-            int divinePicks = current.get("7_pick").asInt();
-            int divineWins = current.get("7_win").asInt();
-            int immortalPicks = current.get("8_pick").asInt();
-            int immortalWins = current.get("8_win").asInt();
 
-            Hero hero = new Hero(id, name, localizedName, primaryAttribute, attackType, roles, captainsMode, proBans,
-                    proPicks, proWins, heraldPicks, heraldWins, guardianPicks, guardianWins, crusaderPicks,
-                    crusaderWins, archonPicks, archonWins, legendPicks, legendWins, ancientPicks, ancientWins,
-                    divinePicks, divineWins, immortalPicks, immortalWins);
+            Hero hero = new Hero(id, name, localizedName, primaryAttribute, attackType, roles, captainsMode,
+                    picks, wins, proBans);
             heroesList[i] = hero;
             heroIdIndices.put(id, i);
             heroNameIndices.put(localizedName, i);
