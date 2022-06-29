@@ -51,6 +51,15 @@ public class Heroes {
             wins[Player.PlayerRank.PRO.ordinal()] = current.get("pro_win").asInt();
             int proBans = current.get("pro_ban").asInt();
 
+            StringBuilder url = new StringBuilder("https://api.opendota.com/api/scenarios/laneRoles?hero_id=");
+            url.append(id);
+            JsonNode laneRoles = DotaParser.parse(String.valueOf(url));
+            assert (laneRoles != null);
+            for (int j = 0; j < laneRoles.size(); j++) {
+                // TODO Finish adding lane roles
+            }
+
+
             Hero hero = new Hero(id, name, localizedName, primaryAttribute, attackType, roles, captainsMode,
                     picks, wins, proBans);
             heroesList[i] = hero;

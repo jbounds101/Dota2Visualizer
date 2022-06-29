@@ -65,7 +65,10 @@ public class Match {
     // series id?
     // series type?
     // players TODO this is probably needed
-
-
-
+    enum MatchTimes {
+        EARLYGAME, // 15min
+        MIDGAME,   // 30min
+        LATEGAME,  // 45min
+        ULTRALATE  // 60min
+    }
 }

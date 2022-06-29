@@ -54,8 +54,19 @@ public class Hero {
     private int proBans;
     // herald, guardian, crusader, archon, legend, ancient, divine, immortal, pro
 
+    enum LaneRoles {
+        SAFELANE,
+        MIDLANE,
+        OFFLANE,
+        JUNGLE
+    }
+
+    private int[][] rolesPicks;
+    // [role][time]
+    private int[][] rolesWins;
+
+
     @Override
-    // TODO combine
     public String toString() {
         return this.localizedName;
     }
