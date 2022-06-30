@@ -69,6 +69,7 @@ public class Match {
         EARLYGAME, // 15min
         MIDGAME,   // 30min
         LATEGAME,  // 45min
-        ULTRALATE  // 60min
+        ULTRALATE,  // 60min
+        EXTREMELATE // 90min
     }
 }

@@ -18,6 +18,7 @@ public class Heroes {
         heroesList = new Hero[heroes.size()];
         for (int i = 0; i < heroes.size(); i++) {
             JsonNode current = heroes.get(i);
+            assert (current != null);
             int id = current.get("id").asInt();
             String name = current.get("name").asText();
             String localizedName = current.get("localized_name").asText();
@@ -55,13 +56,25 @@ public class Heroes {
             url.append(id);
             JsonNode laneRoles = DotaParser.parse(String.valueOf(url));
             assert (laneRoles != null);
+            int[][] rolesPicks = new int[Hero.LaneRoles.values().length][Match.MatchTimes.values().length];
+            int[][] rolesWins = new int[Hero.LaneRoles.values().length][Match.MatchTimes.values().length];
             for (int j = 0; j < laneRoles.size(); j++) {
                 // TODO Finish adding lane roles
+                JsonNode currentLaneRole = laneRoles.get(j);
+                int laneRole = currentLaneRole.get("lane_role").asInt() - 1;
+                int matchTime = (currentLaneRole.get("time").asInt() / 900) - 1;
+                if (matchTime >= 5) matchTime = 4; // Used to fix the jump from 3600sec to 5400sec
+                int rolePicks = currentLaneRole.get("games").asInt();
+                int roleWins = currentLaneRole.get("wins").asInt();
+                rolesPicks[laneRole][matchTime] = rolePicks;
+                rolesWins[laneRole][matchTime] = roleWins;
             }
 
 
+
+
             Hero hero = new Hero(id, name, localizedName, primaryAttribute, attackType, roles, captainsMode,
-                    picks, wins, proBans);
+                    picks, wins, proBans, rolesPicks, rolesWins);
             heroesList[i] = hero;
             heroIdIndices.put(id, i);
             heroNameIndices.put(localizedName, i);

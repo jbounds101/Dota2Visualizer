@@ -8,7 +8,7 @@ public class Hero {
 
 
     public Hero(int id, String name, String localizedName, AttributeType primaryAttribute, String attackType,
-                String[] roles, boolean captainsMode, int[] picks, int[] wins, int proBans) {
+                String[] roles, boolean captainsMode, int[] picks, int[] wins, int proBans, int[][] rolesPicks, int[][] rolesWins) {
         this.id = id;
         this.name = name;
         this.localizedName = localizedName;
@@ -19,6 +19,8 @@ public class Hero {
         this.picks = picks;
         this.wins = wins;
         this.proBans = proBans;
+        this.rolesPicks = rolesPicks;
+        this.rolesWins = rolesWins;
     }
 
     private final int id;
