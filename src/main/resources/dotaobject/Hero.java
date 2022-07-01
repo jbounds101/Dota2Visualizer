@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import main.resources.DotaJsonParser;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class Hero {
@@ -81,7 +82,7 @@ public class Hero {
         return ((float) wins_ / (float) picks_);
     }
 
-    public Map<Hero, Float> getHeroMatchUps() {
+    public Map<Hero, Float> getProMatchUps() {
         // Gets the hero match-ups based on professional matches
         String url = "https://api.opendota.com/api/heroes/" + this.id + "/matchups";
         JsonNode response = DotaJsonParser.parse(url);
@@ -96,5 +97,13 @@ public class Hero {
             matchUps.put(Heroes.getHero(heroId), winRate);
         }
         return matchUps;
+    }
+
+    public Map<Hero, Float> getPublicMatchUps() {
+        // Gets hero match-ups based on public matches
+        String dotaBuffName = this.localizedName.toLowerCase().replace(' ', '-');
+        if (dotaBuffName.equals("outworld-devourer")) dotaBuffName = "outworld-destroyer";
+        String url = "https://www.dotabuff.com/heroes/" + dotaBuffName + "/counters";
+        return DotaJsonParser.scrapePublicMatchUps(url);
     }
 }

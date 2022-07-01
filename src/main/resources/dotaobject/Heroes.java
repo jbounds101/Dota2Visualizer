@@ -70,6 +70,9 @@ public class Heroes {
         }
     }
     public static Hero getHero(String localizedHeroName) {
+        if (localizedHeroName.equals("Outworld Destroyer")) {
+            localizedHeroName = "Outworld Devourer"; // Name change happened in game, but not on many clients
+        }
         try {
             return heroesList[heroNameIndices.get(localizedHeroName)];
         } catch (NullPointerException e) {

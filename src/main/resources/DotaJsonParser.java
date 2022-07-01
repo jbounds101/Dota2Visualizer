@@ -3,6 +3,8 @@ package main.resources;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import main.resources.dotaobject.Hero;
+import main.resources.dotaobject.Heroes;
 import org.apache.hc.client5.http.classic.methods.HttpGet;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
@@ -16,6 +18,8 @@ import org.jsoup.nodes.Element;
 
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DotaJsonParser {
 
@@ -65,26 +69,25 @@ public class DotaJsonParser {
         return response;
     }
 
-    public static JsonNode scrapeCounters(String url) {
+    public static Map<Hero, Float> scrapePublicMatchUps(String url) {
         // Used for accessing data on non-API website
+        Map<Hero, Float> counters = new HashMap<>();
         try {
             final Document document = Jsoup.connect(url).get();
             int index = -1;
             for (Element row: document.select("table.sortable tr")) {
                 index++;
                 if (index == 0) continue;
-                String heroName = row.child(0).attributes().get("data-value");
-                float disadvantage = Float.parseFloat(row.child(2).attributes().get("data-value"));
-                // Disadvantage is an arbitrary number, the higher the number, the worse off the selected hero
-                // is against that match-up
-                System.out.println(heroName + " : " + disadvantage);
+                String localizedName = row.child(0).attributes().get("data-value");
+                Hero hero = Heroes.getHero(localizedName);
+                assert (hero != null);
+                float winRate = Float.parseFloat(row.child(3).attributes().get("data-value"));
+                counters.put(hero, winRate);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
-        return null;
+        return counters;
     }
 }
 
