@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import main.resources.DotaJsonParser;
 
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 public class Hero {
@@ -13,7 +12,7 @@ public class Hero {
 
     public Hero(int id, String name, String localizedName, String primaryAttribute, String attackType,
                 String[] roles, boolean captainsMode, int[] picks, int[] wins, int proBans,
-                Map<LaneRoles, Float> lanePresence) {
+                Map<LaneRoles, Float> lanePresence, float avgLastHitsAtTen) {
         this.id = id;
         this.name = name;
         this.localizedName = localizedName;
@@ -25,6 +24,7 @@ public class Hero {
         this.wins = wins;
         this.proBans = proBans;
         this.lanePresence = lanePresence;
+        this.avgLastHitsAtTen = avgLastHitsAtTen;
     }
 
     private final int id;
@@ -42,7 +42,9 @@ public class Hero {
     // herald, guardian, crusader, archon, legend, ancient, divine, immortal, pro
     private Map<LaneRoles, Float> lanePresence;
     // A map of LaneRoles, with the corresponding percentage of games they are in that lane
-
+    private float avgLastHitsAtTen;
+    private float coreLikelihood;
+    private Map<Hero, Float> publicMatchUps = null;
 
     enum LaneRoles {
         SAFELANE,
@@ -90,10 +92,23 @@ public class Hero {
     }
 
     public Map<Hero, Float> getPublicMatchUps() {
+        if (publicMatchUps != null) return publicMatchUps;
         // Gets hero match-ups based on public matches
         String dotaBuffName = this.localizedName.toLowerCase().replace(' ', '-');
         if (dotaBuffName.equals("outworld-devourer")) dotaBuffName = "outworld-destroyer";
+        if (dotaBuffName.equals("nature's-prophet")) dotaBuffName = "natures-prophet";
         String url = "https://www.dotabuff.com/heroes/" + dotaBuffName + "/counters";
-        return DotaJsonParser.scrapePublicMatchUps(url);
+        this.publicMatchUps = DotaJsonParser.scrapePublicMatchUps(url);
+        return this.publicMatchUps;
+    }
+
+    public void calculateCoreLikelihood() {
+        float maximumLastHits = Heroes.getMaximumLastHitsAtTen();
+        float minimumLastHits = Heroes.getMinimumLastHitsAtTen();
+        this.coreLikelihood = (this.avgLastHitsAtTen - minimumLastHits) / (maximumLastHits - minimumLastHits);
+    }
+
+    public float getAvgLastHitsAtTen() {
+        return avgLastHitsAtTen;
     }
 }

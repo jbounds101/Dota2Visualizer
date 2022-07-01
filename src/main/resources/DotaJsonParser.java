@@ -20,6 +20,7 @@ import org.jsoup.nodes.Element;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class DotaJsonParser {
 
@@ -73,7 +74,11 @@ public class DotaJsonParser {
         // Used for accessing data on non-API website
         Map<Hero, Float> counters = new HashMap<>();
         try {
+            System.setProperty("http.proxyHost", "192.168.5.1");
+            System.setProperty("http.proxyPort", "1080");
             final Document document = Jsoup.connect(url).get();
+            Random random = new Random();
+            //Thread.sleep(500 + random.nextInt(50));
             int index = -1;
             for (Element row: document.select("table.sortable tr")) {
                 index++;
@@ -88,6 +93,27 @@ public class DotaJsonParser {
             e.printStackTrace();
         }
         return counters;
+    }
+
+    public static Map<String, Float> scrapeHeroEconomy() {
+        // Can't be of type <Hero, Float> because this is used during the creation of the Heroes module
+        Map<String, Float> economy = new HashMap<>();
+        String url = "https://www.dotabuff.com/heroes/farm";
+        try {
+            final Document document = Jsoup.connect(url).get();
+            int index = -1;
+            for (Element row : document.select("table.sortable tr")) {
+                index++;
+                if (index == 0) continue;
+                String localizedName = row.child(0).attributes().get("data-value");
+                if (localizedName.equals("Outworld Destroyer")) localizedName = "Outworld Devourer";
+                float lastHits = Float.parseFloat(row.child(2).attributes().get("data-value"));
+                economy.put(localizedName, lastHits);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return economy;
     }
 }
 

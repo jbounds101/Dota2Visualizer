@@ -9,10 +9,13 @@ public class Heroes {
     private static final Hero[] heroesList;
     private static final Map<Integer, Integer> heroIdIndices; // Of type <id, arrayIndex>
     private static final Map<String, Integer> heroNameIndices; // Of type <localizedName, arrayIndex>
+    private static float maximumLastHitsAtTen = 0;
+    private static float minimumLastHitsAtTen = 999;
 
     static {
         JsonNode heroes = DotaJsonParser.parse("https://api.opendota.com/api/heroStats");
         JsonNode laneScenarios = DotaJsonParser.parse("https://api.opendota.com/api/scenarios/laneRoles");
+        Map<String, Float> lastHitsAtTenList = DotaJsonParser.scrapeHeroEconomy();
         heroIdIndices = new HashMap<>();
         heroNameIndices = new HashMap<>();
         assert heroes != null;
@@ -90,11 +93,19 @@ public class Heroes {
             lanePresence.put(Hero.LaneRoles.MIDLANE, (float) midLaneGames / (float) totalGames);
             lanePresence.put(Hero.LaneRoles.OFFLANE, (float) offLaneGames / (float) totalGames);
 
+            float avgLastHitsAtTen = lastHitsAtTenList.get(localizedName);
+
             Hero hero = new Hero(id, name, localizedName, primaryAttribute, attackType, roles, captainsMode,
-                    picks, wins, proBans, lanePresence);
+                    picks, wins, proBans, lanePresence, avgLastHitsAtTen);
             heroesList[i] = hero;
             heroIdIndices.put(id, i);
             heroNameIndices.put(localizedName, i);
+        }
+
+        // This is for uninitialized values that rely on the heroes list
+        for (Hero hero: getHeroesList()) {
+            hero.calculateCoreLikelihood();
+            hero.getPublicMatchUps();
         }
     }
     public static Hero[] getHeroesList() {
@@ -117,5 +128,28 @@ public class Heroes {
             return null;
         }
     }
-
+    public static float getMaximumLastHitsAtTen() {
+        if (maximumLastHitsAtTen != 0) return maximumLastHitsAtTen;
+        float currentMax = 0;
+        for (Hero hero : heroesList) {
+            float currentLastHits = hero.getAvgLastHitsAtTen();
+            if (currentLastHits > currentMax) {
+                currentMax = currentLastHits;
+            }
+        }
+        maximumLastHitsAtTen = currentMax;
+        return maximumLastHitsAtTen;
+    }
+     public static float getMinimumLastHitsAtTen() {
+        if (minimumLastHitsAtTen != 999) return minimumLastHitsAtTen;
+        float currentMin = 999;
+        for (Hero hero : heroesList) {
+            float currentLastHits = hero.getAvgLastHitsAtTen();
+            if (currentLastHits < currentMin) {
+                currentMin = currentLastHits;
+            }
+        }
+        minimumLastHitsAtTen = currentMin;
+        return minimumLastHitsAtTen;
+    }
 }
