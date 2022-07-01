@@ -53,7 +53,12 @@ public class Heroes {
             wins[Player.PlayerRank.PRO.ordinal()] = current.get("pro_win").asInt();
             int proBans = current.get("pro_ban").asInt();
 
+            // Get lane presence percentages
             Map<Hero.LaneRoles, Float> lanePresence = new HashMap<>();
+            int totalGames = 0;
+            int safeLaneGames = 0;
+            int midLaneGames = 0;
+            int offLaneGames = 0;
             for (int currentLane = 0; currentLane < Hero.LaneRoles.values().length; currentLane++) {
                 for (int node = 0; node < laneScenarios.size(); node++) {
                     JsonNode currentLaneScenario = laneScenarios.get(node);
@@ -63,13 +68,30 @@ public class Heroes {
                     int laneRole = currentLaneScenario.get("lane_role").asInt() - 1;
                     if ((laneRole == 3) || (laneRole != currentLane)) continue; // Skip jungle,
                     // it is basically never played as a role, skip non-current lane as well
-
-
-
+                    int currentLaneGames = currentLaneScenario.get("games").asInt();
+                    totalGames += currentLaneGames;
+                    switch (currentLane) {
+                        case 0:
+                            // Safe
+                            safeLaneGames += currentLaneGames;
+                            break;
+                        case 1:
+                            // Mid
+                            midLaneGames += currentLaneGames;
+                            break;
+                        case 2:
+                            // Off
+                            offLaneGames += currentLaneGames;
+                            break;
+                    }
                 }
             }
+            lanePresence.put(Hero.LaneRoles.SAFELANE, (float) safeLaneGames / (float) totalGames);
+            lanePresence.put(Hero.LaneRoles.MIDLANE, (float) midLaneGames / (float) totalGames);
+            lanePresence.put(Hero.LaneRoles.OFFLANE, (float) offLaneGames / (float) totalGames);
+
             Hero hero = new Hero(id, name, localizedName, primaryAttribute, attackType, roles, captainsMode,
-                    picks, wins, proBans);
+                    picks, wins, proBans, lanePresence);
             heroesList[i] = hero;
             heroIdIndices.put(id, i);
             heroNameIndices.put(localizedName, i);

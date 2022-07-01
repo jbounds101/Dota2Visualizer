@@ -12,7 +12,8 @@ public class Hero {
 
 
     public Hero(int id, String name, String localizedName, String primaryAttribute, String attackType,
-                String[] roles, boolean captainsMode, int[] picks, int[] wins, int proBans) {
+                String[] roles, boolean captainsMode, int[] picks, int[] wins, int proBans,
+                Map<LaneRoles, Float> lanePresence) {
         this.id = id;
         this.name = name;
         this.localizedName = localizedName;
@@ -23,6 +24,7 @@ public class Hero {
         this.picks = picks;
         this.wins = wins;
         this.proBans = proBans;
+        this.lanePresence = lanePresence;
     }
 
     private final int id;
