@@ -11,7 +11,7 @@ public class Hero {
     // https://liquipedia.net/dota2/MediaWiki:Dota2webapi-heroes.json
 
 
-    public Hero(int id, String name, String localizedName, AttributeType primaryAttribute, String attackType,
+    public Hero(int id, String name, String localizedName, String primaryAttribute, String attackType,
                 String[] roles, boolean captainsMode, int[] picks, int[] wins, int proBans) {
         this.id = id;
         this.name = name;
@@ -28,37 +28,25 @@ public class Hero {
     private final int id;
     private final String name;
     private final String localizedName;
-    private final AttributeType primaryAttribute;
-    public enum AttributeType {
-        STRENGTH("str"),
-        AGILITY("agi"),
-        INTELLIGENCE("int");
-        private final String value;
-        AttributeType(String value) {
-            this.value = value;
-        }
-        private static final Map<String, Hero.AttributeType> map = new HashMap<>();
-        static {
-            for (Hero.AttributeType attributeType : Hero.AttributeType.values()) {
-                map.put(attributeType.value, attributeType);
-            }
-        }
-        public static Hero.AttributeType convert(String value) {
-            return (Hero.AttributeType) map.get(value);
-        }
-    }
+    public String primaryAttribute;
     private final String attackType;
     private final String[] roles;
     /*private final String img;
     private final String icon; TODO need to fix this, these should be images */
     private boolean captainsMode;
-
     private int[] picks;
     private int[] wins;
     private int proBans;
     // herald, guardian, crusader, archon, legend, ancient, divine, immortal, pro
+    private Map<LaneRoles, Float> lanePresence;
+    // A map of LaneRoles, with the corresponding percentage of games they are in that lane
 
 
+    enum LaneRoles {
+        SAFELANE,
+        MIDLANE,
+        OFFLANE
+    }
 
     @Override
     public String toString() {
