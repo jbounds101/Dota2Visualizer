@@ -83,10 +83,9 @@ public class DotaJsonParser {
             for (Element row: document.select("table.sortable tr")) {
                 index++;
                 if (index == 0) continue;
-                String localizedName = row.child(0).attributes().get("data-value");
-                Hero hero = Heroes.getHero(localizedName);
-                assert (hero != null);
-                float winRate = Float.parseFloat(row.child(3).attributes().get("data-value"));
+                String localizedHeroName = row.child(0).attributes().get("data-value");
+                Hero hero = Heroes.getHero(localizedHeroName);
+                float winRate = Float.parseFloat(row.child(3).attributes().get("data-value")) / 100;
                 counters.put(hero, winRate);
             }
         } catch (Exception e) {

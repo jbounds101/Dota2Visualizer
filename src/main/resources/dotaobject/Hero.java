@@ -45,6 +45,7 @@ public class Hero {
     private float avgLastHitsAtTen;
     private float coreLikelihood;
     private Map<Hero, Float> publicMatchUps = null;
+    private float counterabilityIndex = Float.MAX_VALUE;
 
     enum LaneRoles {
         SAFELANE,
@@ -57,13 +58,13 @@ public class Hero {
         return this.localizedName;
     }
 
-    public float winPercentage(Player.PlayerRank rank) {
+    public float getWinPercentage(Player.PlayerRank rank) {
         // Hero win percentage in a certain skill bracket
         int picks_ = picks[rank.ordinal()];
         int wins_ = wins[rank.ordinal()];
         return ((float) wins_ / (float) picks_);
     }
-    public float winPercentage() {
+    public float getWinPercentage() {
         // General hero win percentage, excludes pro data because of small sample size and skewed data
         int picks_ = 0;
         int wins_ = 0;
@@ -110,5 +111,28 @@ public class Hero {
 
     public float getAvgLastHitsAtTen() {
         return avgLastHitsAtTen;
+    }
+
+    public float getCounterabilityIndex() {
+        if (this.counterabilityIndex != Float.MAX_VALUE) {
+            return this.counterabilityIndex;
+        }
+        float currentMin = 100;
+        float currentMax = 0;
+        Map<Hero, Float> matchUps = this.getPublicMatchUps();
+        for (Hero hero : Heroes.getHeroesList()) {
+            try {
+                float checkWinRate = matchUps.get(hero);
+                if (checkWinRate > currentMax) {
+                    currentMax = checkWinRate;
+                }
+                if (checkWinRate < currentMin) {
+                    currentMin = checkWinRate;
+                }
+            } catch (NullPointerException ignored) {}
+        }
+        float regularWinPercentage = this.getWinPercentage();
+        this.counterabilityIndex = (currentMax - regularWinPercentage) + (regularWinPercentage - currentMin);
+        return this.counterabilityIndex;
     }
 }

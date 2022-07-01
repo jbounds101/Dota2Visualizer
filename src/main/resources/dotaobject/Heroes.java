@@ -89,6 +89,8 @@ public class Heroes {
                     }
                 }
             }
+
+            // TODO: This is actually broken, it only indexes up to id 62, need to split the lanes for each call
             lanePresence.put(Hero.LaneRoles.SAFELANE, (float) safeLaneGames / (float) totalGames);
             lanePresence.put(Hero.LaneRoles.MIDLANE, (float) midLaneGames / (float) totalGames);
             lanePresence.put(Hero.LaneRoles.OFFLANE, (float) offLaneGames / (float) totalGames);
@@ -106,6 +108,7 @@ public class Heroes {
         for (Hero hero: getHeroesList()) {
             hero.calculateCoreLikelihood();
             hero.getPublicMatchUps();
+            hero.getCounterabilityIndex();
         }
     }
     public static Hero[] getHeroesList() {
