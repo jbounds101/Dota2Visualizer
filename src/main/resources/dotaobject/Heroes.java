@@ -54,19 +54,20 @@ public class Heroes {
             int proBans = current.get("pro_ban").asInt();
 
             Map<Hero.LaneRoles, Float> lanePresence = new HashMap<>();
-            for (int j = 0; j < laneScenarios.size(); j++) {
-                JsonNode currentLaneScenario = laneScenarios.get(j);
-                int laneScenarioHeroId = currentLaneScenario.get("hero_id").asInt();
-                if (laneScenarioHeroId != id) continue; // Isn't the hero we are currently creating, by parsing
-                // the whole page it is possible to request much less API calls
-                int laneRole = currentLaneScenario.get("lane_role").asInt() - 1;
-                if (laneRole == 3) continue; // Skip jungle, it is basically never played as a role
+            for (int currentLane = 0; currentLane < Hero.LaneRoles.values().length; currentLane++) {
+                for (int node = 0; node < laneScenarios.size(); node++) {
+                    JsonNode currentLaneScenario = laneScenarios.get(node);
+                    int laneScenarioHeroId = currentLaneScenario.get("hero_id").asInt();
+                    if (laneScenarioHeroId != id) continue; // Isn't the hero we are currently creating, by parsing
+                    // the whole page it is possible to request much less API calls
+                    int laneRole = currentLaneScenario.get("lane_role").asInt() - 1;
+                    if ((laneRole == 3) || (laneRole != currentLane)) continue; // Skip jungle,
+                    // it is basically never played as a role, skip non-current lane as well
 
 
 
+                }
             }
-
-
             Hero hero = new Hero(id, name, localizedName, primaryAttribute, attackType, roles, captainsMode,
                     picks, wins, proBans);
             heroesList[i] = hero;
