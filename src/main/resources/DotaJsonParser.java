@@ -1,10 +1,8 @@
 package main.resources;
 
-import main.resources.dotaobject.Match;
-import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.module.SimpleModule;
+
 import org.apache.hc.client5.http.classic.methods.HttpGet;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
@@ -12,9 +10,14 @@ import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.apache.hc.core5.http.HttpEntity;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+
+
 import java.io.IOException;
 
-public class DotaParser {
+public class DotaJsonParser {
 
     // A constructor is used for objectMapper settings
     private static final ObjectMapper objectMapper = createDefaultObjectMapper();
@@ -22,12 +25,12 @@ public class DotaParser {
         ObjectMapper defaultObjectMapper = new ObjectMapper();
 
         // Add main.resources.resources.DotaMatch deserializer to the ObjectMapper
-        SimpleModule DotaMatchDeserializer =
+        /*SimpleModule DotaMatchDeserializer =
             new SimpleModule("main.resources.DotaMatchDeserializer", new Version(1, 0, 0,
                     null, null, null));
 
         DotaMatchDeserializer.addDeserializer(Match[].class, new DotaMatchDeserializer());
-        defaultObjectMapper.registerModule(DotaMatchDeserializer);
+        defaultObjectMapper.registerModule(DotaMatchDeserializer);*/
 
         return defaultObjectMapper;
     }
@@ -38,14 +41,6 @@ public class DotaParser {
             return objectMapper.readTree(response);
         } catch (IOException e) {
             e.printStackTrace();
-            return null;
-        }
-    }
-
-    public static Match[] parseMatch(String source) {
-        try {
-            return objectMapper.readValue(source, Match[].class);
-        } catch (IOException e) {
             return null;
         }
     }
@@ -68,6 +63,28 @@ public class DotaParser {
         assert (response != null);
         // Response was valid, response now contains the Json date as a string
         return response;
+    }
+
+    public static JsonNode scrapeCounters(String url) {
+        // Used for accessing data on non-API website
+        try {
+            final Document document = Jsoup.connect(url).get();
+            int index = -1;
+            for (Element row: document.select("table.sortable tr")) {
+                index++;
+                if (index == 0) continue;
+                String heroName = row.child(0).attributes().get("data-value");
+                float disadvantage = Float.parseFloat(row.child(2).attributes().get("data-value"));
+                // Disadvantage is an arbitrary number, the higher the number, the worse off the selected hero
+                // is against that match-up
+                System.out.println(heroName + " : " + disadvantage);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        return null;
     }
 }
 

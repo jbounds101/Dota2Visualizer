@@ -1,5 +1,8 @@
 package main.resources.dotaobject;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import main.resources.DotaJsonParser;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,7 +11,7 @@ public class Hero {
 
 
     public Hero(int id, String name, String localizedName, AttributeType primaryAttribute, String attackType,
-                String[] roles, boolean captainsMode, int[] picks, int[] wins, int proBans, int[][] rolesPicks, int[][] rolesWins) {
+                String[] roles, boolean captainsMode, int[] picks, int[] wins, int proBans) {
         this.id = id;
         this.name = name;
         this.localizedName = localizedName;
@@ -19,8 +22,6 @@ public class Hero {
         this.picks = picks;
         this.wins = wins;
         this.proBans = proBans;
-        this.rolesPicks = rolesPicks;
-        this.rolesWins = rolesWins;
     }
 
     private final int id;
@@ -56,16 +57,6 @@ public class Hero {
     private int proBans;
     // herald, guardian, crusader, archon, legend, ancient, divine, immortal, pro
 
-    enum LaneRoles {
-        SAFELANE,
-        MIDLANE,
-        OFFLANE,
-        JUNGLE
-    }
-
-    private int[][] rolesPicks;
-    // [role][time]
-    private int[][] rolesWins;
 
 
     @Override
@@ -90,4 +81,20 @@ public class Hero {
         return ((float) wins_ / (float) picks_);
     }
 
+    public Map<Hero, Float> getHeroMatchUps() {
+        // Gets the hero match-ups based on professional matches
+        String url = "https://api.opendota.com/api/heroes/" + this.id + "/matchups";
+        JsonNode response = DotaJsonParser.parse(url);
+        assert (response != null);
+        Map<Hero, Float> matchUps = new HashMap<>();
+        for (int i = 0; i < response.size(); i++) {
+            JsonNode current = response.get(i);
+            int heroId = current.get("hero_id").asInt();
+            int gamesPlayed = current.get("games_played").asInt();
+            int wins = current.get("wins").asInt();
+            float winRate = ((float) wins / (float) gamesPlayed);
+            matchUps.put(Heroes.getHero(heroId), winRate);
+        }
+        return matchUps;
+    }
 }

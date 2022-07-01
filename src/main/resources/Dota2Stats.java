@@ -10,6 +10,8 @@ public class Dota2Stats {
         Hero primalBeast = Heroes.getHero("Primal Beast");
         Hero swagMancer = Heroes.getHero("Swag"); // Test nullptr
 
+        DotaJsonParser.scrapeCounters("https://www.dotabuff.com/heroes/meepo/counters");
+
         System.out.println("test");
     }
 }

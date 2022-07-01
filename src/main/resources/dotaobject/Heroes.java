@@ -1,6 +1,6 @@
 package main.resources.dotaobject;
 import com.fasterxml.jackson.databind.JsonNode;
-import main.resources.DotaParser;
+import main.resources.DotaJsonParser;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +11,7 @@ public class Heroes {
     private static final Map<String, Integer> heroNameIndices; // Of type <localizedName, arrayIndex>
 
     static {
-        JsonNode heroes = DotaParser.parse("https://api.opendota.com/api/heroStats");
+        JsonNode heroes = DotaJsonParser.parse("https://api.opendota.com/api/heroStats");
         heroIdIndices = new HashMap<>();
         heroNameIndices = new HashMap<>();
         assert heroes != null;
@@ -52,29 +52,8 @@ public class Heroes {
             wins[Player.PlayerRank.PRO.ordinal()] = current.get("pro_win").asInt();
             int proBans = current.get("pro_ban").asInt();
 
-            StringBuilder url = new StringBuilder("https://api.opendota.com/api/scenarios/laneRoles?hero_id=");
-            url.append(id);
-            JsonNode laneRoles = DotaParser.parse(String.valueOf(url));
-            assert (laneRoles != null);
-            int[][] rolesPicks = new int[Hero.LaneRoles.values().length][Match.MatchTimes.values().length];
-            int[][] rolesWins = new int[Hero.LaneRoles.values().length][Match.MatchTimes.values().length];
-            for (int j = 0; j < laneRoles.size(); j++) {
-                // TODO Finish adding lane roles
-                JsonNode currentLaneRole = laneRoles.get(j);
-                int laneRole = currentLaneRole.get("lane_role").asInt() - 1;
-                int matchTime = (currentLaneRole.get("time").asInt() / 900) - 1;
-                if (matchTime >= 5) matchTime = 4; // Used to fix the jump from 3600sec to 5400sec
-                int rolePicks = currentLaneRole.get("games").asInt();
-                int roleWins = currentLaneRole.get("wins").asInt();
-                rolesPicks[laneRole][matchTime] = rolePicks;
-                rolesWins[laneRole][matchTime] = roleWins;
-            }
-
-
-
-
             Hero hero = new Hero(id, name, localizedName, primaryAttribute, attackType, roles, captainsMode,
-                    picks, wins, proBans, rolesPicks, rolesWins);
+                    picks, wins, proBans);
             heroesList[i] = hero;
             heroIdIndices.put(id, i);
             heroNameIndices.put(localizedName, i);
