@@ -3,16 +3,13 @@ import main.resources.dotaobject.Hero;
 import main.resources.dotaobject.Heroes;
 import main.resources.dotaobject.Player;
 
-import java.lang.reflect.Method;
 import java.util.*;
 
 public class Dota2Drafter {
     static List<Hero> heroes = Arrays.asList(Heroes.getHeroesList());
     static final int numHeroes = heroes.size();
-    /*static Comparator<Hero> nameComparatorLEx =
-                (l, r) -> Float.compare(l.getWinPercentage(Player.PlayerRank.ANCIENT), (r.getWinPercentage(Player.PlayerRank.ANCIENT)));
-    static Comparator<Hero> aaa =
-                (l, r) -> Float.compare(l.getAvgLastHitsAtTen(), (r.getAvgLastHitsAtTen()));*/
+    static Comparator<Hero> counterabilityComparator =
+                (l, r) -> Float.compare(l.getCounterability(), (r.getCounterability()));
 
     public static void main(String[] args) {
         allPickGetFirstPick(Player.PlayerRank.IMMORTAL);
@@ -23,7 +20,11 @@ public class Dota2Drafter {
 
     public static Hero allPickGetFirstPick(Player.PlayerRank rank) {
         ArrayList<Hero> heroesByWinrate = new ArrayList<>(heroes);
-        Collections.sort(heroesByWinrate, createWinRateComparator(rank));
+        Collections.sort(heroesByWinrate, createWinRateComparator(rank).reversed());
+        ArrayList<Hero> heroesByCounterability = new ArrayList<>(heroes);
+        Collections.sort(heroesByWinrate, counterabilityComparator.reversed());
+
+
         return null;
     }
 
