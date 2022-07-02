@@ -40,9 +40,17 @@ public class Heroes {
             String primaryAttribute = (current.get("primary_attr").asText());
             String attackType = current.get("attack_type").asText();
             JsonNode rolesNode = current.get("roles");
+            boolean support = false;
+            boolean carry = false;
             String[] roles = new String[rolesNode.size()];
             for (int j = 0; j < rolesNode.size(); j++) {
                 roles[j] = rolesNode.get(j).asText();
+                if (roles[j].equals("Support")) {
+                    support = true;
+                }
+                if (roles[j].equals("Carry")) {
+                    carry = true;
+                }
             }
             boolean captainsMode = current.get("cm_enabled").asBoolean();
             int[] picks = new int[Player.PlayerRank.values().length];
@@ -114,7 +122,7 @@ public class Heroes {
             float avgLastHitsAtTen = lastHitsAtTenList.get(localizedName);
 
             Hero hero = new Hero(id, name, localizedName, primaryAttribute, attackType, roles, captainsMode,
-                    picks, wins, proBans, lanePresence, avgLastHitsAtTen);
+                    picks, wins, proBans, lanePresence, avgLastHitsAtTen, support, carry);
             heroesList[i] = hero;
             heroIdIndices.put(id, i);
             heroNameIndices.put(localizedName, i);

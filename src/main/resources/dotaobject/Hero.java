@@ -12,7 +12,7 @@ public class Hero {
 
     public Hero(int id, String name, String localizedName, String primaryAttribute, String attackType,
                 String[] roles, boolean captainsMode, int[] picks, int[] wins, int proBans,
-                Map<LaneRoles, Float> lanePresence, float avgLastHitsAtTen) {
+                Map<LaneRoles, Float> lanePresence, float avgLastHitsAtTen, boolean support, boolean carry) {
         this.id = id;
         this.name = name;
         this.localizedName = localizedName;
@@ -25,6 +25,8 @@ public class Hero {
         this.proBans = proBans;
         this.lanePresence = lanePresence;
         this.avgLastHitsAtTen = avgLastHitsAtTen;
+        this.support = support;
+        this.carry = carry;
     }
 
     private final int id;
@@ -48,6 +50,8 @@ public class Hero {
     private float counterabilityIndex = 999; // This is an arbitrary number which represents the combined
     // maximum match up win and lose percentage difference between this hero's regular win rate
     private float counterability = -1;
+    private boolean support;
+    private boolean carry;
 
     enum LaneRoles {
         SAFELANE,

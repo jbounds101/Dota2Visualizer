@@ -22,8 +22,7 @@ public class Dota2Drafter {
         ArrayList<Hero> heroesByWinrate = new ArrayList<>(heroes);
         Collections.sort(heroesByWinrate, createWinRateComparator(rank).reversed());
         ArrayList<Hero> heroesByCounterability = new ArrayList<>(heroes);
-        Collections.sort(heroesByWinrate, counterabilityComparator.reversed());
-
+        Collections.sort(heroesByCounterability, counterabilityComparator);
 
         return null;
     }
