@@ -2,7 +2,9 @@ package main.resources.dotaobject;
 import com.fasterxml.jackson.databind.JsonNode;
 import main.resources.DotaJsonParser;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Heroes {
@@ -11,8 +13,10 @@ public class Heroes {
     private static final Map<String, Integer> heroNameIndices; // Of type <localizedName, arrayIndex>
     private static float maximumLastHitsAtTen = 0;
     private static float minimumLastHitsAtTen = 999;
-    private static float maximumCounterability = 999;
-    private static float minumumCounterability = 0;
+    private static float maximumCounterability = 0;
+    private static float minumumCounterability = 999;
+    private static ArrayList<Hero> supports = new ArrayList<>();
+    private static ArrayList<Hero> carrys = new ArrayList<>();
 
     static {
         JsonNode heroes = DotaJsonParser.parse("https://api.opendota.com/api/heroStats");
@@ -133,6 +137,12 @@ public class Heroes {
             hero.getCoreLikelihood();
             hero.getPublicMatchUps();
             hero.getCounterability();
+            if (hero.isSupport()) {
+                supports.add(hero);
+            }
+            if (hero.isCarry()) {
+                carrys.add(hero);
+            }
         }
     }
     public static Hero[] getHeroesList() {
@@ -180,7 +190,7 @@ public class Heroes {
         return minimumLastHitsAtTen;
     }
     public static float getMaximumCounterability() {
-        if (maximumCounterability != 999) return maximumCounterability;
+        if (maximumCounterability != 0) return maximumCounterability;
         float currentMax = 0;
         for (Hero hero : heroesList) {
             float currentCounterability = hero.getCounterabilityIndex();
@@ -202,5 +212,13 @@ public class Heroes {
         }
         minimumLastHitsAtTen = currentMin;
         return minimumLastHitsAtTen;
+    }
+
+    public static ArrayList<Hero> getSupports() {
+        return supports;
+    }
+
+    public static ArrayList<Hero> getCarrys() {
+        return carrys;
     }
 }

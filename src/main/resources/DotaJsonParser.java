@@ -70,9 +70,9 @@ public class DotaJsonParser {
         return response;
     }
 
-    public static Map<Hero, Float> scrapePublicMatchUps(String url) {
+    public static Map<Hero, float[]> scrapePublicMatchUps(String url) {
         // Used for accessing data on non-API website
-        Map<Hero, Float> counters = new HashMap<>();
+        Map<Hero, float[]> counters = new HashMap<>();
         try {
             System.setProperty("http.proxyHost", "192.168.5.1");
             System.setProperty("http.proxyPort", "1080");
@@ -86,7 +86,8 @@ public class DotaJsonParser {
                 String localizedHeroName = row.child(0).attributes().get("data-value");
                 Hero hero = Heroes.getHero(localizedHeroName);
                 float winRate = Float.parseFloat(row.child(3).attributes().get("data-value")) / 100;
-                counters.put(hero, winRate);
+                float disadvantage = Float.parseFloat(row.child(2).attributes().get("data-value")) / 100;
+                counters.put(hero, new float[]{winRate, disadvantage});
             }
         } catch (Exception e) {
             e.printStackTrace();

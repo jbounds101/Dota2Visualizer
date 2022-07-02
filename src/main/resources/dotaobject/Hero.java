@@ -47,9 +47,10 @@ public class Hero {
     private float avgLastHitsAtTen;
     private float coreLikelihood = -1;
     private Map<Hero, Float> publicMatchUps = null;
+    private Map<Hero, Float> disadvantages;
     private float counterabilityIndex = 999; // This is an arbitrary number which represents the combined
     // maximum match up win and lose percentage difference between this hero's regular win rate
-    private float counterability = -1;
+    private float counterability = -1; // TODO work on counterabilityIndex
     private boolean support;
     private boolean carry;
 
@@ -112,7 +113,18 @@ public class Hero {
         if (dotaBuffName.equals("outworld-devourer")) dotaBuffName = "outworld-destroyer";
         if (dotaBuffName.equals("nature's-prophet")) dotaBuffName = "natures-prophet";
         String url = "https://www.dotabuff.com/heroes/" + dotaBuffName + "/counters";
-        this.publicMatchUps = DotaJsonParser.scrapePublicMatchUps(url);
+        Map<Hero, float[]> values = DotaJsonParser.scrapePublicMatchUps(url);
+        Map<Hero, Float> matchUps = new HashMap<>();
+        Map<Hero, Float> disadvantages_ = new HashMap<>();
+
+        for (Hero hero : Heroes.getHeroesList()) {
+            if (hero == this) continue;
+            float[] current = values.get(hero);
+            matchUps.put(hero, current[0]);
+            disadvantages_.put(hero, current[1]);
+        }
+        this.publicMatchUps = matchUps;
+        this.disadvantages = disadvantages_;
         return this.publicMatchUps;
     }
 
@@ -156,7 +168,15 @@ public class Hero {
             } catch (NullPointerException ignored) {}
         }
         float regularWinPercentage = this.getWinPercentage();
-        this.counterabilityIndex = (currentMax - regularWinPercentage) + (regularWinPercentage - currentMin);
+        this.counterabilityIndex = (regularWinPercentage - currentMin);
         return this.counterabilityIndex;
+    }
+
+    public boolean isSupport() {
+        return support;
+    }
+
+    public boolean isCarry() {
+        return carry;
     }
 }

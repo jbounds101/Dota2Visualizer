@@ -7,6 +7,9 @@ import java.util.*;
 
 public class Dota2Drafter {
     static List<Hero> heroes = Arrays.asList(Heroes.getHeroesList());
+    static List<Hero> supports = Heroes.getSupports();
+    static List<Hero> carrys = Heroes.getCarrys();
+
     static final int numHeroes = heroes.size();
     static Comparator<Hero> counterabilityComparator =
                 (l, r) -> Float.compare(l.getCounterability(), (r.getCounterability()));
