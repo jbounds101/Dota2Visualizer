@@ -11,10 +11,21 @@ public class Heroes {
     private static final Map<String, Integer> heroNameIndices; // Of type <localizedName, arrayIndex>
     private static float maximumLastHitsAtTen = 0;
     private static float minimumLastHitsAtTen = 999;
+    private static float maximumCounterability = 999;
+    private static float minumumCounterability = 0;
 
     static {
         JsonNode heroes = DotaJsonParser.parse("https://api.opendota.com/api/heroStats");
-        JsonNode laneScenarios = DotaJsonParser.parse("https://api.opendota.com/api/scenarios/laneRoles");
+        JsonNode laneScenariosSafe =
+                DotaJsonParser.parse("https://api.opendota.com/api/scenarios/laneRoles?lane_role=1");
+        JsonNode laneScenariosMid =
+                DotaJsonParser.parse("https://api.opendota.com/api/scenarios/laneRoles?lane_role=2");
+        JsonNode laneScenariosOff =
+                DotaJsonParser.parse("https://api.opendota.com/api/scenarios/laneRoles?lane_role=3");
+        assert (laneScenariosSafe != null);
+        assert (laneScenariosMid != null);
+        assert (laneScenariosOff != null);
+
         Map<String, Float> lastHitsAtTenList = DotaJsonParser.scrapeHeroEconomy();
         heroIdIndices = new HashMap<>();
         heroNameIndices = new HashMap<>();
@@ -62,35 +73,40 @@ public class Heroes {
             int safeLaneGames = 0;
             int midLaneGames = 0;
             int offLaneGames = 0;
-            for (int currentLane = 0; currentLane < Hero.LaneRoles.values().length; currentLane++) {
-                for (int node = 0; node < laneScenarios.size(); node++) {
-                    JsonNode currentLaneScenario = laneScenarios.get(node);
+            JsonNode currentLane = null;
+
+            for (int role = 0; role < Hero.LaneRoles.values().length; role++) {
+                switch (role) {
+                    case 0:
+                        currentLane = laneScenariosSafe;
+                        break;
+                    case 1:
+                        currentLane = laneScenariosMid;
+                        break;
+                    case 2:
+                        currentLane = laneScenariosOff;
+                        break;
+                }
+                for (int node = 0; node < currentLane.size(); node++) {
+                    JsonNode currentLaneScenario = currentLane.get(node);
                     int laneScenarioHeroId = currentLaneScenario.get("hero_id").asInt();
                     if (laneScenarioHeroId != id) continue; // Isn't the hero we are currently creating, by parsing
                     // the whole page it is possible to request much less API calls
-                    int laneRole = currentLaneScenario.get("lane_role").asInt() - 1;
-                    if ((laneRole == 3) || (laneRole != currentLane)) continue; // Skip jungle,
-                    // it is basically never played as a role, skip non-current lane as well
-                    int currentLaneGames = currentLaneScenario.get("games").asInt();
-                    totalGames += currentLaneGames;
-                    switch (currentLane) {
-                        case 0:
-                            // Safe
-                            safeLaneGames += currentLaneGames;
-                            break;
-                        case 1:
-                            // Mid
-                            midLaneGames += currentLaneGames;
-                            break;
-                        case 2:
-                            // Off
-                            offLaneGames += currentLaneGames;
-                            break;
-                    }
+                    int games = currentLaneScenario.get("games").asInt();
+                    switch (role) {
+                    case 0:
+                        safeLaneGames += games;
+                        break;
+                    case 1:
+                        midLaneGames += games;
+                        break;
+                    case 2:
+                        offLaneGames += games;
+                        break;
+                }
+                    totalGames += games;
                 }
             }
-
-            // TODO: This is actually broken, it only indexes up to id 62, need to split the lanes for each call
             lanePresence.put(Hero.LaneRoles.SAFELANE, (float) safeLaneGames / (float) totalGames);
             lanePresence.put(Hero.LaneRoles.MIDLANE, (float) midLaneGames / (float) totalGames);
             lanePresence.put(Hero.LaneRoles.OFFLANE, (float) offLaneGames / (float) totalGames);
@@ -106,9 +122,9 @@ public class Heroes {
 
         // This is for uninitialized values that rely on the heroes list
         for (Hero hero: getHeroesList()) {
-            hero.calculateCoreLikelihood();
+            hero.getCoreLikelihood();
             hero.getPublicMatchUps();
-            hero.getCounterabilityIndex();
+            hero.getCounterability();
         }
     }
     public static Hero[] getHeroesList() {
@@ -143,13 +159,37 @@ public class Heroes {
         maximumLastHitsAtTen = currentMax;
         return maximumLastHitsAtTen;
     }
-     public static float getMinimumLastHitsAtTen() {
+    public static float getMinimumLastHitsAtTen() {
         if (minimumLastHitsAtTen != 999) return minimumLastHitsAtTen;
         float currentMin = 999;
         for (Hero hero : heroesList) {
             float currentLastHits = hero.getAvgLastHitsAtTen();
             if (currentLastHits < currentMin) {
                 currentMin = currentLastHits;
+            }
+        }
+        minimumLastHitsAtTen = currentMin;
+        return minimumLastHitsAtTen;
+    }
+    public static float getMaximumCounterability() {
+        if (maximumCounterability != 999) return maximumCounterability;
+        float currentMax = 0;
+        for (Hero hero : heroesList) {
+            float currentCounterability = hero.getCounterabilityIndex();
+            if (currentCounterability > currentMax) {
+                currentMax = currentCounterability;
+            }
+        }
+        maximumCounterability = currentMax;
+        return maximumCounterability;
+    }
+    public static float getMinumumCounterability() {
+        if (minumumCounterability != 999) return minumumCounterability;
+        float currentMin = 999;
+        for (Hero hero : heroesList) {
+            float currentCounterability = hero.getCounterabilityIndex();
+            if (currentCounterability < currentMin) {
+                currentMin = currentCounterability;
             }
         }
         minimumLastHitsAtTen = currentMin;

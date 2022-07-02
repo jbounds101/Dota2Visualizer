@@ -24,6 +24,26 @@ public class Match {
     private int humanPlayers; // CHECK: probably the number of non-bots
     private BigInteger leagueID;
     private LobbyType lobbyType;
+
+    private int matchSeqNum;
+    private int negativeVotes;
+    // objectives?
+    private PickBan[] picksBans;
+    private int positiveVotes;
+    private int[] radiantGoldAdvantage; // This is equal to the difference in net-worth each minute
+    private int radiantScore;
+    private BigInteger radiantTeamId;
+    boolean radiantWin;
+    private int[] radiantXpAdvantage;
+    // skill?
+    // teamfights?
+    private int towerStatusDire;
+    private int towerStatusRadiant;
+    // version?
+    // replay salt?
+    // series id?
+    // series type?
+    // players TODO this is probably needed
     public enum LobbyType {
         INVALID(-1),
         PUBLIC_MATCHMAKING(0),
@@ -46,23 +66,8 @@ public class Match {
             return (LobbyType) map.get(value);
         }
     }
-    private int matchSeqNum;
-    private int negativeVotes;
-    // objectives?
-    private PickBan[] picksBans;
-    private int positiveVotes;
-    private int[] radiantGoldAdvantage; // This is equal to the difference in net-worth each minute
-    private int radiantScore;
-    private BigInteger radiantTeamId;
-    boolean radiantWin;
-    private int[] radiantXpAdvantage;
-    // skill?
-    // teamfights?
-    private int towerStatusDire;
-    private int towerStatusRadiant;
-    // version?
-    // replay salt?
-    // series id?
-    // series type?
-    // players TODO this is probably needed
+    public enum Team {
+        RADIANT,
+        DIRE
+    }
 }

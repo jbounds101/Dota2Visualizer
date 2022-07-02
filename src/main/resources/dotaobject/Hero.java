@@ -43,9 +43,11 @@ public class Hero {
     private Map<LaneRoles, Float> lanePresence;
     // A map of LaneRoles, with the corresponding percentage of games they are in that lane
     private float avgLastHitsAtTen;
-    private float coreLikelihood;
+    private float coreLikelihood = -1;
     private Map<Hero, Float> publicMatchUps = null;
-    private float counterabilityIndex = Float.MAX_VALUE;
+    private float counterabilityIndex = 999; // This is an arbitrary number which represents the combined
+    // maximum match up win and lose percentage difference between this hero's regular win rate
+    private float counterability = -1;
 
     enum LaneRoles {
         SAFELANE,
@@ -103,10 +105,21 @@ public class Hero {
         return this.publicMatchUps;
     }
 
-    public void calculateCoreLikelihood() {
+    public float getCoreLikelihood() {
+        if (this.coreLikelihood != -1) return this.coreLikelihood;
         float maximumLastHits = Heroes.getMaximumLastHitsAtTen();
         float minimumLastHits = Heroes.getMinimumLastHitsAtTen();
         this.coreLikelihood = (this.avgLastHitsAtTen - minimumLastHits) / (maximumLastHits - minimumLastHits);
+        return this.coreLikelihood;
+    }
+
+    public float getCounterability() {
+        if (this.counterability != -1) return this.counterability;
+        float maximumCounterability = Heroes.getMaximumCounterability();
+        float minimumCounterability = Heroes.getMinumumCounterability();
+        this.counterability = (this.counterabilityIndex - minimumCounterability) /
+                (maximumCounterability - minimumCounterability);
+        return this.counterability;
     }
 
     public float getAvgLastHitsAtTen() {
@@ -114,7 +127,7 @@ public class Hero {
     }
 
     public float getCounterabilityIndex() {
-        if (this.counterabilityIndex != Float.MAX_VALUE) {
+        if (this.counterabilityIndex != 999) {
             return this.counterabilityIndex;
         }
         float currentMin = 100;
@@ -135,4 +148,5 @@ public class Hero {
         this.counterabilityIndex = (currentMax - regularWinPercentage) + (regularWinPercentage - currentMin);
         return this.counterabilityIndex;
     }
+
 }
