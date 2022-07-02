@@ -153,22 +153,15 @@ public class Hero {
         if (this.counterabilityIndex != 999) {
             return this.counterabilityIndex;
         }
-        float currentMin = 100;
-        float currentMax = 0;
-        Map<Hero, Float> matchUps = this.getPublicMatchUps();
+        float maxDisadvantage = -999;
         for (Hero hero : Heroes.getHeroesList()) {
-            try {
-                float checkWinRate = matchUps.get(hero);
-                if (checkWinRate > currentMax) {
-                    currentMax = checkWinRate;
-                }
-                if (checkWinRate < currentMin) {
-                    currentMin = checkWinRate;
-                }
-            } catch (NullPointerException ignored) {}
+            if (hero == this) continue;
+            float currentDisadvantage = disadvantages.get(hero);
+            if (currentDisadvantage > maxDisadvantage) {
+                maxDisadvantage = currentDisadvantage;
+            }
         }
-        float regularWinPercentage = this.getWinPercentage();
-        this.counterabilityIndex = (regularWinPercentage - currentMin);
+        this.counterabilityIndex = maxDisadvantage;
         return this.counterabilityIndex;
     }
 

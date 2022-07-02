@@ -12,6 +12,7 @@ import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.apache.hc.core5.http.HttpEntity;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 
+import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -74,9 +75,20 @@ public class DotaJsonParser {
         // Used for accessing data on non-API website
         Map<Hero, float[]> counters = new HashMap<>();
         try {
-            System.setProperty("http.proxyHost", "192.168.5.1");
-            System.setProperty("http.proxyPort", "1080");
-            final Document document = Jsoup.connect(url).get();
+            System.setProperty("http.proxyHost", "192.168.5.3");
+            System.setProperty("http.proxyPort", "8000");
+            //Thread.sleep(500);
+            Thread.sleep(1000);
+            Document document = null;
+            while (document == null) {
+                try {
+                    document = Jsoup.connect(url).get();
+                } catch (HttpStatusException e) {
+                    Thread.sleep(1000);
+                    document = null;
+                    System.out.println("HTTP connection closed.");
+                }
+            }
             Random random = new Random();
             //Thread.sleep(500 + random.nextInt(50));
             int index = -1;
@@ -100,7 +112,17 @@ public class DotaJsonParser {
         Map<String, Float> economy = new HashMap<>();
         String url = "https://www.dotabuff.com/heroes/farm";
         try {
-            final Document document = Jsoup.connect(url).get();
+            Thread.sleep(1000);
+            Document document = null;
+            while (document == null) {
+                try {
+                    document = Jsoup.connect(url).get();
+                } catch (HttpStatusException e) {
+                    Thread.sleep(1000);
+                    document = null;
+                    System.out.println("HTTP connection closed.");
+                }
+            }
             int index = -1;
             for (Element row : document.select("table.sortable tr")) {
                 index++;

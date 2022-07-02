@@ -133,16 +133,18 @@ public class Heroes {
         }
 
         // This is for uninitialized values that rely on the heroes list
-        for (Hero hero: getHeroesList()) {
+        for (Hero hero : getHeroesList()) {
             hero.getCoreLikelihood();
             hero.getPublicMatchUps();
-            hero.getCounterability();
             if (hero.isSupport()) {
                 supports.add(hero);
             }
             if (hero.isCarry()) {
                 carrys.add(hero);
             }
+        }
+        for (Hero hero : getHeroesList()) {
+            hero.getCounterability();
         }
     }
     public static Hero[] getHeroesList() {
