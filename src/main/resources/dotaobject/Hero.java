@@ -61,9 +61,16 @@ public class Hero {
     }
 
     public float getWinPercentage(Player.PlayerRank rank) {
-        // Hero win percentage in a certain skill bracket
+        // Hero win percentage in a certain skill bracket (combines divine and immortal)
         int picks_ = picks[rank.ordinal()];
         int wins_ = wins[rank.ordinal()];
+        if (rank == Player.PlayerRank.DIVINE) {
+            picks_ += picks[Player.PlayerRank.IMMORTAL.ordinal()];
+            wins_ += wins[Player.PlayerRank.IMMORTAL.ordinal()];
+        } else if (rank == Player.PlayerRank.IMMORTAL) {
+             picks_ += picks[Player.PlayerRank.DIVINE.ordinal()];
+            wins_ += wins[Player.PlayerRank.DIVINE.ordinal()];
+        }
         return ((float) wins_ / (float) picks_);
     }
     public float getWinPercentage() {
@@ -148,5 +155,4 @@ public class Hero {
         this.counterabilityIndex = (currentMax - regularWinPercentage) + (regularWinPercentage - currentMin);
         return this.counterabilityIndex;
     }
-
 }
