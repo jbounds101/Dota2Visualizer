@@ -1,10 +1,11 @@
 package main.resources;
 
+import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 
-import main.resources.dotaobject.Hero;
-import main.resources.dotaobject.Heroes;
+import main.resources.dotaobject.Match;
 import org.apache.hc.client5.http.classic.methods.HttpGet;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
@@ -12,16 +13,8 @@ import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.apache.hc.core5.http.HttpEntity;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 
-import org.jsoup.HttpStatusException;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-
-
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+
 
 public class DotaJsonParser {
 
@@ -31,12 +24,12 @@ public class DotaJsonParser {
         ObjectMapper defaultObjectMapper = new ObjectMapper();
 
         // Add main.resources.resources.DotaMatch deserializer to the ObjectMapper
-        /*SimpleModule DotaMatchDeserializer =
+        SimpleModule DotaMatchDeserializer =
             new SimpleModule("main.resources.DotaMatchDeserializer", new Version(1, 0, 0,
                     null, null, null));
 
         DotaMatchDeserializer.addDeserializer(Match[].class, new DotaMatchDeserializer());
-        defaultObjectMapper.registerModule(DotaMatchDeserializer);*/
+        defaultObjectMapper.registerModule(DotaMatchDeserializer);
 
         return defaultObjectMapper;
     }
@@ -71,72 +64,6 @@ public class DotaJsonParser {
         return response;
     }
 
-    public static Map<Hero, float[]> scrapePublicMatchUps(String url) {
-        // Used for accessing data on non-API website
-        Map<Hero, float[]> counters = new HashMap<>();
-        try {
-            System.setProperty("http.proxyHost", "192.168.5.3");
-            System.setProperty("http.proxyPort", "8000");
-            //Thread.sleep(500);
-            Thread.sleep(1000);
-            Document document = null;
-            while (document == null) {
-                try {
-                    document = Jsoup.connect(url).get();
-                } catch (HttpStatusException e) {
-                    Thread.sleep(1000);
-                    document = null;
-                    System.out.println("HTTP connection closed.");
-                }
-            }
-            Random random = new Random();
-            //Thread.sleep(500 + random.nextInt(50));
-            int index = -1;
-            for (Element row: document.select("table.sortable tr")) {
-                index++;
-                if (index == 0) continue;
-                String localizedHeroName = row.child(0).attributes().get("data-value");
-                Hero hero = Heroes.getHero(localizedHeroName);
-                float winRate = Float.parseFloat(row.child(3).attributes().get("data-value")) / 100;
-                float disadvantage = Float.parseFloat(row.child(2).attributes().get("data-value")) / 100;
-                counters.put(hero, new float[]{winRate, disadvantage});
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return counters;
-    }
-
-    public static Map<String, Float> scrapeHeroEconomy() {
-        // Can't be of type <Hero, Float> because this is used during the creation of the Heroes module
-        Map<String, Float> economy = new HashMap<>();
-        String url = "https://www.dotabuff.com/heroes/farm";
-        try {
-            Thread.sleep(1000);
-            Document document = null;
-            while (document == null) {
-                try {
-                    document = Jsoup.connect(url).get();
-                } catch (HttpStatusException e) {
-                    Thread.sleep(1000);
-                    document = null;
-                    System.out.println("HTTP connection closed.");
-                }
-            }
-            int index = -1;
-            for (Element row : document.select("table.sortable tr")) {
-                index++;
-                if (index == 0) continue;
-                String localizedName = row.child(0).attributes().get("data-value");
-                if (localizedName.equals("Outworld Destroyer")) localizedName = "Outworld Devourer";
-                float lastHits = Float.parseFloat(row.child(2).attributes().get("data-value"));
-                economy.put(localizedName, lastHits);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return economy;
-    }
 }
 
 

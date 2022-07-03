@@ -1,175 +1,64 @@
 package main.resources.dotaobject;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import main.resources.DotaJsonParser;
-
-import java.util.HashMap;
-import java.util.Map;
+import java.awt.image.BufferedImage;
 
 public class Hero {
-    // https://liquipedia.net/dota2/MediaWiki:Dota2webapi-heroes.json
 
-
-    public Hero(int id, String name, String localizedName, String primaryAttribute, String attackType,
-                String[] roles, boolean captainsMode, int[] picks, int[] wins, int proBans,
-                Map<LaneRoles, Float> lanePresence, float avgLastHitsAtTen, boolean support, boolean carry) {
+    public Hero(int id, String localizedName, String primaryAttribute, String attackType, String[] roles,
+                BufferedImage img, BufferedImage icon, int baseHealth, double baseHealthRegen, int baseMana,
+                double baseManaRegen, int baseArmor, int baseStr, int baseAgi, int baseInt, double strGain,
+                double agiGain, double intGain, int attackRange, double attackRate, int moveSpeed,
+                boolean captainsMode) {
         this.id = id;
-        this.name = name;
         this.localizedName = localizedName;
         this.primaryAttribute = primaryAttribute;
         this.attackType = attackType;
         this.roles = roles;
+        this.img = img;
+        this.icon = icon;
+        this.baseHealth = baseHealth;
+        this.baseHealthRegen = baseHealthRegen;
+        this.baseMana = baseMana;
+        this.baseManaRegen = baseManaRegen;
+        this.baseArmor = baseArmor;
+        this.baseStr = baseStr;
+        this.baseAgi = baseAgi;
+        this.baseInt = baseInt;
+        this.strGain = strGain;
+        this.agiGain = agiGain;
+        this.intGain = intGain;
+        this.attackRange = attackRange;
+        this.attackRate = attackRate;
+        this.moveSpeed = moveSpeed;
         this.captainsMode = captainsMode;
-        this.picks = picks;
-        this.wins = wins;
-        this.proBans = proBans;
-        this.lanePresence = lanePresence;
-        this.avgLastHitsAtTen = avgLastHitsAtTen;
-        this.support = support;
-        this.carry = carry;
     }
 
     private final int id;
-    private final String name;
     private final String localizedName;
-    public String primaryAttribute;
+    private final String primaryAttribute;
     private final String attackType;
     private final String[] roles;
-    /*private final String img;
-    private final String icon; TODO need to fix this, these should be images */
-    private boolean captainsMode;
-    private int[] picks;
-    private int[] wins;
-    private int proBans;
-    // herald, guardian, crusader, archon, legend, ancient, divine, immortal, pro
-    private Map<LaneRoles, Float> lanePresence;
-    // A map of LaneRoles, with the corresponding percentage of games they are in that lane
-    private float avgLastHitsAtTen;
-    private float coreLikelihood = -1;
-    private Map<Hero, Float> publicMatchUps = null;
-    private Map<Hero, Float> disadvantages;
-    private float counterabilityIndex = 999; // This is an arbitrary number which represents the combined
-    // maximum match up win and lose percentage difference between this hero's regular win rate
-    private float counterability = -1; // TODO work on counterabilityIndex
-    private boolean support;
-    private boolean carry;
-
-    enum LaneRoles {
-        SAFELANE,
-        MIDLANE,
-        OFFLANE
-    }
+    private final BufferedImage img;
+    private final BufferedImage icon;
+    private final int baseHealth;
+    private final double baseHealthRegen;
+    private final int baseMana;
+    private final double baseManaRegen;
+    private final int baseArmor;
+    private final int baseStr;
+    private final int baseAgi;
+    private final int baseInt;
+    private final double strGain;
+    private final double agiGain;
+    private final double intGain;
+    private final int attackRange;
+    private final double attackRate;
+    private final int moveSpeed;
+    private final boolean captainsMode;
 
     @Override
     public String toString() {
         return this.localizedName;
     }
 
-    public float getWinPercentage(Player.PlayerRank rank) {
-        // Hero win percentage in a certain skill bracket (combines divine and immortal)
-        int picks_ = picks[rank.ordinal()];
-        int wins_ = wins[rank.ordinal()];
-        if (rank == Player.PlayerRank.DIVINE) {
-            picks_ += picks[Player.PlayerRank.IMMORTAL.ordinal()];
-            wins_ += wins[Player.PlayerRank.IMMORTAL.ordinal()];
-        } else if (rank == Player.PlayerRank.IMMORTAL) {
-             picks_ += picks[Player.PlayerRank.DIVINE.ordinal()];
-            wins_ += wins[Player.PlayerRank.DIVINE.ordinal()];
-        }
-        return ((float) wins_ / (float) picks_);
-    }
-    public float getWinPercentage() {
-        // General hero win percentage, excludes pro data because of small sample size and skewed data
-        int picks_ = 0;
-        int wins_ = 0;
-        for (int i = 0; i < Player.PlayerRank.values().length - 1; i++) {
-            picks_ += picks[i];
-            wins_ += wins[i];
-        }
-        return ((float) wins_ / (float) picks_);
-    }
-
-    public Map<Hero, Float> getProMatchUps() {
-        // Gets the hero match-ups based on professional matches
-        String url = "https://api.opendota.com/api/heroes/" + this.id + "/matchups";
-        JsonNode response = DotaJsonParser.parse(url);
-        assert (response != null);
-        Map<Hero, Float> matchUps = new HashMap<>();
-        for (int i = 0; i < response.size(); i++) {
-            JsonNode current = response.get(i);
-            int heroId = current.get("hero_id").asInt();
-            int gamesPlayed = current.get("games_played").asInt();
-            int wins = current.get("wins").asInt();
-            float winRate = ((float) wins / (float) gamesPlayed);
-            matchUps.put(Heroes.getHero(heroId), winRate);
-        }
-        return matchUps;
-    }
-
-    public Map<Hero, Float> getPublicMatchUps() {
-        if (publicMatchUps != null) return publicMatchUps;
-        // Gets hero match-ups based on public matches
-        String dotaBuffName = this.localizedName.toLowerCase().replace(' ', '-');
-        if (dotaBuffName.equals("outworld-devourer")) dotaBuffName = "outworld-destroyer";
-        if (dotaBuffName.equals("nature's-prophet")) dotaBuffName = "natures-prophet";
-        String url = "https://www.dotabuff.com/heroes/" + dotaBuffName + "/counters";
-        Map<Hero, float[]> values = DotaJsonParser.scrapePublicMatchUps(url);
-        Map<Hero, Float> matchUps = new HashMap<>();
-        Map<Hero, Float> disadvantages_ = new HashMap<>();
-
-        for (Hero hero : Heroes.getHeroesList()) {
-            if (hero == this) continue;
-            float[] current = values.get(hero);
-            matchUps.put(hero, current[0]);
-            disadvantages_.put(hero, current[1]);
-        }
-        this.publicMatchUps = matchUps;
-        this.disadvantages = disadvantages_;
-        return this.publicMatchUps;
-    }
-
-    public float getCoreLikelihood() {
-        if (this.coreLikelihood != -1) return this.coreLikelihood;
-        float maximumLastHits = Heroes.getMaximumLastHitsAtTen();
-        float minimumLastHits = Heroes.getMinimumLastHitsAtTen();
-        this.coreLikelihood = (this.avgLastHitsAtTen - minimumLastHits) / (maximumLastHits - minimumLastHits);
-        return this.coreLikelihood;
-    }
-
-    public float getCounterability() {
-        if (this.counterability != -1) return this.counterability;
-        float maximumCounterability = Heroes.getMaximumCounterability();
-        float minimumCounterability = Heroes.getMinumumCounterability();
-        this.counterability = (this.counterabilityIndex - minimumCounterability) /
-                (maximumCounterability - minimumCounterability);
-        return this.counterability;
-    }
-
-    public float getAvgLastHitsAtTen() {
-        return avgLastHitsAtTen;
-    }
-
-    public float getCounterabilityIndex() {
-        if (this.counterabilityIndex != 999) {
-            return this.counterabilityIndex;
-        }
-        float maxDisadvantage = -999;
-        for (Hero hero : Heroes.getHeroesList()) {
-            if (hero == this) continue;
-            float currentDisadvantage = disadvantages.get(hero);
-            if (currentDisadvantage > maxDisadvantage) {
-                maxDisadvantage = currentDisadvantage;
-            }
-        }
-        this.counterabilityIndex = maxDisadvantage;
-        return this.counterabilityIndex;
-    }
-
-    public boolean isSupport() {
-        return support;
-    }
-
-    public boolean isCarry() {
-        return carry;
-    }
 }
