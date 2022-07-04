@@ -1,7 +1,7 @@
 package main.resources;
 
-import main.resources.dotaobject.Match;
-import main.resources.dotaobject.Player;
+import dotaobject.Match;
+import dotaobject.Player;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.ObjectCodec;
 import com.fasterxml.jackson.databind.DeserializationContext;

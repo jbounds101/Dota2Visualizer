@@ -1,4 +1,4 @@
-package main.resources.dotaobject;
+package dotaobject;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import main.resources.DotaJsonParser;
@@ -6,7 +6,6 @@ import main.resources.DotaJsonParser;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;

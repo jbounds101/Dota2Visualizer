@@ -1,4 +1,4 @@
-package main.resources.dotaobject;
+package dotaobject;
 
 public class Player {
     private int accountId;
