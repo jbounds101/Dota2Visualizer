@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class Match {
 
-    private BigInteger matchID;
+    private Long matchID;
     private int barracksStatusDire;
     private int barracksStatusRadiant;
     // https://dev.dota2.com/forum/dota-2/spectating/replays/webapi/59075-this-is-how-to-interpret-the-barracks_status-and-tower_status-results-from-the-api#post948450
@@ -15,25 +15,22 @@ public class Match {
     // cluster?
     // cosmetics?
     private int direScore; // Number of kills
-    private BigInteger direTeamId; // Usually zero; if playing on a team, will give the ID
+    private Long direTeamId; // Usually zero; if playing on a team, will give the ID
     // drafting timings TODO: probably needed for captains mode
     private int duration; // In seconds
     // engine?
     private int firstBloodTime;
     private int gameMode;
-    private int humanPlayers; // CHECK: probably the number of non-bots
-    private BigInteger leagueID;
+    private int humanPlayers;
+    private Long leagueID;
     private LobbyType lobbyType;
-
     private int matchSeqNum;
-    private int negativeVotes;
     // objectives?
     private PickBan[] picksBans;
-    private int positiveVotes;
     private int[] radiantGoldAdvantage; // This is equal to the difference in net-worth each minute
     private int radiantScore;
-    private BigInteger radiantTeamId;
-    boolean radiantWin;
+    private Long radiantTeamId;
+    private boolean radiantWin;
     private int[] radiantXpAdvantage;
     // skill?
     // teamfights?
