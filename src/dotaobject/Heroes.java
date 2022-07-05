@@ -38,7 +38,7 @@ public class Heroes {
             }
 
             // Download the img and icon files, or simply open them if they are already downloaded
-            File dir = new File("src/images");
+            File dir = new File("src/hero_images");
             if (!dir.exists()) dir.mkdir();
             BufferedImage img = null;
             BufferedImage icon = null;
