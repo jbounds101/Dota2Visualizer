@@ -1,70 +1,28 @@
 package dotaobject;
 
-import java.math.BigInteger;
-import java.util.HashMap;
-import java.util.Map;
-
-
 public class Match {
 
     private Long matchID;
     private int barracksStatusDire;
     private int barracksStatusRadiant;
     // https://dev.dota2.com/forum/dota-2/spectating/replays/webapi/59075-this-is-how-to-interpret-the-barracks_status-and-tower_status-results-from-the-api#post948450
-    // chat? TODO
-    // cluster?
-    // cosmetics?
     private int direScore; // Number of kills
     private Long direTeamId; // Usually zero; if playing on a team, will give the ID
-    // drafting timings TODO: probably needed for captains mode
     private int duration; // In seconds
-    // engine?
     private int firstBloodTime;
     private int gameMode;
     private int humanPlayers;
     private Long leagueID;
-    private LobbyType lobbyType;
+    private int lobbyType;
     private int matchSeqNum;
     // objectives?
-    private PickBan[] picksBans;
     private int[] radiantGoldAdvantage; // This is equal to the difference in net-worth each minute
     private int radiantScore;
     private Long radiantTeamId;
     private boolean radiantWin;
     private int[] radiantXpAdvantage;
-    // skill?
-    // teamfights?
+    // teamfights? TODO add this
     private int towerStatusDire;
     private int towerStatusRadiant;
-    // version?
-    // replay salt?
-    // series id?
-    // series type?
-    // players TODO this is probably needed
-    public enum LobbyType {
-        INVALID(-1),
-        PUBLIC_MATCHMAKING(0),
-        PRACTICE(1),
-        TOURNAMENT(2),
-        TUTORIAL(3),
-        COOP_WITH_BOTS(4),
-        TEAM_MATCH(5);
-        private final int value;
-        LobbyType(int value) {
-            this.value = value;
-        }
-        private static final Map<Integer, LobbyType> map = new HashMap<>();
-        static {
-            for (LobbyType lobbyType : LobbyType.values()) {
-                map.put(lobbyType.value, lobbyType);
-            }
-        }
-        public static LobbyType convert(int value) {
-            return (LobbyType) map.get(value);
-        }
-    }
-    public enum Team {
-        RADIANT,
-        DIRE
-    }
+    private Player[] players;
 }
