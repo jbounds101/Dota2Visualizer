@@ -14,13 +14,13 @@ import java.util.Map;
 
 public class Heroes {
     private static final Hero[] heroesList;
-    private static final Map<Integer, Integer> heroIdIndices; // Of type <id, arrayIndex>
+    private static final Map<Integer, Integer> heroIDIndices; // Of type <id, arrayIndex>
     private static final Map<String, Integer> heroNameIndices; // Of type <localizedName, arrayIndex>
 
     static {
         JsonNode heroes = DotaJsonParser.parse("https://api.opendota.com/api/heroStats");
         assert heroes != null;
-        heroIdIndices = new HashMap<>();
+        heroIDIndices = new HashMap<>();
         heroNameIndices = new HashMap<>();
         heroesList = new Hero[heroes.size()];
         for (int i = 0; i < heroes.size(); i++) {
@@ -38,34 +38,10 @@ public class Heroes {
             }
 
             // Download the img and icon files, or simply open them if they are already downloaded
-            File dir = new File("src/hero_images");
-            if (!dir.exists()) dir.mkdir();
-            BufferedImage img = null;
-            BufferedImage icon = null;
-            try {
-                File imgFolderInput = new File(dir, id + "img.png");
-                img = ImageIO.read(imgFolderInput);
-                File iconFolderInput = new File(dir, id + "icon.png");
-                icon = ImageIO.read(iconFolderInput);
-            } catch (IOException e) {
-                // Images don't exist yet
-                try {
-                    URL imgURL = new URL("https://api.opendota.com" + current.get("img").asText());
-                    URL iconURL = new URL("https://api.opendota.com" + current.get("icon").asText());
-                    try {
-                        img = ImageIO.read(imgURL);
-                        ImageIO.write(img, "png", new File(dir, id + "img.png"));
-                        icon = ImageIO.read(iconURL);
-                        ImageIO.write(icon, "png", new File(dir, id + "icon.png"));
-                    } catch (IOException ee) {
-                        // Read error
-                        e.printStackTrace();
-                    }
-                } catch (MalformedURLException ee) {
-                    e.printStackTrace();
-                }
-            }
-
+            BufferedImage img = DotaJsonParser.findImage("src/hero_images", id + "img.png",
+                    "https://api.opendota.com" + current.get("img").asText());
+            BufferedImage icon = DotaJsonParser.findImage("src/hero_images", id + "icon.png",
+                    "https://api.opendota.com" + current.get("icon").asText());
 
             int baseHealth = current.get("base_health").asInt();
             double baseHealthRegen = current.get("base_health_regen").asDouble();
@@ -88,7 +64,7 @@ public class Heroes {
                     baseManaRegen, baseArmor, baseStr, baseAgi, baseInt, strGain,
                     agiGain, intGain, attackRange, attackRate, moveSpeed, captainsMode);
             heroesList[i] = hero;
-            heroIdIndices.put(id, i);
+            heroIDIndices.put(id, i);
             heroNameIndices.put(localizedName, i);
         }
     }
@@ -97,7 +73,7 @@ public class Heroes {
     }
     public static Hero getHero(int heroId) {
        try {
-            return heroesList[heroIdIndices.get(heroId)];
+            return heroesList[heroIDIndices.get(heroId)];
         } catch (NullPointerException e) {
             return null;
         }

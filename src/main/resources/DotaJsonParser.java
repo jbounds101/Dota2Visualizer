@@ -18,8 +18,13 @@ import org.apache.hc.core5.http.NameValuePair;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.http.message.BasicNameValuePair;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -93,6 +98,9 @@ public class DotaJsonParser {
             HttpGet httpGet = new HttpGet(url);
             try (CloseableHttpResponse httpResponse = httpClient.execute(httpGet)) {
                 // Got a response, could be invalid though
+                if (httpResponse.getCode() != 200) {
+                    throw new RuntimeException("Could not parse the request. The server is likely down!");
+                }
                 HttpEntity entity = httpResponse.getEntity();
                 response = EntityUtils.toString(entity, "UTF-8");
             } catch (Exception e) {
@@ -106,6 +114,28 @@ public class DotaJsonParser {
         return response;
     }
 
+    public static BufferedImage findImage(String pathName, String fileName, String urlDownloadOnFail) {
+        // Attempts to find a local copy of the image in the listed directory, otherwise,
+        // downloads from the url into that directory with the file-name given
+        BufferedImage img;
+        File dir = new File(pathName);
+        if (!dir.exists()) dir.mkdir();
+        try {
+            File imgFolderInput = new File(dir, fileName);
+            img = ImageIO.read(imgFolderInput);
+            return img;
+        } catch (IOException e) {
+            // Image wasn't found locally
+            try {
+                URL imgURL = new URL(urlDownloadOnFail);
+                img = ImageIO.read(imgURL);
+                ImageIO.write(img, "png", new File(dir, fileName));
+                return img;
+            } catch (IOException ee) {
+                return null;
+            }
+        }
+    }
 }
 
 
