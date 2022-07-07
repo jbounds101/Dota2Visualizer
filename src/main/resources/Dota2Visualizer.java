@@ -1,8 +1,6 @@
 package main.resources;
-import com.fasterxml.jackson.core.JsonParser;
 import dotaobject.*;
 
-import java.math.BigInteger;
 
 public class Dota2Visualizer {
     static Hero[] heroes = Heroes.getHeroesList();

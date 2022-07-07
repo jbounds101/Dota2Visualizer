@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 
 import dotaobject.Match;
-import dotaobject.Player;
 import org.apache.hc.client5.http.classic.methods.HttpGet;
 import org.apache.hc.client5.http.classic.methods.HttpPost;
 import org.apache.hc.client5.http.entity.UrlEncodedFormEntity;
@@ -22,18 +21,17 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.math.BigInteger;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 
 public class DotaJsonParser {
 
     // A constructor is used for objectMapper settings
     private static final ObjectMapper objectMapper = createDefaultObjectMapper();
+    private static ScheduledThreadPoolExecutor limiter = new ScheduledThreadPoolExecutor(1);
     private static ObjectMapper createDefaultObjectMapper() {
         ObjectMapper defaultObjectMapper = new ObjectMapper();
 
