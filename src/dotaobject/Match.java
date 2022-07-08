@@ -55,4 +55,9 @@ public class Match {
     // teamfights? TODO add this
 
     private Player[] players;
+
+    @Override
+    public String toString() {
+        return "Match(" +this.matchID.toString()+ ")";
+    }
 }
