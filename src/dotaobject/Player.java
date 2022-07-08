@@ -1,8 +1,6 @@
 package dotaobject;
 
-import main.resources.DotaMatchDeserializer;
-
-import java.util.Map;
+import main.DotaMatchDeserializer;
 
 public class Player {
     public Player(String playerName, int accountID, int playerSlot, Hero hero, int kills, int assists, int deaths,

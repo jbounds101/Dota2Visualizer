@@ -1,10 +1,8 @@
 package dotaobject;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import main.resources.DotaJsonParser;
+import main.DotaJsonParser;
 
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.*;
 
 public class Items {

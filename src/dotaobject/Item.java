@@ -1,6 +1,6 @@
 package dotaobject;
 
-import main.resources.DotaJsonParser;
+import main.DotaJsonParser;
 
 import java.awt.image.BufferedImage;
 

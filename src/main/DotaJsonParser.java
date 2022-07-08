@@ -1,4 +1,4 @@
-package main.resources;
+package main;
 
 import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.JsonNode;

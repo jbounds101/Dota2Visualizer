@@ -1,0 +1,14 @@
+.root {
+    -fx-background-color: #111111;
+}
+
+.label {
+    -fx-font-size: 20px;
+    -fx-font-family: "Lucida Console";
+    -fx-text-fill: "white";
+    -fx-alignment: center; /* Centers text in its box, however, the box is now offset from the text size */
+}
+
+#cssLabel{
+    -fx-font-size: 60px;
+}
