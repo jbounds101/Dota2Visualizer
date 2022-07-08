@@ -1,12 +1,15 @@
 package dotaobject;
 
+import main.resources.DotaMatchDeserializer;
+
 import java.util.Map;
 
 public class Player {
-    public Player(int accountID, int playerSlot, Hero hero, int kills, int assists, int deaths, Item[] items,
-                  Item[] backpack, Item neutralItem, int gpm, int[] goldAtMin, int lastHits, int[] lastHitAtMin,
-                  int denies, int xpm, int[] xpAtMin, int netWorth, int level, Map<Integer, Item> purchaseLog,
-                  boolean radiant) {
+    public Player(String playerName, int accountID, int playerSlot, Hero hero, int kills, int assists, int deaths,
+                  Item[] items, Item[] backpack, Item neutralItem, int gpm, int[] goldAtMin, int lastHits,
+                  int[] lastHitAtMin, int denies, int xpm, int[] xpAtMin, int netWorth, int level,
+                  DotaMatchDeserializer.PurchaseLogElement[] purchaseLog, boolean radiant) {
+        this.playerName = playerName;
         this.accountID = accountID;
         this.playerSlot = playerSlot;
         this.hero = hero;
@@ -29,6 +32,7 @@ public class Player {
         this.radiant = radiant;
     }
 
+    private String playerName;
     private int accountID;
     private int playerSlot;
     private Hero hero;
@@ -47,8 +51,18 @@ public class Player {
     private int[] xpAtMin;
     private int netWorth;
     private int level;
-    private Map<Integer, Item> purchaseLog;
+    private DotaMatchDeserializer.PurchaseLogElement[] purchaseLog;
     private boolean radiant;
 
     // TODO should likely add benchmarks
+
+
+    @Override
+    public String toString() {
+        String isRadiant = "Radiant";
+        if (!this.radiant) {
+            isRadiant  = "Dire"
+        }
+        return this.playerName + " | (" + this.hero.toString() + ") | " + isRadiant;
+    }
 }

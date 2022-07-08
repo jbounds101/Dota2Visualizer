@@ -66,9 +66,9 @@ public class Heroes {
     public static Hero[] getHeroesList() {
         return heroesList;
     }
-    public static Hero getHero(int heroId) {
+    public static Hero getHero(int heroID) {
        try {
-            return heroesList[heroIDIndices.get(heroId)];
+            return heroesList[heroIDIndices.get(heroID)];
         } catch (NullPointerException e) {
             return null;
         }

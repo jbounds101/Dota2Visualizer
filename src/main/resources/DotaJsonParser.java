@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 
@@ -31,7 +32,7 @@ public class DotaJsonParser {
 
     // A constructor is used for objectMapper settings
     private static final ObjectMapper objectMapper = createDefaultObjectMapper();
-    private static ScheduledThreadPoolExecutor limiter = new ScheduledThreadPoolExecutor(1);
+
     private static ObjectMapper createDefaultObjectMapper() {
         ObjectMapper defaultObjectMapper = new ObjectMapper();
 
@@ -70,6 +71,7 @@ public class DotaJsonParser {
 
     public static boolean sendParseRequest(Long matchID) {
         // Returns true if the post was successful, false if it fails
+        antiSpam();
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             HttpPost httpPost = new HttpPost("https://api.opendota.com/api/request/");
             List<NameValuePair> parameters = new ArrayList<>();
@@ -89,6 +91,7 @@ public class DotaJsonParser {
     }
 
     private static String getJsonResponse(String url) {
+        antiSpam();
         // Apache gets the JSON response
         String response = null;
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
@@ -124,6 +127,7 @@ public class DotaJsonParser {
             return img;
         } catch (IOException e) {
             // Image wasn't found locally
+            antiSpam();
             try {
                 URL imgURL = new URL(urlDownloadOnFail);
                 img = ImageIO.read(imgURL);
@@ -132,6 +136,14 @@ public class DotaJsonParser {
             } catch (IOException ee) {
                 return null;
             }
+        }
+    }
+
+    private static void antiSpam() {
+        try {
+            Thread.sleep(1050);
+        } catch (InterruptedException e) {
+            throw new RuntimeException("Thread was interrupted");
         }
     }
 }
