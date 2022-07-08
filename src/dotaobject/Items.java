@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import main.resources.DotaJsonParser;
 
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.*;
 
 public class Items {
@@ -36,10 +37,12 @@ public class Items {
 
 
             int id = current.get("id").asInt();
-            BufferedImage img = DotaJsonParser.findImage("src/item_images", id + "img.png",
-                    "https://api.opendota.com" + current.get("img").asText());
+            String imageURL = "https://api.opendota.com" + current.get("img").asText();
+            /*BufferedImage img = DotaJsonParser.findImage("src/item_images", id + "img.png",
+                    "https://api.opendota.com" + current.get("img").asText());*/
 
-            Item item = new Item(name, localizedName, id, cost, img);
+            Item item = new Item(name, localizedName, id, cost, imageURL);
+
             itemsList[i] = item;
             itemIDIndices.put(id, i);
             itemNameIndices.put(name, i);

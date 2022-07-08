@@ -61,7 +61,7 @@ public class Player {
     public String toString() {
         String isRadiant = "Radiant";
         if (!this.radiant) {
-            isRadiant  = "Dire"
+            isRadiant  = "Dire";
         }
         return this.playerName + " | (" + this.hero.toString() + ") | " + isRadiant;
     }
