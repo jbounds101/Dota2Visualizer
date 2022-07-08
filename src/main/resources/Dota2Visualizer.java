@@ -8,6 +8,7 @@ public class Dota2Visualizer {
     public static void main(String[] args) {
         System.out.println("test");
         //DotaJsonParser.sendParseRequest(6643139986L);
+
         Match match = DotaJsonParser.readMatch(6643139986L);
 
         System.out.println("test2");

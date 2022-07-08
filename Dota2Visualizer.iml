@@ -10,5 +10,6 @@
     <orderEntry type="library" name="Apache" level="project" />
     <orderEntry type="library" name="fasterxml.jackson.core.databind" level="project" />
     <orderEntry type="library" name="jsoup" level="project" />
+    <orderEntry type="library" name="JavaFX" level="project" />
   </component>
 </module>
