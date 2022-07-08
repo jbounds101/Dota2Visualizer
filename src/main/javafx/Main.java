@@ -1,4 +1,4 @@
-package main;
+package main.javafx;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -21,13 +21,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/main/main.fxml")); // Read from file
+        Parent root = FXMLLoader.load(getClass().getResource("/main/javafx/main.fxml")); // Read from file
         Scene scene = new Scene(root);
-        String css = this.getClass().getResource("/main/main.css").toExternalForm(); // css var allows for
-        // on multiple scenes
-        scene.getStylesheets().add(css);
         stage.setScene(scene);
-        stage.setTitle("bean");
         stage.show();
     }
 }
