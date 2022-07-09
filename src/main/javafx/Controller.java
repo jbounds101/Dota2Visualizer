@@ -10,6 +10,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -18,27 +20,16 @@ import java.io.IOException;
 public class Controller {
     // Used for all the intractable JavaFX objects
 
+
     @FXML
-    private Button logoutButton;
-    @FXML
-    private AnchorPane scenePane;
+    ImageView imageViewFirst;
+    Button myButton;
 
-    Stage stage;
+    Image myImage = new Image(getClass().getResourceAsStream("..\\..\\hero_images\\2img.png"));
 
-    public void logout(ActionEvent event) {
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-
-        alert.setTitle("Logout?");
-        alert.setHeaderText("You're about to logout!");
-        alert.setContentText("Do you want to save before exiting?");
-
-        if (alert.showAndWait().get() == ButtonType.OK) {
-            stage = (Stage) scenePane.getScene().getWindow();
-            stage.close();
-        }
+    public void displayImage() {
+        imageViewFirst.setImage(myImage);
     }
-
 
 
 
