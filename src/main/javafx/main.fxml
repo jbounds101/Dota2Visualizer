@@ -33,12 +33,10 @@
 -->
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.javafx.LoginSceneController">
+<AnchorPane fx:id="scenePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.javafx.Controller">
    <children>
-      <TextField fx:id="nameTextField" layoutX="226.0" layoutY="175.0" />
-      <Button fx:id="loginButton" layoutX="264.0" layoutY="238.0" mnemonicParsing="false" onAction="#login" text="goto other" />
+      <Button fx:id="logoutButton" layoutX="274.0" layoutY="188.0" mnemonicParsing="false" onAction="#logout" text="Button" />
    </children>
 </AnchorPane>

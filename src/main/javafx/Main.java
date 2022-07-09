@@ -16,7 +16,6 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         Application.launch(args); // launch is a static method inherited from the Application class
-
     }
 
     @Override
