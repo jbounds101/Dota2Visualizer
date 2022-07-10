@@ -33,17 +33,22 @@
 -->
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.javafx.Controller">
-   <children>
-      <Button fx:id="myButton" layoutX="274.0" layoutY="343.0" mnemonicParsing="false" onAction="#displayImage" text="Button" />
-      <ImageView fx:id="imageViewFirst" fitHeight="150.0" fitWidth="200.0" layoutX="200.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../hero_images/1img.png" />
-         </image>
-      </ImageView>
-   </children>
-</AnchorPane>
+<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+         <children>
+            <Label alignment="CENTER" layoutY="21.0" prefHeight="17.0" prefWidth="296.0" text="Match Analysis" />
+            <Button layoutY="6.0" mnemonicParsing="false" prefHeight="400.0" prefWidth="296.0" text="Button" visible="false" />
+         </children></AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+         <children>
+            <Label alignment="CENTER" layoutY="22.0" prefHeight="17.0" prefWidth="296.0" text="Hero Statistics" />
+            <Button mnemonicParsing="false" prefHeight="400.0" prefWidth="296.0" text="Button" visible="false" />
+         </children>
+      </AnchorPane>
+  </items>
+</SplitPane>

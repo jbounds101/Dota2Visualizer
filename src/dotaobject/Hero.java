@@ -56,6 +56,14 @@ public class Hero {
     private final int moveSpeed;
     private final boolean captainsMode;
 
+    public BufferedImage getImg() {
+        return img;
+    }
+
+    public BufferedImage getIcon() {
+        return icon;
+    }
+
     @Override
     public String toString() {
         return this.localizedName;

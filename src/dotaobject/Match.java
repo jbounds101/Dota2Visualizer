@@ -60,4 +60,84 @@ public class Match {
     public String toString() {
         return "Match(" +this.matchID.toString()+ ")";
     }
+
+    public Long getMatchID() {
+        return matchID;
+    }
+
+    public Long getRadiantTeamId() {
+        return radiantTeamId;
+    }
+
+    public Long getDireTeamId() {
+        return direTeamId;
+    }
+
+    public int getRadiantScore() {
+        return radiantScore;
+    }
+
+    public int getDireScore() {
+        return direScore;
+    }
+
+    public int getTowerStatusRadiant() {
+        return towerStatusRadiant;
+    }
+
+    public int getTowerStatusDire() {
+        return towerStatusDire;
+    }
+
+    public int getBarracksStatusRadiant() {
+        return barracksStatusRadiant;
+    }
+
+    public int getBarracksStatusDire() {
+        return barracksStatusDire;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public int getMinutesPlayed() {
+        return minutesPlayed;
+    }
+
+    public int getFirstBloodTime() {
+        return firstBloodTime;
+    }
+
+    public int getGameMode() {
+        return gameMode;
+    }
+
+    public int getLobbyType() {
+        return lobbyType;
+    }
+
+    public int getHumanPlayers() {
+        return humanPlayers;
+    }
+
+    public int getMatchSeqNum() {
+        return matchSeqNum;
+    }
+
+    public boolean isRadiantWin() {
+        return radiantWin;
+    }
+
+    public int[] getRadiantGoldAdvantage() {
+        return radiantGoldAdvantage;
+    }
+
+    public int[] getRadiantXPAdvantage() {
+        return radiantXPAdvantage;
+    }
+
+    public Player[] getPlayers() {
+        return players;
+    }
 }

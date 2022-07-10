@@ -28,24 +28,5 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.show();
 
-        stage.setOnCloseRequest(event -> {
-            event.consume();
-            logout(stage);
-        });
-
     }
-
-    public void logout(Stage stage) {
-
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-
-        alert.setTitle("Logout?");
-        alert.setHeaderText("You're about to logout!");
-        alert.setContentText("Do you want to save before exiting?");
-
-        if (alert.showAndWait().get() == ButtonType.OK) {
-            stage.close();
-        }
-    }
-
 }
