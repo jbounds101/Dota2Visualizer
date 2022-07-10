@@ -32,23 +32,30 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.SplitPane?>
+<?import com.gluonhq.charm.glisten.control.Avatar?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<SplitPane dividerPositions="0.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="main.javafx.MainController">
-  <items>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-         <children>
-            <Label alignment="CENTER" layoutY="21.0" prefHeight="17.0" prefWidth="296.0" text="Match Analysis" />
-            <Button centerShape="false" layoutY="43.0" mnemonicParsing="false" onAction="#matchAnalysisButton" prefHeight="356.0" prefWidth="296.0" />
-         </children></AnchorPane>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-         <children>
-            <Label alignment="CENTER" layoutY="22.0" prefHeight="17.0" prefWidth="296.0" text="Hero Statistics" />
-            <Button mnemonicParsing="false" prefHeight="400.0" prefWidth="296.0" text="Button" visible="false" />
-         </children>
-      </AnchorPane>
-  </items>
-</SplitPane>
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="820.0" prefWidth="1430.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18">
+  <tabs>
+    <Tab closable="false" text="Untitled Tab 1">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Avatar layoutX="547.0" layoutY="137.0">
+                     <image>
+                        <Image url="@../../hero_images/1img.png" />
+                     </image>
+                  </Avatar>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+    <Tab closable="false" text="Untitled Tab 2">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+      </content>
+    </Tab>
+  </tabs>
+</TabPane>
