@@ -22,6 +22,7 @@ public class MainController {
     private Scene scene;
     private Parent root;
 
+
     public void matchAnalysisButton(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/main/javafx/matchAnalysis.fxml")); // Read from file
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();

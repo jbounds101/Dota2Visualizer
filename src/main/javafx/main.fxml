@@ -32,30 +32,34 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import com.gluonhq.charm.glisten.control.Avatar?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="820.0" prefWidth="1430.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18">
-  <tabs>
-    <Tab closable="false" text="Untitled Tab 1">
-      <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <Avatar layoutX="547.0" layoutY="137.0">
-                     <image>
-                        <Image url="@../../hero_images/1img.png" />
-                     </image>
-                  </Avatar>
-               </children></AnchorPane>
-      </content>
-    </Tab>
-    <Tab closable="false" text="Untitled Tab 2">
-      <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-      </content>
-    </Tab>
-  </tabs>
-</TabPane>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.javafx.MainController">
+   <top>
+      <ButtonBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="73.0" prefWidth="960.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets right="30.0" />
+         </padding>
+         <buttons>
+            <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="95.0" stylesheets="@main.css" text="Match Analysis" textFill="WHITE" translateX="-50.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Button minWidth="32.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="160.0" text="Hero Statistics" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+         </buttons>
+      </ButtonBar>
+   </top>
+</BorderPane>

@@ -1,0 +1,18 @@
+.root {
+    -fx-background-color: #251830;
+}
+
+.buttonbar {
+    -fx-background-color: #150e1c;
+}
+
+.button {
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+    -fx-background-color: transparent;
+}
+
+.button:hover {
+
+}
+

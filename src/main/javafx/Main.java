@@ -26,6 +26,9 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/main/javafx/main.fxml")); // Read from file
         Scene scene = new Scene(root);
         stage.setScene(scene);
+        stage.setMinWidth(1280);
+        stage.setMinHeight(720);
+        stage.setTitle("Dota 2 Statistics Visualizer");
         stage.show();
 
     }
