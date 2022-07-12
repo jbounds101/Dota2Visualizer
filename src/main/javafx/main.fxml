@@ -33,33 +33,27 @@
 -->
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.text.Font?>
-
+<?import javafx.scene.layout.HBox?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.javafx.MainController">
    <top>
-      <ButtonBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="73.0" prefWidth="960.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_LEFT" prefHeight="61.0" prefWidth="1280.0" styleClass="hbox" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets />
          </BorderPane.margin>
          <padding>
-            <Insets right="30.0" />
+            <Insets left="60.0" />
          </padding>
-         <buttons>
-            <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="95.0" stylesheets="@main.css" text="Match Analysis" textFill="WHITE" translateX="-50.0">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Button>
-            <Button minWidth="32.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="160.0" text="Hero Statistics" textFill="WHITE">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Button>
-         </buttons>
-      </ButtonBar>
+         <children>
+            <Label text="Hero Statistics">
+               <HBox.margin>
+                  <Insets right="100.0" />
+               </HBox.margin>
+            </Label>
+            <Label text="Match Analysis" />
+         </children>
+      </HBox>
    </top>
 </BorderPane>

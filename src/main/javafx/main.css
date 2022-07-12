@@ -1,18 +1,29 @@
 .root {
-    -fx-background-color: #251830;
-}
-
-.buttonbar {
     -fx-background-color: #150e1c;
 }
 
-.button {
-    -fx-font-size: 20px;
-    -fx-text-fill: white;
-    -fx-background-color: transparent;
+.hboxtop {
+    -fx-background-color: #251830;
+    -fx-border-style: dashed;
+    -fx-border-color: #1a1122;
+    -fx-border-width: 0 0 8 0;
 }
 
-.button:hover {
+.hboxbot {
+    -fx-background-color: #1a1122;
+}
 
+.label {
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+    -fx-font-family: -apple-system;
+}
+
+.label:hover {
+    -fx-text-fill: #bfbfbf;
+}
+
+.label:pressed {
+    -fx-text-fill: #a093a3;
 }
 
