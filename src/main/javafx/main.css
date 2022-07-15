@@ -16,16 +16,13 @@
 .label {
     -fx-font-size: 20px;
     -fx-text-fill: white;
-    -fx-font-family: -apple-system;
-
-
+    -fx-font-family: "Segoe UI";
 }
 
-.label:hover {
+.button-label:hover {
     -fx-text-fill: #bfbfbf;
 }
 
-.label:pressed {
+.button-label:pressed {
     -fx-text-fill: #a093a3;
 }
-
