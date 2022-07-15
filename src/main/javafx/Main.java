@@ -36,6 +36,8 @@ public class Main extends Application {
         stage.setTitle("Dota 2 Statistics Visualizer");
         Label heroStatsLabel = (Label)scene.lookup("#heroStatistics");
         heroStatsLabel.requestFocus();
+
+
         stage.show();
 
     }
