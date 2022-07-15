@@ -1,28 +1,47 @@
 .root {
-    -fx-background-color: #150e1c;
+    -fx-background-color: #271a32;
 }
 
 .hboxtop {
-    -fx-background-color: #251830;
+    -fx-background-color: #422c54;
     -fx-border-style: dashed;
-    -fx-border-color: #1a1122;
+    -fx-border-color: #352343;
     -fx-border-width: 0 0 8 0;
 }
 
 .hboxbot {
-    -fx-background-color: #1a1122;
+    -fx-background-color: #352343;
+    -fx-border-style: solid;
+    -fx-border-color: #8457a8;
+    -fx-border-width: 0 0 1 0;
 }
 
 .label {
     -fx-font-size: 20px;
-    -fx-text-fill: white;
     -fx-font-family: "Segoe UI";
+    -fx-text-fill: hsb(0, 0%, 100%);
+
 }
 
 .button-label:hover {
-    -fx-text-fill: #bfbfbf;
+    -fx-text-fill: hsb(0, 0%, 90%);
+    -fx-cursor: hand;
 }
 
 .button-label:pressed {
-    -fx-text-fill: #a093a3;
+    -fx-text-fill: hsb(0, 0%, 80%);
 }
+
+.sub-button {
+    -fx-font-size: 16px;
+    -fx-text-fill: hsb(295, 10%, 80%);
+}
+
+.sub-button:hover {
+    -fx-text-fill: hsb(295, 10%, 70%);
+}
+
+.sub-button:pressed {
+    -fx-text-fill: hsb(295, 10%, 60%);
+}
+

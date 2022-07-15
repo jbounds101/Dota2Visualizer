@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -21,12 +22,18 @@ public class MainController {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    private double windowWidth;
+    private double windowHeight;
 
 
-    public void matchAnalysisButton(ActionEvent event) throws IOException {
+    public void matchAnalysisButton(MouseEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("/main/javafx/matchAnalysis.fxml")); // Read from file
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        windowHeight = stage.getHeight();
+        windowWidth = stage.getWidth();
         scene = new Scene(root);
+        stage.setWidth(windowWidth);
+        stage.setHeight(windowHeight);
         stage.setScene(scene);
         stage.show();
     }
