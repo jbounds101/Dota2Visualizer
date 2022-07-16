@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import main.DotaJsonParser;
 
@@ -28,6 +29,8 @@ public class MainController {
     ImageView loadingIcon;
     @FXML
     ImageView searchIcon;
+    @FXML
+    HBox errorMessage; // This is the match id couldn't be found error
 
 
     private Stage stage;
@@ -47,6 +50,7 @@ public class MainController {
 
     public void matchTextFieldSearch(KeyEvent event) throws IOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
+            errorMessage.setVisible(false);
             loadingIcon.setVisible(true);
             try {
                 long matchID = Long.parseLong(searchBar.getText());
@@ -55,6 +59,8 @@ public class MainController {
                 }).start();
             } catch (NumberFormatException e) {
                 searchBar.setText("");
+                errorMessage.setVisible(true);
+                loadingIcon.setVisible(false);
             }
 
         }

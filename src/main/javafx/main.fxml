@@ -166,7 +166,7 @@
                         <Insets />
                      </StackPane.margin>
                   </LineChart>
-                  <ImageView fx:id="loadingIcon" fitHeight="68.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="loadingIcon" fitHeight="68.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true" visible="false">
                      <image>
                         <Image url="@static_images/loading.gif" />
                      </image>
@@ -177,6 +177,26 @@
                         <ColorAdjust />
                      </effect>
                   </ImageView>
+                  <HBox fx:id="errorMessage" alignment="CENTER" prefHeight="560.0" prefWidth="364.0" visible="false">
+                     <children>
+                        <ImageView fx:id="errorIcon" fitHeight="68.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@static_images/error.png" />
+                           </image>
+                           <effect>
+                              <ColorAdjust />
+                           </effect>
+                        </ImageView>
+                        <Label text="The specified match could not be found." textFill="WHITE">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <StackPane.margin>
+                        <Insets bottom="90.0" />
+                     </StackPane.margin>
+                  </HBox>
                </children>
                <padding>
                   <Insets bottom="40.0" left="190.0" right="190.0" top="30.0" />
