@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 
 import dotaobject.Match;
+import dotaobject.MatchNotFoundException;
 import org.apache.hc.client5.http.classic.methods.HttpGet;
 import org.apache.hc.client5.http.classic.methods.HttpPost;
 import org.apache.hc.client5.http.entity.UrlEncodedFormEntity;
@@ -46,7 +47,7 @@ public class DotaJsonParser {
         return defaultObjectMapper;
     }
 
-    public static JsonNode parse(String url) {
+    public static JsonNode parse(String url) throws Exception {
         // This uses the Jackson library to create JsonNode objects
         String response = getJsonResponse(url);
         try {
@@ -57,7 +58,7 @@ public class DotaJsonParser {
         }
     }
 
-    public static Match readMatch(Long matchID) {
+    public static Match readMatch(Long matchID) throws MatchNotFoundException {
         String response = getJsonResponse("https://api.opendota.com/api/matches/" + Long.toString(matchID));
         try {
             Match match = objectMapper.readValue(response, Match.class);
@@ -89,7 +90,7 @@ public class DotaJsonParser {
         return false;
     }
 
-    private static String getJsonResponse(String url) {
+    private static String getJsonResponse(String url) throws MatchNotFoundException {
         antiSpam();
         // Apache gets the JSON response
         String response = null;
@@ -99,7 +100,7 @@ public class DotaJsonParser {
             try (CloseableHttpResponse httpResponse = httpClient.execute(httpGet)) {
                 // Got a response, could be invalid though
                 if (httpResponse.getCode() != 200) {
-                    throw new RuntimeException("Could not parse the request. The server is likely down!");
+                    throw new MatchNotFoundException();
                 }
                 HttpEntity entity = httpResponse.getEntity();
                 response = EntityUtils.toString(entity, "UTF-8");

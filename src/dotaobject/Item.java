@@ -21,13 +21,15 @@ public class Item {
     private String imageURL;
     private BufferedImage img = null;
 
-    public boolean isImageLoaded() {
+    public boolean imageLoaded() {
         return (this.img != null);
     }
 
-    public void loadImage() {
-        this.img = DotaJsonParser.findImage("src/item_images", this.id + "img.png", this.imageURL);
+    public BufferedImage loadImage() {
+        if (this.img != null) return this.img;
+        return this.img = DotaJsonParser.findImage("src/item_images", this.id + "img.png", this.imageURL);
     }
+
 
     @Override
     public String toString() {

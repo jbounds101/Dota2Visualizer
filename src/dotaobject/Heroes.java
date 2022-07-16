@@ -13,7 +13,12 @@ public class Heroes {
     private static final Map<String, Integer> heroNameIndices; // Of type <localizedName, arrayIndex>
 
     static {
-        JsonNode heroes = DotaJsonParser.parse("https://api.opendota.com/api/heroStats");
+        JsonNode heroes = null;
+        try {
+            heroes = DotaJsonParser.parse("https://api.opendota.com/api/heroStats");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         assert heroes != null;
         heroIDIndices = new HashMap<>();
         heroNameIndices = new HashMap<>();

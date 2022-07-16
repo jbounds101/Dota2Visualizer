@@ -45,3 +45,68 @@
     -fx-text-fill: hsb(295, 10%, 60%);
 }
 
+.text-field {
+    -fx-font: 20 "Segoe UI";
+    -fx-text-fill: white;
+    -fx-background-color: transparent;
+}
+
+/* -----Overview----- */
+.upper-stats-bar {
+    -fx-background-color: #422c54;
+    -fx-background-radius: 10 10 0 0;
+}
+.stats-bar {
+    -fx-background-color: transparent;
+    -fx-border-style: solid;
+    -fx-border-width: 0 1 1 1;
+    -fx-border-color: rgba(255, 255, 255, 0.10);
+}
+.lower-stats-bar {
+    -fx-border-style: solid;
+    -fx-border-width: 0 1 1 1;
+    -fx-border-radius: 0 0 10 10;
+    -fx-border-color: rgba(255, 255, 255, 0.10);
+}
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+
+}
+/* ----- */
+
+
+/* -----Chart----- */
+.chart {
+    /* This is the entire region of the chart */
+
+}
+.chart-content {
+    /* Entire region of the chart excluding the title header */
+
+}
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+.chart-vertical-grid-lines {
+    -fx-stroke: rgba(184, 164, 184, 0.47);
+}
+
+.chart-horizontal-grid-lines {
+    -fx-stroke: rgba(188, 146, 182, 0.68);
+}
+
+.axis {
+    -fx-tick-label-font: 12 "Segoe UI";
+    -fx-tick-label-fill: #d1d1d1;
+}
+
+.x-axis {
+    -fx-minor-tick-visible: false;
+    -fx-tick-unit: 5;
+}
+/* ----- */
+
+.overview-label {
+    -fx-alignment: center;
+}

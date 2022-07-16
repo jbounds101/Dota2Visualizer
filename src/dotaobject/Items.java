@@ -13,7 +13,12 @@ public class Items {
 
 
     static {
-        JsonNode items = DotaJsonParser.parse("https://api.opendota.com/api/constants/items");
+        JsonNode items = null;
+        try {
+            items = DotaJsonParser.parse("https://api.opendota.com/api/constants/items");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         assert items != null;
 
         itemIDIndices = new HashMap<>();

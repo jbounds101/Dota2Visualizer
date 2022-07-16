@@ -63,4 +63,88 @@ public class Player {
         }
         return this.playerName + " | (" + this.hero.toString() + ") | " + isRadiant;
     }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public int getAccountID() {
+        return accountID;
+    }
+
+    public int getPlayerSlot() {
+        return playerSlot;
+    }
+
+    public Hero getHero() {
+        return hero;
+    }
+
+    public int getKills() {
+        return kills;
+    }
+
+    public int getAssists() {
+        return assists;
+    }
+
+    public int getDeaths() {
+        return deaths;
+    }
+
+    public Item[] getItems() {
+        return items;
+    }
+
+    public Item[] getBackpack() {
+        return backpack;
+    }
+
+    public Item getNeutralItem() {
+        return neutralItem;
+    }
+
+    public int getGpm() {
+        return gpm;
+    }
+
+    public int[] getGoldAtMin() {
+        return goldAtMin;
+    }
+
+    public int getLastHits() {
+        return lastHits;
+    }
+
+    public int[] getLastHitAtMin() {
+        return lastHitAtMin;
+    }
+
+    public int getDenies() {
+        return denies;
+    }
+
+    public int getXpm() {
+        return xpm;
+    }
+
+    public int[] getXpAtMin() {
+        return xpAtMin;
+    }
+
+    public int getNetWorth() {
+        return netWorth;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public DotaMatchDeserializer.PurchaseLogElement[] getPurchaseLog() {
+        return purchaseLog;
+    }
+
+    public boolean isRadiant() {
+        return radiant;
+    }
 }
