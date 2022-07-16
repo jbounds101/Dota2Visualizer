@@ -166,11 +166,17 @@
                         <Insets />
                      </StackPane.margin>
                   </LineChart>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="900.0">
-                     <padding>
-                        <Insets bottom="200.0" />
-                     </padding>
-                  </HBox>
+                  <ImageView fx:id="loadingIcon" fitHeight="68.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@static_images/loading.gif" />
+                     </image>
+                     <StackPane.margin>
+                        <Insets bottom="90.0" />
+                     </StackPane.margin>
+                     <effect>
+                        <ColorAdjust />
+                     </effect>
+                  </ImageView>
                </children>
                <padding>
                   <Insets bottom="40.0" left="190.0" right="190.0" top="30.0" />
