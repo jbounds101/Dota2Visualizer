@@ -54,7 +54,7 @@
 /* -----Overview----- */
 .upper-stats-bar {
     -fx-background-color: #422c54;
-    -fx-background-radius: 10 10 0 0;
+    -fx-background-radius: 0 10 0 0;
 }
 .stats-bar {
     -fx-background-color: transparent;
@@ -71,7 +71,49 @@
 .scroll-pane {
     -fx-background-color: transparent;
     -fx-background: transparent;
+}
+.overview-label {
+    -fx-alignment: center;
+    -fx-font-size: 16;
+}
+.kill-label {
+    -fx-text-fill: #A0FF9C;
+}
+.death-label {
+    -fx-text-fill: #FF7878;
+}
+.assist-label {
+    -fx-text-fill: #BABABA;
+}
+.networth-label {
+    -fx-text-fill: #FFFF9C;
+}
+.radiant-score-label {
+    -fx-text-fill: #A0FF9C;
+    -fx-font-size: 30;
+}
+.dire-score-label {
+    -fx-text-fill: #ff3d3d;
+    -fx-font-size: 30;
+}
+.time-label {
+    -fx-font-size: 24;
+}
 
+.overview-top-box {
+    -fx-border-style: solid;
+    -fx-border-color: #8457a8;
+    -fx-border-width: 0 0 1 0;
+}
+.radiant-overview-label {
+    -fx-border-style: solid;
+    -fx-border-color: linear-gradient(to right, #A0FF9C, transparent);
+    -fx-border-width: 0 0 3 0;
+}
+.dire-overview-label {
+    -fx-border-style: solid;
+    -fx-border-color: linear-gradient(to right, #ff3d3d, transparent);
+    -fx-border-width: 0 0 3 0;
 }
 /* ----- */
 
@@ -107,6 +149,4 @@
 }
 /* ----- */
 
-.overview-label {
-    -fx-alignment: center;
-}
+

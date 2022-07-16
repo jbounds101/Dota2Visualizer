@@ -1,7 +1,9 @@
 package main.javafx;
 
 import dotaobject.*;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -19,9 +21,12 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import main.DotaJsonParser;
+import org.apache.hc.client5.http.utils.DateUtils;
 
+import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.time.LocalTime;
 
 
 public class MainController {
@@ -73,12 +78,18 @@ public class MainController {
             openOnStackPane(loadingPane);
             try {
                 long matchID = Long.parseLong(searchBar.getText());
-                loadMatchDetails(matchID);
+                Task task = new Task<Void>() {
+                    @Override
+                    protected Void call() throws Exception {
+                        loadMatchDetails(matchID);
+                        return null;
+                    }
+                };
+                new Thread(task).start();
             } catch (NumberFormatException e) {
                 searchBar.setText("");
                 openOnStackPane(errorMatchPane);
             }
-
         }
     }
 
@@ -128,38 +139,96 @@ public class MainController {
 
                 Player currentPlayer = players[heroesPrinted];
 
-                nameNode.setText(currentPlayer.getPlayerName());
-                heroImgNode.setImage(SwingFXUtils.toFXImage(currentPlayer.getHero().getImg(), null));
-                lvlNode.setText(Integer.toString(currentPlayer.getLevel()));
-                killsNode.setText(Integer.toString(currentPlayer.getKills()));
-                deathNode.setText(Integer.toString(currentPlayer.getDeaths()));
-                assistsNode.setText(Integer.toString(currentPlayer.getAssists()));
-                int playerLastHits = currentPlayer.getLastHits();
-                int playerDenies = currentPlayer.getDenies();
-                lastHitsDeniesNode.setText(playerLastHits + "/" + playerDenies);
-                netWorthNode.setText(Integer.toString(currentPlayer.getNetWorth()));
-                int playerGPM = currentPlayer.getGpm();
-                int playerXPM = currentPlayer.getXpm();
-                gpmXPMNode.setText(playerGPM + "/" + playerXPM);
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
 
-                int itemIndex = 0;
-                Item[] items = currentPlayer.getItems();
-                for (Item item : items) {
-                    if (item == null) {
-                        itemImageNodes[itemIndex].setImage(
-                                new Image("/main/javafx/static_images/transparentItem.png"));
-                    } else {
-                        BufferedImage image = item.loadImage();
-                        itemImageNodes[itemIndex].setImage(SwingFXUtils.toFXImage(image, null));
+                        radiantScoreLabel.setText(Integer.toString(match.getRadiantScore()));
+                        timeLabel.setText(LocalTime.MIN.plusSeconds(match.getDuration()).toString());
+                        direScoreLabel.setText(Integer.toString(match.getDireScore()));
+
+
+                        nameNode.setText(currentPlayer.getPlayerName());
+                        heroImgNode.setImage(SwingFXUtils.toFXImage(currentPlayer.getHero().getImg(), null));
+                        lvlNode.setText(Integer.toString(currentPlayer.getLevel()));
+                        killsNode.setText(Integer.toString(currentPlayer.getKills()));
+                        deathNode.setText(Integer.toString(currentPlayer.getDeaths()));
+                        assistsNode.setText(Integer.toString(currentPlayer.getAssists()));
+                        int playerLastHits = currentPlayer.getLastHits();
+                        int playerDenies = currentPlayer.getDenies();
+                        lastHitsDeniesNode.setText(playerLastHits + "/" + playerDenies);
+                        netWorthNode.setText(createThousandSuffix(currentPlayer.getNetWorth()));
+                        int playerGPM = currentPlayer.getGpm();
+                        int playerXPM = currentPlayer.getXpm();
+                        gpmXPMNode.setText(playerGPM + "/" + playerXPM);
+
+                        int itemIndex = 0;
+                        Item[] items = currentPlayer.getItems();
+                        for (Item item : items) {
+                            if (item == null) {
+                                itemImageNodes[itemIndex].setImage(
+                                        new Image("/main/javafx/static_images/transparentItem.png"));
+                            } else {
+                                BufferedImage image = item.loadImage();
+                                itemImageNodes[itemIndex].setImage(SwingFXUtils.toFXImage(image, null));
+                            }
+
+                            itemIndex++;
+                        }
+                        Item neutralItem = currentPlayer.getNeutralItem();
+                        if (neutralItem == null) {
+                            neutralItemNode.setImage(new Image("/main/javafx/static_images/transparentItem.png"));
+                        } else {
+                            BufferedImage image = neutralItem.loadImage();
+                            neutralItemNode.setImage(SwingFXUtils.toFXImage(image, null));
+                        }
+
+
+                        boolean radiantLabel = true;
+                        for (Node child : overviewGrid.getChildren()) {
+                            ObservableList<String> styleClasses = child.getStyleClass();
+                            boolean isLabel = false;
+                            for (int i = 0; i < styleClasses.size(); i++) {
+                                String style = styleClasses.get(i);
+                                if (style.equals("label")) {
+                                    isLabel = true;
+                                    break;
+                                }
+                            }
+                            if (isLabel) {
+                                if (radiantLabel) {
+                                    radiantLabel = false;
+                                    Label radiantTextLabel = (Label) child;
+                                    if (match.isRadiantWin()) {
+                                        radiantTextLabel.setText("Radiant Overview (Winner)");
+                                    } else {
+                                        radiantTextLabel.setText("Radiant Overview");
+                                    }
+                                } else {
+                                    Label direTextLabel = (Label) child;
+                                    if (!match.isRadiantWin()) {
+                                        direTextLabel.setText("Dire Overview (Winner)");
+                                    } else {
+                                        direTextLabel.setText("Dire Overview");
+                                    }
+                                }
+                            }
+                        }
                     }
-
-                    itemIndex++;
-                }
+                });
                 heroesPrinted++;
             }
         }
 
         openOnStackPane(overviewPane);
+    }
+
+    public static String createThousandSuffix(long count) {
+        if (count < 1000) return "" + count;
+        int exp = (int) (Math.log(count) / Math.log(1000));
+        return String.format("%.1f%c",
+                count / Math.pow(1000, exp),
+                "kMGTPE".charAt(exp-1));
     }
 
     public void openOnStackPane(Node node) {

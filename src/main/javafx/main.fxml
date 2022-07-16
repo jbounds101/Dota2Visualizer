@@ -196,18 +196,18 @@
                   </HBox>
                   <VBox fx:id="overviewPane" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="500.0" prefWidth="1147.0">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="61.0" prefWidth="1139.0">
+                        <HBox alignment="CENTER" prefHeight="61.0" prefWidth="1139.0" styleClass="overview-top-box">
                            <children>
-                              <Label fx:id="radiantScoreLabel" alignment="CENTER" prefHeight="24.0" prefWidth="169.0" text="radiantScore" />
-                              <Label fx:id="timeLabel" alignment="CENTER" prefHeight="24.0" prefWidth="169.0" text="time" />
-                              <Label fx:id="direScoreLabel" alignment="CENTER" prefHeight="24.0" prefWidth="169.0" text="direScore" />
+                              <Label fx:id="radiantScoreLabel" alignment="CENTER" prefHeight="24.0" prefWidth="169.0" styleClass="radiant-score-label" text="radiantScore" />
+                              <Label fx:id="timeLabel" alignment="CENTER" prefHeight="24.0" prefWidth="169.0" styleClass="time-label" text="time" />
+                              <Label fx:id="direScoreLabel" alignment="CENTER" prefHeight="24.0" prefWidth="169.0" styleClass="dire-score-label" text="direScore" />
                            </children>
                         </HBox>
                         <ScrollPane fitToHeight="true" focusTraversable="false" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefWidth="1185.0">
                            <content>
                               <VBox fx:id="overviewGrid" alignment="TOP_CENTER" prefWidth="1147.0">
                                  <children>
-                                    <Label prefHeight="24.0" prefWidth="1147.0" text="Radiant Overview (Winner)" />
+                                    <Label prefHeight="25.0" prefWidth="1158.0" styleClass="radiant-overview-label" text="Radiant Overview (Winner)" />
                                     <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="33.0" prefWidth="1151.0" styleClass="upper-stats-bar">
                                        <children>
                                           <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="122.0" styleClass="overview-label" text="PLAYER">
@@ -259,15 +259,31 @@
                                                 <Insets right="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="k" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="d" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="a" textAlignment="CENTER">
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="k" textAlignment="CENTER">
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="kill-label" />
+                                             </styleClass></Label>
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="d" textAlignment="CENTER">
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="death-label" />
+                                             </styleClass></Label>
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="a" textAlignment="CENTER">
                                              <HBox.margin>
                                                 <Insets right="10.0" />
                                              </HBox.margin>
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="assist-label" />
+                                             </styleClass>
                                           </Label>
                                           <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="lh/dn" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="net" textAlignment="CENTER" />
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" text="net" textAlignment="CENTER">
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="networth-label" />
+                                             </styleClass></Label>
                                           <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="120.0" styleClass="overview-label" text="gpm/xpm" textAlignment="CENTER">
                                              <HBox.margin>
                                                 <Insets right="20.0" />
@@ -353,15 +369,31 @@
                                                 <Insets right="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="k" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="d" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="a" textAlignment="CENTER">
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="k" textAlignment="CENTER">
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="kill-label" />
+                                             </styleClass></Label>
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="d" textAlignment="CENTER">
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="death-label" />
+                                             </styleClass></Label>
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="a" textAlignment="CENTER">
                                              <HBox.margin>
                                                 <Insets right="10.0" />
                                              </HBox.margin>
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="assist-label" />
+                                             </styleClass>
                                           </Label>
                                           <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="lh/dn" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="net" textAlignment="CENTER" />
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" text="net" textAlignment="CENTER">
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="networth-label" />
+                                             </styleClass></Label>
                                           <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="120.0" styleClass="overview-label" text="gpm/xpm" textAlignment="CENTER">
                                              <HBox.margin>
                                                 <Insets right="20.0" />
@@ -448,15 +480,31 @@
                                                 <Insets right="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="k" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="d" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="a" textAlignment="CENTER">
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="k" textAlignment="CENTER">
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="kill-label" />
+                                             </styleClass></Label>
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="d" textAlignment="CENTER">
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="death-label" />
+                                             </styleClass></Label>
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="a" textAlignment="CENTER">
                                              <HBox.margin>
                                                 <Insets right="10.0" />
                                              </HBox.margin>
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="assist-label" />
+                                             </styleClass>
                                           </Label>
                                           <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="lh/dn" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="net" textAlignment="CENTER" />
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" text="net" textAlignment="CENTER">
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="networth-label" />
+                                             </styleClass></Label>
                                           <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="120.0" styleClass="overview-label" text="gpm/xpm" textAlignment="CENTER">
                                              <HBox.margin>
                                                 <Insets right="20.0" />
@@ -543,15 +591,31 @@
                                                 <Insets right="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="k" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="d" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="a" textAlignment="CENTER">
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="k" textAlignment="CENTER">
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="kill-label" />
+                                             </styleClass></Label>
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="d" textAlignment="CENTER">
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="death-label" />
+                                             </styleClass></Label>
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="a" textAlignment="CENTER">
                                              <HBox.margin>
                                                 <Insets right="10.0" />
                                              </HBox.margin>
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="assist-label" />
+                                             </styleClass>
                                           </Label>
                                           <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="lh/dn" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="net" textAlignment="CENTER" />
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" text="net" textAlignment="CENTER">
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="networth-label" />
+                                             </styleClass></Label>
                                           <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="120.0" styleClass="overview-label" text="gpm/xpm" textAlignment="CENTER">
                                              <HBox.margin>
                                                 <Insets right="20.0" />
@@ -638,15 +702,31 @@
                                                 <Insets right="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="k" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="d" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="a" textAlignment="CENTER">
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="k" textAlignment="CENTER">
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="kill-label" />
+                                             </styleClass></Label>
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="d" textAlignment="CENTER">
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="death-label" />
+                                             </styleClass></Label>
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="a" textAlignment="CENTER">
                                              <HBox.margin>
                                                 <Insets right="10.0" />
                                              </HBox.margin>
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="assist-label" />
+                                             </styleClass>
                                           </Label>
                                           <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="lh/dn" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="net" textAlignment="CENTER" />
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" text="net" textAlignment="CENTER">
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="networth-label" />
+                                             </styleClass></Label>
                                           <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="120.0" styleClass="overview-label" text="gpm/xpm" textAlignment="CENTER">
                                              <HBox.margin>
                                                 <Insets right="20.0" />
@@ -714,7 +794,7 @@
                                           <String fx:value="stats-bar" />
                                        </styleClass>
                                     </HBox>
-                                    <Label prefHeight="24.0" prefWidth="1147.0" text="Dire Overview (Winner)">
+                                    <Label prefHeight="25.0" prefWidth="1160.0" styleClass="dire-overview-label" text="Dire Overview (Winner)">
                                        <VBox.margin>
                                           <Insets top="20.0" />
                                        </VBox.margin>
@@ -768,15 +848,31 @@
                                                 <Insets right="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="k" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="d" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="a" textAlignment="CENTER">
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="k" textAlignment="CENTER">
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="kill-label" />
+                                             </styleClass></Label>
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="d" textAlignment="CENTER">
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="death-label" />
+                                             </styleClass></Label>
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="a" textAlignment="CENTER">
                                              <HBox.margin>
                                                 <Insets right="10.0" />
                                              </HBox.margin>
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="assist-label" />
+                                             </styleClass>
                                           </Label>
                                           <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="lh/dn" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="net" textAlignment="CENTER" />
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" text="net" textAlignment="CENTER">
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="networth-label" />
+                                             </styleClass></Label>
                                           <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="120.0" styleClass="overview-label" text="gpm/xpm" textAlignment="CENTER">
                                              <HBox.margin>
                                                 <Insets right="20.0" />
@@ -863,15 +959,31 @@
                                                 <Insets right="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="k" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="d" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="a" textAlignment="CENTER">
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="k" textAlignment="CENTER">
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="kill-label" />
+                                             </styleClass></Label>
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="d" textAlignment="CENTER">
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="death-label" />
+                                             </styleClass></Label>
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="a" textAlignment="CENTER">
                                              <HBox.margin>
                                                 <Insets right="10.0" />
                                              </HBox.margin>
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="assist-label" />
+                                             </styleClass>
                                           </Label>
                                           <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="lh/dn" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="net" textAlignment="CENTER" />
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" text="net" textAlignment="CENTER">
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="networth-label" />
+                                             </styleClass></Label>
                                           <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="120.0" styleClass="overview-label" text="gpm/xpm" textAlignment="CENTER">
                                              <HBox.margin>
                                                 <Insets right="20.0" />
@@ -958,15 +1070,31 @@
                                                 <Insets right="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="k" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="d" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="a" textAlignment="CENTER">
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="k" textAlignment="CENTER">
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="kill-label" />
+                                             </styleClass></Label>
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="d" textAlignment="CENTER">
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="death-label" />
+                                             </styleClass></Label>
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="a" textAlignment="CENTER">
                                              <HBox.margin>
                                                 <Insets right="10.0" />
                                              </HBox.margin>
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="assist-label" />
+                                             </styleClass>
                                           </Label>
                                           <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="lh/dn" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="net" textAlignment="CENTER" />
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" text="net" textAlignment="CENTER">
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="networth-label" />
+                                             </styleClass></Label>
                                           <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="120.0" styleClass="overview-label" text="gpm/xpm" textAlignment="CENTER">
                                              <HBox.margin>
                                                 <Insets right="20.0" />
@@ -1053,15 +1181,31 @@
                                                 <Insets right="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="k" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="d" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="a" textAlignment="CENTER">
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="k" textAlignment="CENTER">
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="kill-label" />
+                                             </styleClass></Label>
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="d" textAlignment="CENTER">
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="death-label" />
+                                             </styleClass></Label>
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="a" textAlignment="CENTER">
                                              <HBox.margin>
                                                 <Insets right="10.0" />
                                              </HBox.margin>
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="assist-label" />
+                                             </styleClass>
                                           </Label>
                                           <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="lh/dn" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="net" textAlignment="CENTER" />
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" text="net" textAlignment="CENTER">
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="networth-label" />
+                                             </styleClass></Label>
                                           <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="120.0" styleClass="overview-label" text="gpm/xpm" textAlignment="CENTER">
                                              <HBox.margin>
                                                 <Insets right="20.0" />
@@ -1148,15 +1292,31 @@
                                                 <Insets right="20.0" />
                                              </HBox.margin>
                                           </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="k" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="d" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="a" textAlignment="CENTER">
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="k" textAlignment="CENTER">
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="kill-label" />
+                                             </styleClass></Label>
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="d" textAlignment="CENTER">
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="death-label" />
+                                             </styleClass></Label>
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="a" textAlignment="CENTER">
                                              <HBox.margin>
                                                 <Insets right="10.0" />
                                              </HBox.margin>
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="assist-label" />
+                                             </styleClass>
                                           </Label>
                                           <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="lh/dn" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="net" textAlignment="CENTER" />
+                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" text="net" textAlignment="CENTER">
+                                             <styleClass>
+                                                <String fx:value="overview-label" />
+                                                <String fx:value="networth-label" />
+                                             </styleClass></Label>
                                           <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="120.0" styleClass="overview-label" text="gpm/xpm" textAlignment="CENTER">
                                              <HBox.margin>
                                                 <Insets right="20.0" />
