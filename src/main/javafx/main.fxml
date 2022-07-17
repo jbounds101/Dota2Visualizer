@@ -56,11 +56,12 @@
   </columnConstraints>
   <rowConstraints>
     <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="70.0" vgrow="NEVER" />
-    <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="700.0" minHeight="10.0" percentHeight="80.0" prefHeight="508.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="70.0" vgrow="NEVER" />
+      <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="70.0" vgrow="NEVER" />
+    <RowConstraints percentHeight="74.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <HBox alignment="CENTER_LEFT" prefHeight="61.0" prefWidth="1280.0" styleClass="hboxtop">
+      <HBox alignment="CENTER_LEFT" prefHeight="61.0" prefWidth="0.0" styleClass="hboxtop">
          <padding>
             <Insets left="80.0" />
          </padding>
@@ -88,1331 +89,1358 @@
             </Label>
          </children>
       </HBox>
-      <HBox alignment="CENTER" maxHeight="90.0" prefHeight="90.0" prefWidth="1280.0" styleClass="hboxbot" GridPane.rowIndex="1">
+      <HBox alignment="CENTER" prefHeight="61.0" prefWidth="1280.0" styleClass="hboxbot" GridPane.rowIndex="1">
          <children>
-            <HBox alignment="CENTER" maxHeight="90.0" prefHeight="90.0" prefWidth="1280.0" styleClass="hboxbot">
+            <HBox alignment="CENTER">
                <children>
-                  <HBox fx:id="hBoxBotFunctional" alignment="CENTER" maxHeight="90.0" prefHeight="90.0" prefWidth="1280.0">
-                     <children>
-                        <Label onMouseClicked="#labelButtonPress" text="Overview">
-                           <padding>
-                              <Insets left="40.0" right="40.0" />
-                           </padding>
-                           <styleClass>
-                              <String fx:value="button-label" />
-                              <String fx:value="sub-button" />
-                           </styleClass>
-                        </Label>
-                        <Label onMouseClicked="#labelButtonPress" text="XP Advantage">
-                           <HBox.margin>
-                              <Insets left="40.0" right="40.0" />
-                           </HBox.margin>
-                           <styleClass>
-                              <String fx:value="button-label" />
-                              <String fx:value="sub-button" />
-                           </styleClass>
-                        </Label>
-                        <Label onMouseClicked="#labelButtonPress" text="IDK">
-                           <HBox.margin>
-                              <Insets left="40.0" right="40.0" />
-                           </HBox.margin>
-                           <styleClass>
-                              <String fx:value="button-label" />
-                              <String fx:value="sub-button" />
-                           </styleClass>
-                        </Label>
-                        <Label onMouseClicked="#labelButtonPress" text="IDK">
-                           <HBox.margin>
-                              <Insets left="40.0" right="40.0" />
-                           </HBox.margin>
-                           <styleClass>
-                              <String fx:value="button-label" />
-                              <String fx:value="sub-button" />
-                           </styleClass>
-                        </Label>
-                        <Label onMouseClicked="#labelButtonPress" text="IDK">
-                           <styleClass>
-                              <String fx:value="button-label" />
-                              <String fx:value="sub-button" />
-                           </styleClass>
-                           <HBox.margin>
-                              <Insets left="40.0" right="40.0" />
-                           </HBox.margin>
-                        </Label>
-                     </children>
-                  </HBox>
+                  <Label alignment="CENTER" styleClass="victory-label" text="Radiant Victory" />
+               </children>
+               <HBox.margin>
+                  <Insets right="100.0" />
+               </HBox.margin>
+            </HBox>
+            <HBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="700.0">
+               <children>
+                  <Label fx:id="radiantScoreLabel" alignment="CENTER" maxHeight="-Infinity" prefWidth="200.0" styleClass="radiant-score-label" text="radiantScore" />
+                  <Label fx:id="timeLabel" alignment="CENTER" maxHeight="-Infinity" prefWidth="200.0" styleClass="time-label" text="time" />
+                  <Label fx:id="direScoreLabel" alignment="CENTER" maxHeight="-Infinity" prefWidth="200.0" styleClass="dire-score-label" text="direScore" />
                </children>
             </HBox>
-         </children></HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
-         <children>
-            <StackPane fx:id="stackPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="500.0" minWidth="1280.0" prefHeight="500.0" prefWidth="1280.0" styleClass="stack-pane" HBox.hgrow="SOMETIMES">
+            <VBox alignment="CENTER">
                <children>
-                  <LineChart fx:id="lineChart" alternativeRowFillVisible="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="720.0" prefWidth="1280.0" title="Radiant Advantage" visible="false">
-                    <xAxis>
-                      <NumberAxis side="BOTTOM" styleClass="x-axis" />
-                    </xAxis>
-                    <yAxis>
-                      <NumberAxis lowerBound="-30000.0" minorTickCount="0" minorTickLength="1000.0" side="LEFT" styleClass="y-axis" tickLabelFill="#f5f5f5" tickLabelGap="8.0" tickLength="6.0" tickUnit="10000.0" upperBound="30000.0">
-                           <tickLabelFont>
-                              <Font size="14.0" />
-                           </tickLabelFont>
-                        </NumberAxis>
-                    </yAxis>
-                     <StackPane.margin>
-                        <Insets />
-                     </StackPane.margin>
-                  </LineChart>
-                  <ImageView fx:id="loadingPane" fitHeight="68.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                  <Label alignment="CENTER" prefHeight="24.0" prefWidth="169.0" styleClass="match-id-label-note" text="MATCH ID" />
+                  <Label fx:id="matchIDLabel" alignment="CENTER" prefHeight="24.0" prefWidth="169.0" styleClass="match-id-label" text="matchID" />
+               </children>
+               <HBox.margin>
+                  <Insets left="100.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="61.0" prefWidth="1280.0" styleClass="sub-buttons-bar" GridPane.rowIndex="2">
+         <children>
+            <Label onMouseClicked="#labelButtonPress" text="Overview">
+               <padding>
+                  <Insets left="40.0" right="40.0" />
+               </padding>
+               <styleClass>
+                  <String fx:value="button-label" />
+                  <String fx:value="sub-button" />
+               </styleClass>
+            </Label>
+            <Label onMouseClicked="#labelButtonPress" text="XP Advantage">
+               <HBox.margin>
+                  <Insets left="40.0" right="40.0" />
+               </HBox.margin>
+               <styleClass>
+                  <String fx:value="button-label" />
+                  <String fx:value="sub-button" />
+               </styleClass>
+            </Label>
+            <Label onMouseClicked="#labelButtonPress" text="IDK">
+               <HBox.margin>
+                  <Insets left="40.0" right="40.0" />
+               </HBox.margin>
+               <styleClass>
+                  <String fx:value="button-label" />
+                  <String fx:value="sub-button" />
+               </styleClass>
+            </Label>
+            <Label onMouseClicked="#labelButtonPress" text="IDK">
+               <HBox.margin>
+                  <Insets left="40.0" right="40.0" />
+               </HBox.margin>
+               <styleClass>
+                  <String fx:value="button-label" />
+                  <String fx:value="sub-button" />
+               </styleClass>
+            </Label>
+            <Label onMouseClicked="#labelButtonPress" text="IDK">
+               <styleClass>
+                  <String fx:value="button-label" />
+                  <String fx:value="sub-button" />
+               </styleClass>
+               <HBox.margin>
+                  <Insets left="40.0" right="40.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <StackPane fx:id="stackPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="1280.0" styleClass="stack-pane" GridPane.rowIndex="3">
+         <children>
+            <LineChart fx:id="lineChart" alternativeRowFillVisible="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="720.0" prefWidth="1280.0" title="Radiant Advantage" visible="false">
+              <xAxis>
+                <NumberAxis side="BOTTOM" styleClass="x-axis" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis lowerBound="-30000.0" minorTickCount="0" minorTickLength="1000.0" side="LEFT" styleClass="y-axis" tickLabelFill="#f5f5f5" tickLabelGap="8.0" tickLength="6.0" tickUnit="10000.0" upperBound="30000.0">
+                     <tickLabelFont>
+                        <Font size="14.0" />
+                     </tickLabelFont>
+                  </NumberAxis>
+              </yAxis>
+               <StackPane.margin>
+                  <Insets />
+               </StackPane.margin>
+            </LineChart>
+            <ImageView fx:id="loadingPane" fitHeight="68.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@static_images/loading.gif" />
+               </image>
+               <StackPane.margin>
+                  <Insets bottom="90.0" />
+               </StackPane.margin>
+               <effect>
+                  <ColorAdjust />
+               </effect>
+            </ImageView>
+            <HBox fx:id="errorMatchPane" alignment="CENTER" prefWidth="364.0" visible="false">
+               <children>
+                  <ImageView fx:id="errorIcon" fitHeight="68.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@static_images/loading.gif" />
+                        <Image url="@static_images/error.png" />
                      </image>
-                     <StackPane.margin>
-                        <Insets bottom="90.0" />
-                     </StackPane.margin>
                      <effect>
                         <ColorAdjust />
                      </effect>
                   </ImageView>
-                  <HBox fx:id="errorMatchPane" alignment="CENTER" prefHeight="560.0" prefWidth="364.0" visible="false">
+                  <Label text="The specified match could not be found." textFill="WHITE">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <StackPane.margin>
+                  <Insets bottom="90.0" />
+               </StackPane.margin>
+            </HBox>
+            <ScrollPane fx:id="overviewPane" fitToHeight="true" focusTraversable="false" hbarPolicy="NEVER" maxWidth="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefWidth="1200.0">
+               <content>
+                  <VBox fx:id="overviewGrid" alignment="CENTER" prefWidth="1147.0">
                      <children>
-                        <ImageView fx:id="errorIcon" fitHeight="68.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@static_images/error.png" />
-                           </image>
-                           <effect>
-                              <ColorAdjust />
-                           </effect>
-                        </ImageView>
-                        <Label text="The specified match could not be found." textFill="WHITE">
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                        </Label>
-                     </children>
-                     <StackPane.margin>
-                        <Insets bottom="90.0" />
-                     </StackPane.margin>
-                  </HBox>
-                  <VBox fx:id="overviewPane" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="500.0" prefWidth="1147.0">
-                     <children>
-                        <HBox alignment="CENTER" prefHeight="61.0" prefWidth="1139.0" styleClass="overview-top-box">
+                        <Label prefHeight="25.0" prefWidth="1158.0" styleClass="radiant-overview-label" text="Radiant Overview (Winner)" />
+                        <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="33.0" prefWidth="1151.0" styleClass="upper-stats-bar">
                            <children>
-                              <Label fx:id="radiantScoreLabel" alignment="CENTER" prefHeight="24.0" prefWidth="169.0" styleClass="radiant-score-label" text="radiantScore" />
-                              <Label fx:id="timeLabel" alignment="CENTER" prefHeight="24.0" prefWidth="169.0" styleClass="time-label" text="time" />
-                              <Label fx:id="direScoreLabel" alignment="CENTER" prefHeight="24.0" prefWidth="169.0" styleClass="dire-score-label" text="direScore" />
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="122.0" styleClass="overview-label" text="PLAYER">
+                                 <HBox.margin>
+                                    <Insets left="64.0" right="30.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="40.0" styleClass="overview-label" text="LVL">
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="40.0" styleClass="overview-label" text="K" textAlignment="CENTER" />
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="40.0" styleClass="overview-label" text="D" textAlignment="CENTER" />
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="40.0" styleClass="overview-label" text="A" textAlignment="CENTER">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="100.0" styleClass="overview-label" text="LH/DN" textAlignment="CENTER" />
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="100.0" styleClass="overview-label" text="NET" textAlignment="CENTER" />
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="120.0" styleClass="overview-label" text="GPM/XPM" textAlignment="CENTER">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="78.0" styleClass="overview-label" text="ITEMS" textAlignment="CENTER" />
                            </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
                         </HBox>
-                        <ScrollPane fitToHeight="true" focusTraversable="false" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefWidth="1185.0">
-                           <content>
-                              <VBox fx:id="overviewGrid" alignment="TOP_CENTER" prefWidth="1147.0">
-                                 <children>
-                                    <Label prefHeight="25.0" prefWidth="1158.0" styleClass="radiant-overview-label" text="Radiant Overview (Winner)" />
-                                    <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="33.0" prefWidth="1151.0" styleClass="upper-stats-bar">
-                                       <children>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="122.0" styleClass="overview-label" text="PLAYER">
-                                             <HBox.margin>
-                                                <Insets left="64.0" right="30.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="40.0" styleClass="overview-label" text="LVL">
-                                             <HBox.margin>
-                                                <Insets right="20.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="40.0" styleClass="overview-label" text="K" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="40.0" styleClass="overview-label" text="D" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="40.0" styleClass="overview-label" text="A" textAlignment="CENTER">
-                                             <HBox.margin>
-                                                <Insets right="10.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="100.0" styleClass="overview-label" text="LH/DN" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="100.0" styleClass="overview-label" text="NET" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="120.0" styleClass="overview-label" text="GPM/XPM" textAlignment="CENTER">
-                                             <HBox.margin>
-                                                <Insets right="10.0" />
-                                             </HBox.margin></Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="78.0" styleClass="overview-label" text="ITEMS" textAlignment="CENTER" />
-                                       </children>
-                                       <VBox.margin>
-                                          <Insets />
-                                       </VBox.margin>
-                                    </HBox>
-                                    <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="1147.0" styleClass="stats-bar">
-                                       <children>
-                                          <ImageView fitHeight="36.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderHero.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="122.0" styleClass="overview-label" text="Bing chillingginggg">
-                                             <HBox.margin>
-                                                <Insets right="30.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="lvl">
-                                             <HBox.margin>
-                                                <Insets right="20.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="k" textAlignment="CENTER">
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="kill-label" />
-                                             </styleClass></Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="d" textAlignment="CENTER">
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="death-label" />
-                                             </styleClass></Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="a" textAlignment="CENTER">
-                                             <HBox.margin>
-                                                <Insets right="10.0" />
-                                             </HBox.margin>
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="assist-label" />
-                                             </styleClass>
-                                          </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="lh/dn" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" text="net" textAlignment="CENTER">
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="networth-label" />
-                                             </styleClass></Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="120.0" styleClass="overview-label" text="gpm/xpm" textAlignment="CENTER">
-                                             <HBox.margin>
-                                                <Insets right="20.0" />
-                                             </HBox.margin></Label>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="14.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                       </children>
-                                       <VBox.margin>
-                                          <Insets bottom="-1.0" />
-                                       </VBox.margin>
-                                    </HBox>
-                                    <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="1147.0" styleClass="stats-bar">
-                                       <children>
-                                          <ImageView fitHeight="36.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderHero.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="122.0" styleClass="overview-label" text="Bing chillingginggg">
-                                             <HBox.margin>
-                                                <Insets right="30.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="lvl">
-                                             <HBox.margin>
-                                                <Insets right="20.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="k" textAlignment="CENTER">
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="kill-label" />
-                                             </styleClass></Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="d" textAlignment="CENTER">
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="death-label" />
-                                             </styleClass></Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="a" textAlignment="CENTER">
-                                             <HBox.margin>
-                                                <Insets right="10.0" />
-                                             </HBox.margin>
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="assist-label" />
-                                             </styleClass>
-                                          </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="lh/dn" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" text="net" textAlignment="CENTER">
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="networth-label" />
-                                             </styleClass></Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="120.0" styleClass="overview-label" text="gpm/xpm" textAlignment="CENTER">
-                                             <HBox.margin>
-                                                <Insets right="20.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="14.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                       </children>
-                                       <VBox.margin>
-                                          <Insets bottom="-1.0" />
-                                       </VBox.margin>
-                                    </HBox>
-                                    <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="1147.0" styleClass="stats-bar">
-                                       <children>
-                                          <ImageView fitHeight="36.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderHero.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="122.0" styleClass="overview-label" text="Bing chillingginggg">
-                                             <HBox.margin>
-                                                <Insets right="30.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="lvl">
-                                             <HBox.margin>
-                                                <Insets right="20.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="k" textAlignment="CENTER">
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="kill-label" />
-                                             </styleClass></Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="d" textAlignment="CENTER">
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="death-label" />
-                                             </styleClass></Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="a" textAlignment="CENTER">
-                                             <HBox.margin>
-                                                <Insets right="10.0" />
-                                             </HBox.margin>
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="assist-label" />
-                                             </styleClass>
-                                          </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="lh/dn" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" text="net" textAlignment="CENTER">
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="networth-label" />
-                                             </styleClass></Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="120.0" styleClass="overview-label" text="gpm/xpm" textAlignment="CENTER">
-                                             <HBox.margin>
-                                                <Insets right="20.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="14.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                       </children>
-                                       <VBox.margin>
-                                          <Insets bottom="-1.0" />
-                                       </VBox.margin>
-                                    </HBox>
-                                    <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="1147.0" styleClass="stats-bar">
-                                       <children>
-                                          <ImageView fitHeight="36.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderHero.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="122.0" styleClass="overview-label" text="Bing chillingginggg">
-                                             <HBox.margin>
-                                                <Insets right="30.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="lvl">
-                                             <HBox.margin>
-                                                <Insets right="20.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="k" textAlignment="CENTER">
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="kill-label" />
-                                             </styleClass></Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="d" textAlignment="CENTER">
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="death-label" />
-                                             </styleClass></Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="a" textAlignment="CENTER">
-                                             <HBox.margin>
-                                                <Insets right="10.0" />
-                                             </HBox.margin>
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="assist-label" />
-                                             </styleClass>
-                                          </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="lh/dn" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" text="net" textAlignment="CENTER">
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="networth-label" />
-                                             </styleClass></Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="120.0" styleClass="overview-label" text="gpm/xpm" textAlignment="CENTER">
-                                             <HBox.margin>
-                                                <Insets right="20.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="14.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                       </children>
-                                       <VBox.margin>
-                                          <Insets bottom="-1.0" />
-                                       </VBox.margin>
-                                    </HBox>
-                                    <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="1147.0">
-                                       <children>
-                                          <ImageView fitHeight="36.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderHero.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="122.0" styleClass="overview-label" text="Bing chillingginggg">
-                                             <HBox.margin>
-                                                <Insets right="30.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="lvl">
-                                             <HBox.margin>
-                                                <Insets right="20.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="k" textAlignment="CENTER">
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="kill-label" />
-                                             </styleClass></Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="d" textAlignment="CENTER">
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="death-label" />
-                                             </styleClass></Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="a" textAlignment="CENTER">
-                                             <HBox.margin>
-                                                <Insets right="10.0" />
-                                             </HBox.margin>
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="assist-label" />
-                                             </styleClass>
-                                          </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="lh/dn" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" text="net" textAlignment="CENTER">
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="networth-label" />
-                                             </styleClass></Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="120.0" styleClass="overview-label" text="gpm/xpm" textAlignment="CENTER">
-                                             <HBox.margin>
-                                                <Insets right="20.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="14.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                       </children>
-                                       <styleClass>
-                                          <String fx:value="lower-stats-bar" />
-                                          <String fx:value="stats-bar" />
-                                       </styleClass>
-                                    </HBox>
-                                    <Label prefHeight="25.0" prefWidth="1160.0" styleClass="dire-overview-label" text="Dire Overview (Winner)">
-                                       <VBox.margin>
-                                          <Insets top="20.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="33.0" prefWidth="1151.0" styleClass="upper-stats-bar">
-                                       <children>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="122.0" styleClass="overview-label" text="PLAYER">
-                                             <HBox.margin>
-                                                <Insets left="64.0" right="30.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="40.0" styleClass="overview-label" text="LVL">
-                                             <HBox.margin>
-                                                <Insets right="20.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="40.0" styleClass="overview-label" text="K" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="40.0" styleClass="overview-label" text="D" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="40.0" styleClass="overview-label" text="A" textAlignment="CENTER">
-                                             <HBox.margin>
-                                                <Insets right="10.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="100.0" styleClass="overview-label" text="LH/DN" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="100.0" styleClass="overview-label" text="NET" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="120.0" styleClass="overview-label" text="GPM/XPM" textAlignment="CENTER">
-                                             <HBox.margin>
-                                                <Insets right="10.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="78.0" styleClass="overview-label" text="ITEMS" textAlignment="CENTER" />
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="1147.0" styleClass="stats-bar">
-                                       <children>
-                                          <ImageView fitHeight="36.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderHero.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="122.0" styleClass="overview-label" text="Bing chillingginggg">
-                                             <HBox.margin>
-                                                <Insets right="30.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="lvl">
-                                             <HBox.margin>
-                                                <Insets right="20.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="k" textAlignment="CENTER">
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="kill-label" />
-                                             </styleClass></Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="d" textAlignment="CENTER">
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="death-label" />
-                                             </styleClass></Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="a" textAlignment="CENTER">
-                                             <HBox.margin>
-                                                <Insets right="10.0" />
-                                             </HBox.margin>
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="assist-label" />
-                                             </styleClass>
-                                          </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="lh/dn" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" text="net" textAlignment="CENTER">
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="networth-label" />
-                                             </styleClass></Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="120.0" styleClass="overview-label" text="gpm/xpm" textAlignment="CENTER">
-                                             <HBox.margin>
-                                                <Insets right="20.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="14.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                       </children>
-                                       <VBox.margin>
-                                          <Insets bottom="-1.0" />
-                                       </VBox.margin>
-                                    </HBox>
-                                    <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="1147.0" styleClass="stats-bar">
-                                       <children>
-                                          <ImageView fitHeight="36.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderHero.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="122.0" styleClass="overview-label" text="Bing chillingginggg">
-                                             <HBox.margin>
-                                                <Insets right="30.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="lvl">
-                                             <HBox.margin>
-                                                <Insets right="20.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="k" textAlignment="CENTER">
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="kill-label" />
-                                             </styleClass></Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="d" textAlignment="CENTER">
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="death-label" />
-                                             </styleClass></Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="a" textAlignment="CENTER">
-                                             <HBox.margin>
-                                                <Insets right="10.0" />
-                                             </HBox.margin>
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="assist-label" />
-                                             </styleClass>
-                                          </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="lh/dn" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" text="net" textAlignment="CENTER">
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="networth-label" />
-                                             </styleClass></Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="120.0" styleClass="overview-label" text="gpm/xpm" textAlignment="CENTER">
-                                             <HBox.margin>
-                                                <Insets right="20.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="14.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                       </children>
-                                       <VBox.margin>
-                                          <Insets bottom="-1.0" />
-                                       </VBox.margin>
-                                    </HBox>
-                                    <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="1147.0" styleClass="stats-bar">
-                                       <children>
-                                          <ImageView fitHeight="36.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderHero.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="122.0" styleClass="overview-label" text="Bing chillingginggg">
-                                             <HBox.margin>
-                                                <Insets right="30.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="lvl">
-                                             <HBox.margin>
-                                                <Insets right="20.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="k" textAlignment="CENTER">
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="kill-label" />
-                                             </styleClass></Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="d" textAlignment="CENTER">
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="death-label" />
-                                             </styleClass></Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="a" textAlignment="CENTER">
-                                             <HBox.margin>
-                                                <Insets right="10.0" />
-                                             </HBox.margin>
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="assist-label" />
-                                             </styleClass>
-                                          </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="lh/dn" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" text="net" textAlignment="CENTER">
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="networth-label" />
-                                             </styleClass></Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="120.0" styleClass="overview-label" text="gpm/xpm" textAlignment="CENTER">
-                                             <HBox.margin>
-                                                <Insets right="20.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="14.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                       </children>
-                                       <VBox.margin>
-                                          <Insets bottom="-1.0" />
-                                       </VBox.margin>
-                                    </HBox>
-                                    <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="1147.0" styleClass="stats-bar">
-                                       <children>
-                                          <ImageView fitHeight="36.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderHero.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="122.0" styleClass="overview-label" text="Bing chillingginggg">
-                                             <HBox.margin>
-                                                <Insets right="30.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="lvl">
-                                             <HBox.margin>
-                                                <Insets right="20.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="k" textAlignment="CENTER">
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="kill-label" />
-                                             </styleClass></Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="d" textAlignment="CENTER">
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="death-label" />
-                                             </styleClass></Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="a" textAlignment="CENTER">
-                                             <HBox.margin>
-                                                <Insets right="10.0" />
-                                             </HBox.margin>
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="assist-label" />
-                                             </styleClass>
-                                          </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="lh/dn" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" text="net" textAlignment="CENTER">
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="networth-label" />
-                                             </styleClass></Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="120.0" styleClass="overview-label" text="gpm/xpm" textAlignment="CENTER">
-                                             <HBox.margin>
-                                                <Insets right="20.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="14.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                       </children>
-                                       <VBox.margin>
-                                          <Insets bottom="-1.0" />
-                                       </VBox.margin>
-                                    </HBox>
-                                    <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="1147.0">
-                                       <children>
-                                          <ImageView fitHeight="36.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderHero.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="122.0" styleClass="overview-label" text="Bing chillingginggg">
-                                             <HBox.margin>
-                                                <Insets right="30.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="lvl">
-                                             <HBox.margin>
-                                                <Insets right="20.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="k" textAlignment="CENTER">
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="kill-label" />
-                                             </styleClass></Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="d" textAlignment="CENTER">
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="death-label" />
-                                             </styleClass></Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="a" textAlignment="CENTER">
-                                             <HBox.margin>
-                                                <Insets right="10.0" />
-                                             </HBox.margin>
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="assist-label" />
-                                             </styleClass>
-                                          </Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="lh/dn" textAlignment="CENTER" />
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" text="net" textAlignment="CENTER">
-                                             <styleClass>
-                                                <String fx:value="overview-label" />
-                                                <String fx:value="networth-label" />
-                                             </styleClass></Label>
-                                          <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="120.0" styleClass="overview-label" text="gpm/xpm" textAlignment="CENTER">
-                                             <HBox.margin>
-                                                <Insets right="20.0" />
-                                             </HBox.margin>
-                                          </Label>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="14.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                          <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@static_images/placeholderItem.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets right="3.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                       </children>
-                                       <VBox.margin>
-                                          <Insets />
-                                       </VBox.margin>
-                                       <styleClass>
-                                          <String fx:value="lower-stats-bar" />
-                                          <String fx:value="stats-bar" />
-                                       </styleClass>
-                                    </HBox>
-                                 </children>
-                              </VBox>
-                           </content>
+                        <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="1147.0" styleClass="stats-bar">
+                           <children>
+                              <ImageView fitHeight="36.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderHero.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </ImageView>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="122.0" styleClass="overview-label" text="Bing chillingginggg">
+                                 <HBox.margin>
+                                    <Insets right="30.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="lvl">
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="k" textAlignment="CENTER">
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="kill-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="d" textAlignment="CENTER">
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="death-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="a" textAlignment="CENTER">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="assist-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="lh/dn" textAlignment="CENTER" />
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" text="net" textAlignment="CENTER">
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="networth-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="120.0" styleClass="overview-label" text="gpm/xpm" textAlignment="CENTER">
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="14.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="-1.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="1147.0" styleClass="stats-bar">
+                           <children>
+                              <ImageView fitHeight="36.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderHero.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </ImageView>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="122.0" styleClass="overview-label" text="Bing chillingginggg">
+                                 <HBox.margin>
+                                    <Insets right="30.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="lvl">
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="k" textAlignment="CENTER">
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="kill-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="d" textAlignment="CENTER">
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="death-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="a" textAlignment="CENTER">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="assist-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="lh/dn" textAlignment="CENTER" />
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" text="net" textAlignment="CENTER">
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="networth-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="120.0" styleClass="overview-label" text="gpm/xpm" textAlignment="CENTER">
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="14.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="-1.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="1147.0" styleClass="stats-bar">
+                           <children>
+                              <ImageView fitHeight="36.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderHero.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </ImageView>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="122.0" styleClass="overview-label" text="Bing chillingginggg">
+                                 <HBox.margin>
+                                    <Insets right="30.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="lvl">
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="k" textAlignment="CENTER">
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="kill-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="d" textAlignment="CENTER">
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="death-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="a" textAlignment="CENTER">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="assist-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="lh/dn" textAlignment="CENTER" />
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" text="net" textAlignment="CENTER">
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="networth-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="120.0" styleClass="overview-label" text="gpm/xpm" textAlignment="CENTER">
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="14.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="-1.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="1147.0" styleClass="stats-bar">
+                           <children>
+                              <ImageView fitHeight="36.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderHero.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </ImageView>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="122.0" styleClass="overview-label" text="Bing chillingginggg">
+                                 <HBox.margin>
+                                    <Insets right="30.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="lvl">
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="k" textAlignment="CENTER">
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="kill-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="d" textAlignment="CENTER">
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="death-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="a" textAlignment="CENTER">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="assist-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="lh/dn" textAlignment="CENTER" />
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" text="net" textAlignment="CENTER">
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="networth-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="120.0" styleClass="overview-label" text="gpm/xpm" textAlignment="CENTER">
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="14.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="-1.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="1147.0">
+                           <children>
+                              <ImageView fitHeight="36.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderHero.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </ImageView>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="122.0" styleClass="overview-label" text="Bing chillingginggg">
+                                 <HBox.margin>
+                                    <Insets right="30.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="lvl">
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="k" textAlignment="CENTER">
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="kill-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="d" textAlignment="CENTER">
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="death-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="a" textAlignment="CENTER">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="assist-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="lh/dn" textAlignment="CENTER" />
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" text="net" textAlignment="CENTER">
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="networth-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="120.0" styleClass="overview-label" text="gpm/xpm" textAlignment="CENTER">
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="14.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                           </children>
+                           <styleClass>
+                              <String fx:value="lower-stats-bar" />
+                              <String fx:value="stats-bar" />
+                           </styleClass>
+                        </HBox>
+                        <Label prefHeight="25.0" prefWidth="1160.0" styleClass="dire-overview-label" text="Dire Overview (Winner)">
                            <VBox.margin>
                               <Insets top="20.0" />
                            </VBox.margin>
-                           <padding>
-                              <Insets right="20.0" />
-                           </padding>
-                        </ScrollPane>
+                        </Label>
+                        <HBox alignment="CENTER_LEFT" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="33.0" prefWidth="1151.0" styleClass="upper-stats-bar">
+                           <children>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="122.0" styleClass="overview-label" text="PLAYER">
+                                 <HBox.margin>
+                                    <Insets left="64.0" right="30.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="40.0" styleClass="overview-label" text="LVL">
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="40.0" styleClass="overview-label" text="K" textAlignment="CENTER" />
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="40.0" styleClass="overview-label" text="D" textAlignment="CENTER" />
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="40.0" styleClass="overview-label" text="A" textAlignment="CENTER">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="100.0" styleClass="overview-label" text="LH/DN" textAlignment="CENTER" />
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="100.0" styleClass="overview-label" text="NET" textAlignment="CENTER" />
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="120.0" styleClass="overview-label" text="GPM/XPM" textAlignment="CENTER">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="78.0" styleClass="overview-label" text="ITEMS" textAlignment="CENTER" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="1147.0" styleClass="stats-bar">
+                           <children>
+                              <ImageView fitHeight="36.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderHero.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </ImageView>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="122.0" styleClass="overview-label" text="Bing chillingginggg">
+                                 <HBox.margin>
+                                    <Insets right="30.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="lvl">
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="k" textAlignment="CENTER">
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="kill-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="d" textAlignment="CENTER">
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="death-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="a" textAlignment="CENTER">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="assist-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="lh/dn" textAlignment="CENTER" />
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" text="net" textAlignment="CENTER">
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="networth-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="120.0" styleClass="overview-label" text="gpm/xpm" textAlignment="CENTER">
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="14.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="-1.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="1147.0" styleClass="stats-bar">
+                           <children>
+                              <ImageView fitHeight="36.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderHero.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </ImageView>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="122.0" styleClass="overview-label" text="Bing chillingginggg">
+                                 <HBox.margin>
+                                    <Insets right="30.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="lvl">
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="k" textAlignment="CENTER">
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="kill-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="d" textAlignment="CENTER">
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="death-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="a" textAlignment="CENTER">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="assist-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="lh/dn" textAlignment="CENTER" />
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" text="net" textAlignment="CENTER">
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="networth-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="120.0" styleClass="overview-label" text="gpm/xpm" textAlignment="CENTER">
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="14.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="-1.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="1147.0" styleClass="stats-bar">
+                           <children>
+                              <ImageView fitHeight="36.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderHero.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </ImageView>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="122.0" styleClass="overview-label" text="Bing chillingginggg">
+                                 <HBox.margin>
+                                    <Insets right="30.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="lvl">
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="k" textAlignment="CENTER">
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="kill-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="d" textAlignment="CENTER">
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="death-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="a" textAlignment="CENTER">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="assist-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="lh/dn" textAlignment="CENTER" />
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" text="net" textAlignment="CENTER">
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="networth-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="120.0" styleClass="overview-label" text="gpm/xpm" textAlignment="CENTER">
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="14.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="-1.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="1147.0" styleClass="stats-bar">
+                           <children>
+                              <ImageView fitHeight="36.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderHero.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </ImageView>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="122.0" styleClass="overview-label" text="Bing chillingginggg">
+                                 <HBox.margin>
+                                    <Insets right="30.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="lvl">
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="k" textAlignment="CENTER">
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="kill-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="d" textAlignment="CENTER">
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="death-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="a" textAlignment="CENTER">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="assist-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="lh/dn" textAlignment="CENTER" />
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" text="net" textAlignment="CENTER">
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="networth-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="120.0" styleClass="overview-label" text="gpm/xpm" textAlignment="CENTER">
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="14.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="-1.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="1147.0">
+                           <children>
+                              <ImageView fitHeight="36.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderHero.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </ImageView>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="122.0" styleClass="overview-label" text="Bing chillingginggg">
+                                 <HBox.margin>
+                                    <Insets right="30.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" styleClass="overview-label" text="lvl">
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="k" textAlignment="CENTER">
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="kill-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="d" textAlignment="CENTER">
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="death-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="40.0" text="a" textAlignment="CENTER">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="assist-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" styleClass="overview-label" text="lh/dn" textAlignment="CENTER" />
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="100.0" text="net" textAlignment="CENTER">
+                                 <styleClass>
+                                    <String fx:value="overview-label" />
+                                    <String fx:value="networth-label" />
+                                 </styleClass>
+                              </Label>
+                              <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="120.0" styleClass="overview-label" text="gpm/xpm" textAlignment="CENTER">
+                                 <HBox.margin>
+                                    <Insets right="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="14.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <ImageView fitHeight="36.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@static_images/placeholderItem.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="3.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <styleClass>
+                              <String fx:value="lower-stats-bar" />
+                              <String fx:value="stats-bar" />
+                           </styleClass>
+                        </HBox>
                      </children>
-                     <StackPane.margin>
-                        <Insets />
-                     </StackPane.margin>
                   </VBox>
-               </children>
-               <padding>
-                  <Insets bottom="40.0" left="190.0" right="190.0" top="30.0" />
-               </padding>
-               <HBox.margin>
-                  <Insets top="10.0" />
-               </HBox.margin>
-            </StackPane>
+               </content>
+               <StackPane.margin>
+                  <Insets />
+               </StackPane.margin>
+            </ScrollPane>
          </children>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets></HBox>
+         <padding>
+            <Insets bottom="40.0" left="190.0" right="190.0" top="30.0" />
+         </padding>
+      </StackPane>
    </children>
 </GridPane>

@@ -44,6 +44,11 @@
 .sub-button:pressed {
     -fx-text-fill: hsb(295, 10%, 60%);
 }
+.sub-buttons-bar {
+    -fx-border-style: solid;
+    -fx-border-color: #8457a8;
+    -fx-border-width: 0 0 1 0;
+}
 
 .text-field {
     -fx-font: 20 "Segoe UI";
@@ -100,11 +105,6 @@
     -fx-font-size: 24;
 }
 
-.overview-top-box {
-    -fx-border-style: solid;
-    -fx-border-color: #8457a8;
-    -fx-border-width: 0 0 1 0;
-}
 .radiant-overview-label {
     -fx-border-style: solid;
     -fx-border-color: linear-gradient(to right, #A0FF9C, transparent);
@@ -114,6 +114,19 @@
     -fx-border-style: solid;
     -fx-border-color: linear-gradient(to right, #ff3d3d, transparent);
     -fx-border-width: 0 0 3 0;
+}
+.match-id-label-note {
+    -fx-font-size: 16;
+    -fx-text-fill: #BABABA;
+}
+.match-id-label {
+    -fx-font-size: 16;
+}
+.victory-label {
+    -fx-font-size: 24;
+    -fx-text-fill: #A0FF9C;
+    -fx-background-color: rgba(37, 150, 190, 0.1);
+    -fx-background-radius: 6;
 }
 /* ----- */
 

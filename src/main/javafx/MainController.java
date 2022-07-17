@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -44,7 +45,7 @@ public class MainController {
     @FXML
     ImageView loadingPane;
     @FXML
-    VBox overviewPane;
+    ScrollPane overviewPane;
 
     // -----Overview-----
     @FXML
@@ -57,12 +58,6 @@ public class MainController {
     VBox overviewGrid;
     // -----
 
-
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
-    private double windowWidth;
-    private double windowHeight;
     private Match match;
 
     // #c177a8 : color of search icon
@@ -139,78 +134,75 @@ public class MainController {
 
                 Player currentPlayer = players[heroesPrinted];
 
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
+                Platform.runLater(() -> {
 
-                        radiantScoreLabel.setText(Integer.toString(match.getRadiantScore()));
-                        timeLabel.setText(LocalTime.MIN.plusSeconds(match.getDuration()).toString());
-                        direScoreLabel.setText(Integer.toString(match.getDireScore()));
+                    radiantScoreLabel.setText(Integer.toString(match.getRadiantScore()));
+                    timeLabel.setText(LocalTime.MIN.plusSeconds(match.getDuration()).toString());
+                    direScoreLabel.setText(Integer.toString(match.getDireScore()));
 
 
-                        nameNode.setText(currentPlayer.getPlayerName());
-                        heroImgNode.setImage(SwingFXUtils.toFXImage(currentPlayer.getHero().getImg(), null));
-                        lvlNode.setText(Integer.toString(currentPlayer.getLevel()));
-                        killsNode.setText(Integer.toString(currentPlayer.getKills()));
-                        deathNode.setText(Integer.toString(currentPlayer.getDeaths()));
-                        assistsNode.setText(Integer.toString(currentPlayer.getAssists()));
-                        int playerLastHits = currentPlayer.getLastHits();
-                        int playerDenies = currentPlayer.getDenies();
-                        lastHitsDeniesNode.setText(playerLastHits + "/" + playerDenies);
-                        netWorthNode.setText(createThousandSuffix(currentPlayer.getNetWorth()));
-                        int playerGPM = currentPlayer.getGpm();
-                        int playerXPM = currentPlayer.getXpm();
-                        gpmXPMNode.setText(playerGPM + "/" + playerXPM);
+                    nameNode.setText(currentPlayer.getPlayerName());
+                    heroImgNode.setImage(SwingFXUtils.toFXImage(currentPlayer.getHero().getImg(), null));
+                    lvlNode.setText(Integer.toString(currentPlayer.getLevel()));
+                    killsNode.setText(Integer.toString(currentPlayer.getKills()));
+                    deathNode.setText(Integer.toString(currentPlayer.getDeaths()));
+                    assistsNode.setText(Integer.toString(currentPlayer.getAssists()));
+                    int playerLastHits = currentPlayer.getLastHits();
+                    int playerDenies = currentPlayer.getDenies();
+                    lastHitsDeniesNode.setText(playerLastHits + "/" + playerDenies);
+                    netWorthNode.setText(createThousandSuffix(currentPlayer.getNetWorth()));
+                    int playerGPM = currentPlayer.getGpm();
+                    int playerXPM = currentPlayer.getXpm();
+                    gpmXPMNode.setText(playerGPM + "/" + playerXPM);
 
-                        int itemIndex = 0;
-                        Item[] items = currentPlayer.getItems();
-                        for (Item item : items) {
-                            if (item == null) {
-                                itemImageNodes[itemIndex].setImage(
-                                        new Image("/main/javafx/static_images/transparentItem.png"));
-                            } else {
-                                BufferedImage image = item.loadImage();
-                                itemImageNodes[itemIndex].setImage(SwingFXUtils.toFXImage(image, null));
-                            }
-
-                            itemIndex++;
-                        }
-                        Item neutralItem = currentPlayer.getNeutralItem();
-                        if (neutralItem == null) {
-                            neutralItemNode.setImage(new Image("/main/javafx/static_images/transparentItem.png"));
+                    int itemIndex = 0;
+                    Item[] items = currentPlayer.getItems();
+                    for (Item item : items) {
+                        if (item == null) {
+                            itemImageNodes[itemIndex].setImage(
+                                    new Image("/main/javafx/static_images/transparentItem.png"));
                         } else {
-                            BufferedImage image = neutralItem.loadImage();
-                            neutralItemNode.setImage(SwingFXUtils.toFXImage(image, null));
+                            BufferedImage image = item.loadImage();
+                            itemImageNodes[itemIndex].setImage(SwingFXUtils.toFXImage(image, null));
                         }
 
+                        itemIndex++;
+                    }
+                    Item neutralItem = currentPlayer.getNeutralItem();
+                    if (neutralItem == null) {
+                        neutralItemNode.setImage(new Image("/main/javafx/static_images/transparentItem.png"));
+                    } else {
+                        BufferedImage image = neutralItem.loadImage();
+                        neutralItemNode.setImage(SwingFXUtils.toFXImage(image, null));
+                    }
 
-                        boolean radiantLabel = true;
-                        for (Node child : overviewGrid.getChildren()) {
-                            ObservableList<String> styleClasses = child.getStyleClass();
-                            boolean isLabel = false;
-                            for (int i = 0; i < styleClasses.size(); i++) {
-                                String style = styleClasses.get(i);
-                                if (style.equals("label")) {
-                                    isLabel = true;
-                                    break;
-                                }
+
+                    boolean radiantLabel = true;
+                    for (Node child1 : overviewGrid.getChildren()) {
+                        ObservableList<String> styleClasses1 = child1.getStyleClass();
+                        boolean isLabel = false;
+                        for (int i = 0; i < styleClasses1.size(); i++) {
+                            String style = styleClasses1.get(i);
+                            if (style.equals("label")) {
+                                isLabel = true;
+                                break;
                             }
-                            if (isLabel) {
-                                if (radiantLabel) {
-                                    radiantLabel = false;
-                                    Label radiantTextLabel = (Label) child;
-                                    if (match.isRadiantWin()) {
-                                        radiantTextLabel.setText("Radiant Overview (Winner)");
-                                    } else {
-                                        radiantTextLabel.setText("Radiant Overview");
-                                    }
+                        }
+                        if (isLabel) {
+                            if (radiantLabel) {
+                                radiantLabel = false;
+                                Label radiantTextLabel = (Label) child1;
+                                if (match.isRadiantWin()) {
+                                    radiantTextLabel.setText("Radiant Overview (Winner)");
                                 } else {
-                                    Label direTextLabel = (Label) child;
-                                    if (!match.isRadiantWin()) {
-                                        direTextLabel.setText("Dire Overview (Winner)");
-                                    } else {
-                                        direTextLabel.setText("Dire Overview");
-                                    }
+                                    radiantTextLabel.setText("Radiant Overview");
+                                }
+                            } else {
+                                Label direTextLabel = (Label) child1;
+                                if (!match.isRadiantWin()) {
+                                    direTextLabel.setText("Dire Overview (Winner)");
+                                } else {
+                                    direTextLabel.setText("Dire Overview");
                                 }
                             }
                         }
