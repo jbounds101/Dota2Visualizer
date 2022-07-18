@@ -58,6 +58,7 @@
     <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="70.0" vgrow="NEVER" />
     <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="70.0" vgrow="NEVER" />
       <RowConstraints maxHeight="70.0" minHeight="10.0" prefHeight="70.0" vgrow="NEVER" />
+      <RowConstraints maxHeight="70.0" minHeight="2.0" prefHeight="2.0" vgrow="NEVER" />
     <RowConstraints percentHeight="74.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
@@ -117,9 +118,9 @@
             </VBox>
          </children>
       </HBox>
-      <HBox fx:id="subBarButtons" alignment="CENTER" prefHeight="61.0" prefWidth="1280.0" styleClass="sub-buttons-bar" visible="false" GridPane.rowIndex="2">
+      <HBox fx:id="subBarButtons" alignment="CENTER" prefHeight="61.0" prefWidth="1280.0" styleClass="sub-buttons-bar" GridPane.rowIndex="2">
          <children>
-            <Label onMouseClicked="#labelButtonPress" text="Overview">
+            <Label fx:id="overviewButtonLabel" onMouseClicked="#labelButtonPress" text="Overview">
                <padding>
                   <Insets left="40.0" right="40.0" />
                </padding>
@@ -166,7 +167,7 @@
             </Label>
          </children>
       </HBox>
-      <StackPane fx:id="stackPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="1280.0" styleClass="stack-pane" GridPane.rowIndex="3">
+      <StackPane fx:id="stackPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="1280.0" styleClass="stack-pane" GridPane.rowIndex="4">
          <children>
             <LineChart fx:id="lineChart" alternativeRowFillVisible="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="720.0" prefWidth="1280.0" title="Radiant Advantage" visible="false">
               <xAxis>

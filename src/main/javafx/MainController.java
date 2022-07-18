@@ -46,6 +46,8 @@ public class MainController {
     ImageView loadingPane;
     @FXML
     ScrollPane overviewPane;
+    @FXML
+    Label overviewButtonLabel;
 
     // -----Overview-----
     @FXML
@@ -73,19 +75,19 @@ public class MainController {
     // #c177a8 : color of search icon
 
 
-    public void labelButtonPress(MouseEvent event) throws IOException {
+    public void labelButtonPress(MouseEvent event) {
         Label requester = (Label)event.getSource();
         requester.requestFocus();
     }
 
-    public void matchTextFieldSearch(KeyEvent event) throws IOException {
+    public void matchTextFieldSearch(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
             openOnStackPane(loadingPane);
             try {
                 long matchID = Long.parseLong(searchBar.getText());
                 Task task = new Task<Void>() {
                     @Override
-                    protected Void call() throws Exception {
+                    protected Void call() {
                         loadMatchDetails(matchID);
                         return null;
                     }
@@ -93,7 +95,7 @@ public class MainController {
                 new Thread(task).start();
             } catch (NumberFormatException e) {
                 searchBar.setText("");
-                openOnStackPane(errorMatchPane);
+                findMatchError();
             }
         }
     }
@@ -101,37 +103,53 @@ public class MainController {
     public void loadMatchDetails(Long matchID) {
         try {
             searchBar.setText("");
+            showSubBar(false);
             match = DotaJsonParser.readMatch(matchID);
             if (match.getDuration() == 0) throw new MatchNotFoundException();
+            loadOverview();
             loadSubBar();
             showSubBar(true);
-            loadOverview();
         } catch (MatchNotFoundException e) {
             searchBar.setText("");
-            openOnStackPane(errorMatchPane);
+            findMatchError();
         }
     }
 
     public void loadSubBar() {
         Platform.runLater(() -> {
             radiantScoreLabel.setText(Integer.toString(match.getRadiantScore()));
-            timeLabel.setText(LocalTime.MIN.plusSeconds(match.getDuration()).toString());
+            int duration = match.getDuration();
+            long hours = duration / 3600;
+            long minutes = (duration % 3600) / 60;
+            long seconds = duration % 60;
+            if (hours > 0) {
+                timeLabel.setText(String.format("%02d:%02d:%02d", hours, minutes, seconds));
+            } else {
+                timeLabel.setText(String.format("%02d:%02d", minutes, seconds));
+            }
             direScoreLabel.setText(Integer.toString(match.getDireScore()));
             matchIDLabel.setText(Long.toString(match.getMatchID()));
             if (match.isRadiantWin()) {
                 victoryLabel.setTextFill(Paint.valueOf("#A0FF9C"));
                 victoryLabel.setText("Radiant Victory");
-                victoryLabelBackground.setBackground(new Background(new BackgroundFill(Paint.valueOf("rgba(37, 150, 190, 0.1)"), new CornerRadii(6), new Insets(10, 6, 10, 6))));
+                victoryLabelBackground.setBackground(new Background(
+                        new BackgroundFill(Paint.valueOf("rgba(37, 150, 190, 0.1)"),
+                                new CornerRadii(6), new Insets(10, 6, 10, 6))));
             } else {
                 victoryLabel.setTextFill(Paint.valueOf("#ff3d3d"));
                 victoryLabel.setText("Dire Victory");
-                victoryLabelBackground.setBackground(new Background(new BackgroundFill(Paint.valueOf("rgba(255, 61, 61, 0.1)"), new CornerRadii(6), new Insets(10, 6, 10, 6))));
+                victoryLabelBackground.setBackground(new Background(
+                        new BackgroundFill(Paint.valueOf("rgba(255, 61, 61, 0.1)"),
+                                new CornerRadii(6), new Insets(10, 6, 10, 6))));
 
             }
         });
     }
 
     public void loadOverview() {
+
+        setSubButtonLabelSelected(overviewButtonLabel);
+
         Player[] players = match.getPlayers();
         int heroesPrinted = 0;
         for (Node child : overviewGrid.getChildren()) {
@@ -262,5 +280,15 @@ public class MainController {
             child.setVisible(b);
         }
         subBarButtons.setVisible(b);
+    }
+
+    public void findMatchError() {
+        openOnStackPane(errorMatchPane);
+        showSubBar(false);
+    }
+
+    public void setSubButtonLabelSelected(Label buttonLabel) {
+        Platform.runLater(() -> {
+        });
     }
 }
