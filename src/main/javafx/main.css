@@ -122,11 +122,15 @@
 .match-id-label {
     -fx-font-size: 16;
 }
+
+.victory-label-background {
+    -fx-background-color: rgba(37, 150, 190, 0.1);
+    -fx-background-radius: 6;
+    -fx-background-insets: 10 6 10 6;
+}
 .victory-label {
     -fx-font-size: 24;
     -fx-text-fill: #A0FF9C;
-    -fx-background-color: rgba(37, 150, 190, 0.1);
-    -fx-background-radius: 6;
 }
 /* ----- */
 

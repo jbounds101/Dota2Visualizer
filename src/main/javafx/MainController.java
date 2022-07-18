@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,9 +18,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import main.DotaJsonParser;
 import org.apache.hc.client5.http.utils.DateUtils;
@@ -56,6 +56,16 @@ public class MainController {
     Label timeLabel;
     @FXML
     VBox overviewGrid;
+    @FXML
+    HBox victoryLabelBackground;
+    @FXML
+    Label victoryLabel;
+    @FXML
+    Label matchIDLabel;
+    @FXML
+    HBox subBar;
+    @FXML
+    HBox subBarButtons;
     // -----
 
     private Match match;
@@ -90,13 +100,35 @@ public class MainController {
 
     public void loadMatchDetails(Long matchID) {
         try {
-            match = DotaJsonParser.readMatch(matchID);
             searchBar.setText("");
+            match = DotaJsonParser.readMatch(matchID);
+            if (match.getDuration() == 0) throw new MatchNotFoundException();
+            loadSubBar();
+            showSubBar(true);
             loadOverview();
         } catch (MatchNotFoundException e) {
             searchBar.setText("");
             openOnStackPane(errorMatchPane);
         }
+    }
+
+    public void loadSubBar() {
+        Platform.runLater(() -> {
+            radiantScoreLabel.setText(Integer.toString(match.getRadiantScore()));
+            timeLabel.setText(LocalTime.MIN.plusSeconds(match.getDuration()).toString());
+            direScoreLabel.setText(Integer.toString(match.getDireScore()));
+            matchIDLabel.setText(Long.toString(match.getMatchID()));
+            if (match.isRadiantWin()) {
+                victoryLabel.setTextFill(Paint.valueOf("#A0FF9C"));
+                victoryLabel.setText("Radiant Victory");
+                victoryLabelBackground.setBackground(new Background(new BackgroundFill(Paint.valueOf("rgba(37, 150, 190, 0.1)"), new CornerRadii(6), new Insets(10, 6, 10, 6))));
+            } else {
+                victoryLabel.setTextFill(Paint.valueOf("#ff3d3d"));
+                victoryLabel.setText("Dire Victory");
+                victoryLabelBackground.setBackground(new Background(new BackgroundFill(Paint.valueOf("rgba(255, 61, 61, 0.1)"), new CornerRadii(6), new Insets(10, 6, 10, 6))));
+
+            }
+        });
     }
 
     public void loadOverview() {
@@ -135,11 +167,6 @@ public class MainController {
                 Player currentPlayer = players[heroesPrinted];
 
                 Platform.runLater(() -> {
-
-                    radiantScoreLabel.setText(Integer.toString(match.getRadiantScore()));
-                    timeLabel.setText(LocalTime.MIN.plusSeconds(match.getDuration()).toString());
-                    direScoreLabel.setText(Integer.toString(match.getDireScore()));
-
 
                     nameNode.setText(currentPlayer.getPlayerName());
                     heroImgNode.setImage(SwingFXUtils.toFXImage(currentPlayer.getHero().getImg(), null));
@@ -228,5 +255,12 @@ public class MainController {
             child.setVisible(false);
         }
         node.setVisible(true);
+    }
+
+    public void showSubBar(boolean b) {
+        for (Node child : subBar.getChildren()) {
+            child.setVisible(b);
+        }
+        subBarButtons.setVisible(b);
     }
 }
