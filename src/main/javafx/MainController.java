@@ -10,6 +10,9 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -47,7 +50,11 @@ public class MainController {
     @FXML
     ScrollPane overviewPane;
     @FXML
+    ScrollPane graphPane;
+    @FXML
     Label overviewButtonLabel;
+    @FXML
+    Label graphButtonLabel;
 
     // -----Overview-----
     @FXML
@@ -70,7 +77,13 @@ public class MainController {
     HBox subBarButtons;
     // -----
 
+    // -----Graphs-----
+    @FXML
+    LineChart<Number, Number> lineChart;
+    // -----
+
     private Match match;
+    boolean matchLoaded = false;
 
     // #c177a8 : color of search icon
 
@@ -78,13 +91,21 @@ public class MainController {
     public void labelButtonPress(MouseEvent event) {
         Label requester = (Label)event.getSource();
         requester.requestFocus();
+        setSubButtonLabelSelected(requester);
+        if (requester == overviewButtonLabel) {
+            openOnStackPane(overviewPane);
+        } else if (requester == graphButtonLabel) {
+            openOnStackPane(graphPane);
+        }
     }
 
     public void matchTextFieldSearch(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
+            matchLoaded = false;
             openOnStackPane(loadingPane);
             try {
                 long matchID = Long.parseLong(searchBar.getText());
+                searchBar.setText("");
                 Task task = new Task<Void>() {
                     @Override
                     protected Void call() {
@@ -94,7 +115,6 @@ public class MainController {
                 };
                 new Thread(task).start();
             } catch (NumberFormatException e) {
-                searchBar.setText("");
                 findMatchError();
             }
         }
@@ -102,21 +122,25 @@ public class MainController {
 
     public void loadMatchDetails(Long matchID) {
         try {
-            searchBar.setText("");
             showSubBar(false);
             match = DotaJsonParser.readMatch(matchID);
             if (match.getDuration() == 0) throw new MatchNotFoundException();
-            loadOverview();
-            loadSubBar();
+            loadMatch();
+            setSubButtonLabelSelected(overviewButtonLabel);
+            openOnStackPane(overviewPane);
             showSubBar(true);
         } catch (MatchNotFoundException e) {
-            searchBar.setText("");
             findMatchError();
+            matchLoaded = false;
         }
     }
 
-    public void loadSubBar() {
+    public void loadMatch() {
+        // This applies all the visuals to the GUI and prepares each pane in the stackPane to be shown
+
+
         Platform.runLater(() -> {
+            // Sub-bar
             radiantScoreLabel.setText(Integer.toString(match.getRadiantScore()));
             int duration = match.getDuration();
             long hours = duration / 3600;
@@ -143,121 +167,135 @@ public class MainController {
                                 new CornerRadii(6), new Insets(10, 6, 10, 6))));
 
             }
-        });
-    }
+            //
 
-    public void loadOverview() {
+            // Overview pane
+            Player[] players = match.getPlayers();
+            int heroesPrinted = 0;
+            for (Node child : overviewGrid.getChildren()) {
+                ObservableList<String> styleClasses = child.getStyleClass();
+                boolean isStatsBar = false;
+                for (int i = 0; i < styleClasses.size(); i++) {
+                    String style = styleClasses.get(i);
+                    if (style.equals("stats-bar")) {
+                        isStatsBar = true;
+                        break;
+                    }
+                }
+                if (isStatsBar) {
+                    ObservableList<Node> children = ((HBox) child).getChildren();
+                    ImageView heroImgNode = (ImageView) children.get(0);
+                    Label nameNode = (Label) children.get(1);
+                    Label lvlNode = (Label) children.get(2);
+                    Label killsNode = (Label) children.get(3);
+                    Label deathNode = (Label) children.get(4);
+                    Label assistsNode = (Label) children.get(5);
+                    Label lastHitsDeniesNode = (Label) children.get(6);
+                    Label netWorthNode = (Label) children.get(7);
+                    Label gpmXPMNode = (Label) children.get(8);
+                    ImageView[] itemImageNodes = new ImageView[6];
+                    itemImageNodes[0] = (ImageView) children.get(9);
+                    itemImageNodes[1] = (ImageView) children.get(10);
+                    itemImageNodes[2] = (ImageView) children.get(11);
+                    itemImageNodes[3] = (ImageView) children.get(12);
+                    itemImageNodes[4] = (ImageView) children.get(13);
+                    itemImageNodes[5] = (ImageView) children.get(14);
+                    ImageView neutralItemNode = (ImageView) children.get(15);
 
-        setSubButtonLabelSelected(overviewButtonLabel);
+                    Player currentPlayer = players[heroesPrinted];
 
-        Player[] players = match.getPlayers();
-        int heroesPrinted = 0;
-        for (Node child : overviewGrid.getChildren()) {
-            ObservableList<String> styleClasses = child.getStyleClass();
-            boolean isStatsBar = false;
-            for (int i = 0; i < styleClasses.size(); i++) {
-                String style = styleClasses.get(i);
-                if (style.equals("stats-bar")) {
-                    isStatsBar = true;
-                    break;
+                    Platform.runLater(() -> {
+
+                        nameNode.setText(currentPlayer.getPlayerName());
+                        heroImgNode.setImage(SwingFXUtils.toFXImage(currentPlayer.getHero().getImg(), null));
+                        lvlNode.setText(Integer.toString(currentPlayer.getLevel()));
+                        killsNode.setText(Integer.toString(currentPlayer.getKills()));
+                        deathNode.setText(Integer.toString(currentPlayer.getDeaths()));
+                        assistsNode.setText(Integer.toString(currentPlayer.getAssists()));
+                        int playerLastHits = currentPlayer.getLastHits();
+                        int playerDenies = currentPlayer.getDenies();
+                        lastHitsDeniesNode.setText(playerLastHits + "/" + playerDenies);
+                        netWorthNode.setText(createThousandSuffix(currentPlayer.getNetWorth()));
+                        int playerGPM = currentPlayer.getGpm();
+                        int playerXPM = currentPlayer.getXpm();
+                        gpmXPMNode.setText(playerGPM + "/" + playerXPM);
+
+                        int itemIndex = 0;
+                        Item[] items = currentPlayer.getItems();
+                        for (Item item : items) {
+                            if (item == null) {
+                                itemImageNodes[itemIndex].setImage(
+                                        new Image("/main/javafx/static_images/transparentItem.png"));
+                            } else {
+                                BufferedImage image = item.loadImage();
+                                itemImageNodes[itemIndex].setImage(SwingFXUtils.toFXImage(image, null));
+                            }
+
+                            itemIndex++;
+                        }
+                        Item neutralItem = currentPlayer.getNeutralItem();
+                        if (neutralItem == null) {
+                            neutralItemNode.setImage(new Image("/main/javafx/static_images/transparentItem.png"));
+                        } else {
+                            BufferedImage image = neutralItem.loadImage();
+                            neutralItemNode.setImage(SwingFXUtils.toFXImage(image, null));
+                        }
+
+
+                        boolean radiantLabel = true;
+                        for (Node child1 : overviewGrid.getChildren()) {
+                            ObservableList<String> styleClasses1 = child1.getStyleClass();
+                            boolean isLabel = false;
+                            for (int i = 0; i < styleClasses1.size(); i++) {
+                                String style = styleClasses1.get(i);
+                                if (style.equals("label")) {
+                                    isLabel = true;
+                                    break;
+                                }
+                            }
+                            if (isLabel) {
+                                if (radiantLabel) {
+                                    radiantLabel = false;
+                                    Label radiantTextLabel = (Label) child1;
+                                    if (match.isRadiantWin()) {
+                                        radiantTextLabel.setText("Radiant Overview (Winner)");
+                                    } else {
+                                        radiantTextLabel.setText("Radiant Overview");
+                                    }
+                                } else {
+                                    Label direTextLabel = (Label) child1;
+                                    if (!match.isRadiantWin()) {
+                                        direTextLabel.setText("Dire Overview (Winner)");
+                                    } else {
+                                        direTextLabel.setText("Dire Overview");
+                                    }
+                                }
+                            }
+                        }
+                    });
+                    heroesPrinted++;
                 }
             }
-            if (isStatsBar) {
-                ObservableList<Node> children = ((HBox) child).getChildren();
-                ImageView heroImgNode = (ImageView) children.get(0);
-                Label nameNode = (Label) children.get(1);
-                Label lvlNode = (Label) children.get(2);
-                Label killsNode = (Label) children.get(3);
-                Label deathNode = (Label) children.get(4);
-                Label assistsNode = (Label) children.get(5);
-                Label lastHitsDeniesNode = (Label) children.get(6);
-                Label netWorthNode = (Label) children.get(7);
-                Label gpmXPMNode = (Label) children.get(8);
-                ImageView[] itemImageNodes = new ImageView[6];
-                itemImageNodes[0] = (ImageView) children.get(9);
-                itemImageNodes[1] = (ImageView) children.get(10);
-                itemImageNodes[2] = (ImageView) children.get(11);
-                itemImageNodes[3] = (ImageView) children.get(12);
-                itemImageNodes[4] = (ImageView) children.get(13);
-                itemImageNodes[5] = (ImageView) children.get(14);
-                ImageView neutralItemNode = (ImageView) children.get(15);
+            //
 
-                Player currentPlayer = players[heroesPrinted];
-
-                Platform.runLater(() -> {
-
-                    nameNode.setText(currentPlayer.getPlayerName());
-                    heroImgNode.setImage(SwingFXUtils.toFXImage(currentPlayer.getHero().getImg(), null));
-                    lvlNode.setText(Integer.toString(currentPlayer.getLevel()));
-                    killsNode.setText(Integer.toString(currentPlayer.getKills()));
-                    deathNode.setText(Integer.toString(currentPlayer.getDeaths()));
-                    assistsNode.setText(Integer.toString(currentPlayer.getAssists()));
-                    int playerLastHits = currentPlayer.getLastHits();
-                    int playerDenies = currentPlayer.getDenies();
-                    lastHitsDeniesNode.setText(playerLastHits + "/" + playerDenies);
-                    netWorthNode.setText(createThousandSuffix(currentPlayer.getNetWorth()));
-                    int playerGPM = currentPlayer.getGpm();
-                    int playerXPM = currentPlayer.getXpm();
-                    gpmXPMNode.setText(playerGPM + "/" + playerXPM);
-
-                    int itemIndex = 0;
-                    Item[] items = currentPlayer.getItems();
-                    for (Item item : items) {
-                        if (item == null) {
-                            itemImageNodes[itemIndex].setImage(
-                                    new Image("/main/javafx/static_images/transparentItem.png"));
-                        } else {
-                            BufferedImage image = item.loadImage();
-                            itemImageNodes[itemIndex].setImage(SwingFXUtils.toFXImage(image, null));
-                        }
-
-                        itemIndex++;
-                    }
-                    Item neutralItem = currentPlayer.getNeutralItem();
-                    if (neutralItem == null) {
-                        neutralItemNode.setImage(new Image("/main/javafx/static_images/transparentItem.png"));
-                    } else {
-                        BufferedImage image = neutralItem.loadImage();
-                        neutralItemNode.setImage(SwingFXUtils.toFXImage(image, null));
-                    }
-
-
-                    boolean radiantLabel = true;
-                    for (Node child1 : overviewGrid.getChildren()) {
-                        ObservableList<String> styleClasses1 = child1.getStyleClass();
-                        boolean isLabel = false;
-                        for (int i = 0; i < styleClasses1.size(); i++) {
-                            String style = styleClasses1.get(i);
-                            if (style.equals("label")) {
-                                isLabel = true;
-                                break;
-                            }
-                        }
-                        if (isLabel) {
-                            if (radiantLabel) {
-                                radiantLabel = false;
-                                Label radiantTextLabel = (Label) child1;
-                                if (match.isRadiantWin()) {
-                                    radiantTextLabel.setText("Radiant Overview (Winner)");
-                                } else {
-                                    radiantTextLabel.setText("Radiant Overview");
-                                }
-                            } else {
-                                Label direTextLabel = (Label) child1;
-                                if (!match.isRadiantWin()) {
-                                    direTextLabel.setText("Dire Overview (Winner)");
-                                } else {
-                                    direTextLabel.setText("Dire Overview");
-                                }
-                            }
-                        }
-                    }
-                });
-                heroesPrinted++;
+            // Graph pane
+            lineChart.getData().clear();
+            int[] radiantGoldAdvantage = match.getRadiantGoldAdvantage();
+            minutes = match.getMinutesPlayed(); // Override from earlier, could be different from the value we show
+            // (at least I think)
+            XYChart.Series<Number, Number> series = new XYChart.Series<>();
+            for (int i = 0; i < minutes; i++) {
+                series.getData().add(new XYChart.Data<>(i, radiantGoldAdvantage[i]));
             }
-        }
+            lineChart.getData().add(series);
+            //
 
-        openOnStackPane(overviewPane);
+
+        });
+        //
+
+        matchLoaded = true;
+
     }
 
     public static String createThousandSuffix(long count) {

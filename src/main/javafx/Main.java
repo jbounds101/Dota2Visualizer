@@ -34,7 +34,7 @@ public class Main extends Application {
         stage.setMinWidth(1280);
         stage.setMinHeight(720);
         stage.setTitle("Dota 2 Statistics Visualizer");
-        Label heroStatsLabel = (Label)scene.lookup("#heroStatistics");
+        Label heroStatsLabel = (Label)scene.lookup("#overviewButtonLabel");
         heroStatsLabel.requestFocus();
 
 
