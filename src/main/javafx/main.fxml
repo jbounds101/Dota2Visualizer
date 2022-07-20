@@ -1454,7 +1454,7 @@
                <content>
                   <VBox alignment="CENTER" prefWidth="1147.0">
                      <children>
-                        <LineChart fx:id="lineChart" alternativeRowFillVisible="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="720.0" prefWidth="1280.0">
+                        <LineChart fx:id="lineChart" alternativeRowFillVisible="false" createSymbols="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="720.0" prefWidth="1280.0">
                           <xAxis>
                             <NumberAxis side="BOTTOM" styleClass="x-axis" />
                           </xAxis>

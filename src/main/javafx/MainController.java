@@ -1,5 +1,6 @@
 package main.javafx;
 
+import com.sun.javafx.charts.Legend;
 import dotaobject.*;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
@@ -281,14 +282,37 @@ public class MainController {
             // Graph pane
             lineChart.getData().clear();
             int[] radiantGoldAdvantage = match.getRadiantGoldAdvantage();
+            int[] radiantXPAdvantage = match.getRadiantXPAdvantage();
             minutes = match.getMinutesPlayed(); // Override from earlier, could be different from the value we show
             // (at least I think)
-            XYChart.Series<Number, Number> series = new XYChart.Series<>();
+            XYChart.Series<Number, Number> goldSeries = new XYChart.Series<>();
+            XYChart.Series<Number, Number> xpSeries = new XYChart.Series<>();
+
             for (int i = 0; i < minutes; i++) {
-                series.getData().add(new XYChart.Data<>(i, radiantGoldAdvantage[i]));
+                goldSeries.getData().add(new XYChart.Data<>(i, radiantGoldAdvantage[i]));
+                xpSeries.getData().add(new XYChart.Data<>(i, radiantXPAdvantage[i]));
             }
-            lineChart.getData().add(series);
-            //
+            goldSeries.setName("Gold");
+            xpSeries.setName("Experience");
+            lineChart.getData().add(goldSeries);
+            lineChart.getData().add(xpSeries);
+
+            goldSeries.getNode().setStyle("-fx-stroke: #FFFF9C");
+            xpSeries.getNode().setStyle("-fx-stroke: #aeebdd");
+
+            // Set the legend colors
+            for (Node child : lineChart.getChildrenUnmodifiable()) {
+                if (child instanceof Legend) {
+                    for(Legend.LegendItem legendItem : ((Legend)child).getItems()) {
+                        if (legendItem.getText().equals("Gold")) {
+                            legendItem.getSymbol().setStyle("-fx-background-color: #FFFF9C");
+                        }
+                        if (legendItem.getText().equals("Experience")) {
+                            legendItem.getSymbol().setStyle("-fx-background-color: #aeebdd");
+                        }
+                    }
+                }
+            }
 
 
         });

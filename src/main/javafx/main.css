@@ -155,6 +155,11 @@
     -fx-stroke: rgba(188, 146, 182, 0.68);
 }
 
+.chart-series-line {
+    -fx-stroke-width: 2;
+}
+
+
 .axis {
     -fx-tick-label-font: 12 "Segoe UI";
     -fx-tick-label-fill: #d1d1d1;
