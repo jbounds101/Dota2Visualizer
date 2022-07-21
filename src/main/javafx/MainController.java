@@ -285,6 +285,8 @@ public class MainController {
             int[] radiantXPAdvantage = match.getRadiantXPAdvantage();
             minutes = match.getMinutesPlayed(); // Override from earlier, could be different from the value we show
             // (at least I think)
+
+
             XYChart.Series<Number, Number> goldSeries = new XYChart.Series<>();
             XYChart.Series<Number, Number> xpSeries = new XYChart.Series<>();
 
