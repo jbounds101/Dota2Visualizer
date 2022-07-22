@@ -159,6 +159,10 @@
     -fx-stroke-width: 2;
 }
 
+.chart-legend {
+    -fx-background-color: transparent;
+}
+
 
 .axis {
     -fx-tick-label-font: 12 "Segoe UI";
@@ -167,7 +171,32 @@
 
 .x-axis {
     -fx-minor-tick-visible: false;
-    -fx-tick-unit: 5;
+    -fx-tick-unit: 2;
+}
+
+
+.radiant-adv-label {
+    -fx-text-fill: rgba(161, 255, 158, 1);
+    -fx-border-style: solid;
+    -fx-border-color: linear-gradient(to right, transparent, #A0FF9C, transparent);
+    -fx-border-width: 0 0 1 0;
+    -fx-border-radius: 2;
+    -fx-font-weight: bold;
+    -fx-background-color: rgba(161, 255, 158, 0.1);
+    -fx-background-radius: 6;
+}
+
+.dire-adv-label {
+    -fx-text-fill: rgba(255, 61, 61, 1);
+    -fx-border-style: solid;
+    -fx-border-color: linear-gradient(to right, transparent, #ff3d3d, transparent);
+    -fx-border-width: 1 0 0 0;
+    -fx-border-radius: 2;
+    -fx-font-weight: bold;
+    -fx-background-color: rgba(255, 61, 61, 0.1);
+    -fx-background-radius: 6;
+
+
 }
 /* ----- */
 

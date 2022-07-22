@@ -124,7 +124,7 @@
                   <String fx:value="sub-button" />
                </styleClass>
             </Label>
-            <Label fx:id="graphButtonLabel" onMouseClicked="#labelButtonPress" text="Graphs">
+            <Label fx:id="graphButtonLabel" onMouseClicked="#labelButtonPress" text="Gold &amp; XP">
                <HBox.margin>
                   <Insets left="40.0" right="40.0" />
                </HBox.margin>
@@ -133,7 +133,7 @@
                   <String fx:value="sub-button" />
                </styleClass>
             </Label>
-            <Label onMouseClicked="#labelButtonPress" text="IDK">
+            <Label fx:id="playerPerformanceButtonLabel" onMouseClicked="#labelButtonPress" text="Player Performance">
                <HBox.margin>
                   <Insets left="40.0" right="40.0" />
                </HBox.margin>
@@ -141,24 +141,6 @@
                   <String fx:value="button-label" />
                   <String fx:value="sub-button" />
                </styleClass>
-            </Label>
-            <Label onMouseClicked="#labelButtonPress" text="IDK">
-               <HBox.margin>
-                  <Insets left="40.0" right="40.0" />
-               </HBox.margin>
-               <styleClass>
-                  <String fx:value="button-label" />
-                  <String fx:value="sub-button" />
-               </styleClass>
-            </Label>
-            <Label onMouseClicked="#labelButtonPress" text="IDK">
-               <styleClass>
-                  <String fx:value="button-label" />
-                  <String fx:value="sub-button" />
-               </styleClass>
-               <HBox.margin>
-                  <Insets left="40.0" right="40.0" />
-               </HBox.margin>
             </Label>
          </children>
       </HBox>
@@ -1450,26 +1432,54 @@
                   <Insets />
                </StackPane.margin>
             </ScrollPane>
-            <ScrollPane fx:id="graphPane" fitToHeight="true" focusTraversable="false" hbarPolicy="NEVER" layoutX="50.0" layoutY="40.0" maxWidth="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefWidth="1200.0">
-               <content>
-                  <VBox alignment="CENTER" prefWidth="1147.0">
-                     <children>
-                        <LineChart fx:id="lineChart" alternativeRowFillVisible="false" createSymbols="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="720.0" prefWidth="1280.0">
-                          <xAxis>
-                            <NumberAxis side="BOTTOM" styleClass="x-axis" />
-                          </xAxis>
-                          <yAxis>
-                            <NumberAxis lowerBound="-30000.0" minorTickCount="0" minorTickLength="1000.0" side="LEFT" styleClass="y-axis" tickLabelFill="#f5f5f5" tickLabelGap="8.0" tickLength="6.0" tickUnit="10000.0" upperBound="30000.0">
-                                 <tickLabelFont>
-                                    <Font size="14.0" />
-                                 </tickLabelFont>
-                              </NumberAxis>
-                          </yAxis>
-                        </LineChart>
-                     </children>
-                  </VBox>
-               </content>
-            </ScrollPane>
+            <VBox fx:id="graphPane" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="1200.0" visible="false">
+               <children>
+                  <Label alignment="CENTER" styleClass="radiant-adv-label" text=" Radiant Advantage ">
+                     <VBox.margin>
+                        <Insets right="860.0" />
+                     </VBox.margin>
+                  </Label>
+                  <LineChart fx:id="lineChart" alternativeRowFillVisible="false" createSymbols="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="720.0" prefWidth="1280.0">
+                    <xAxis>
+                      <NumberAxis fx:id="lineChartXAxis" autoRanging="false" side="BOTTOM" styleClass="x-axis" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis lowerBound="-30000.0" minorTickCount="0" minorTickLength="1000.0" side="LEFT" styleClass="y-axis" tickLabelFill="#f5f5f5" tickLabelGap="8.0" tickLength="6.0" tickUnit="10000.0" upperBound="30000.0">
+                           <tickLabelFont>
+                              <Font size="14.0" />
+                           </tickLabelFont>
+                        </NumberAxis>
+                    </yAxis>
+                     <VBox.margin>
+                        <Insets bottom="-10.0" top="-10.0" />
+                     </VBox.margin>
+                  </LineChart>
+                  <Label alignment="CENTER" styleClass="dire-adv-label" text=" Dire Advantage " translateY="-36.0">
+                     <VBox.margin>
+                        <Insets right="860.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox fx:id="performancePane" alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="1200.0">
+               <children>
+                  <LineChart fx:id="performanceLineChart" alternativeRowFillVisible="false" createSymbols="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="720.0" prefWidth="1280.0">
+                     <xAxis>
+                        <NumberAxis fx:id="performanceLineChartXAxis" autoRanging="false" side="BOTTOM" styleClass="x-axis" />
+                     </xAxis>
+                     <yAxis>
+                        <NumberAxis lowerBound="-30000.0" minorTickCount="0" minorTickLength="1000.0" side="LEFT" styleClass="y-axis" tickLabelFill="#f5f5f5" tickLabelGap="8.0" tickLength="6.0" tickUnit="10000.0" upperBound="30000.0">
+                           <tickLabelFont>
+                              <Font size="14.0" />
+                           </tickLabelFont>
+                        </NumberAxis>
+                     </yAxis>
+                     <VBox.margin>
+                        <Insets bottom="-10.0" top="-10.0" />
+                     </VBox.margin>
+                  </LineChart>
+               </children>
+            </VBox>
          </children>
          <padding>
             <Insets bottom="40.0" left="190.0" right="190.0" top="30.0" />

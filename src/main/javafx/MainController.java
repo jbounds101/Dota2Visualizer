@@ -51,11 +51,15 @@ public class MainController {
     @FXML
     ScrollPane overviewPane;
     @FXML
-    ScrollPane graphPane;
+    VBox graphPane;
+    @FXML
+    VBox performancePane;
     @FXML
     Label overviewButtonLabel;
     @FXML
     Label graphButtonLabel;
+    @FXML
+    Label playerPerformanceButtonLabel;
 
     // -----Overview-----
     @FXML
@@ -81,6 +85,15 @@ public class MainController {
     // -----Graphs-----
     @FXML
     LineChart<Number, Number> lineChart;
+    @FXML
+    NumberAxis lineChartXAxis;
+    // -----
+
+    // -----Performance-----
+    @FXML
+    LineChart<Number, Number> performanceLineChart;
+    @FXML
+    NumberAxis performanceLineChartXAxis;
     // -----
 
     private Match match;
@@ -97,6 +110,8 @@ public class MainController {
             openOnStackPane(overviewPane);
         } else if (requester == graphButtonLabel) {
             openOnStackPane(graphPane);
+        } else if (requester == playerPerformanceButtonLabel) {
+            openOnStackPane(performancePane);
         }
     }
 
@@ -302,6 +317,8 @@ public class MainController {
             goldSeries.getNode().setStyle("-fx-stroke: #FFFF9C");
             xpSeries.getNode().setStyle("-fx-stroke: #aeebdd");
 
+            lineChartXAxis.setUpperBound(minutes - 1);
+
             // Set the legend colors
             for (Node child : lineChart.getChildrenUnmodifiable()) {
                 if (child instanceof Legend) {
@@ -316,9 +333,28 @@ public class MainController {
                 }
             }
 
+            // Performance pane
+            performanceLineChart.getData().clear();
+            for (Player player: match.getPlayers()) {
+
+                XYChart.Series<Number, Number> lastHitSeries = new XYChart.Series<>();
+                int[] lastHits = player.getLastHitAtMin();
+                for (int i = 0; i < minutes; i++) {
+                    lastHitSeries.getData().add(new XYChart.Data<>(i, lastHits[i]));
+                }
+                lastHitSeries.setName(player.getHero().toString());
+                performanceLineChart.getData().add(lastHitSeries);
+            }
+
+            performanceLineChartXAxis.setUpperBound(minutes - 1);
+
+            //
 
         });
         //
+
+
+
 
         matchLoaded = true;
 
