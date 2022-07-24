@@ -28,6 +28,7 @@ public class Player {
         this.level = level;
         this.purchaseLog = purchaseLog;
         this.radiant = radiant;
+
     }
 
     private String playerName;
