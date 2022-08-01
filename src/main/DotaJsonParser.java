@@ -62,6 +62,7 @@ public class DotaJsonParser {
         String response = getJsonResponse("https://api.opendota.com/api/matches/" + Long.toString(matchID));
         try {
             Match match = objectMapper.readValue(response, Match.class);
+            if (match.getDuration() == 0) throw new MatchNotFoundException();
             return match;
         } catch (IOException e) {
             e.printStackTrace();
