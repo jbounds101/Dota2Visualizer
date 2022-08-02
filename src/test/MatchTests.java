@@ -19,9 +19,7 @@ public class MatchTests {
 
     @Test
     void matchNotFoundOnInvalidMatchID() {
-        assertThrows(MatchNotFoundException.class, () -> {
-            DotaJsonParser.readMatch(10L);
-        });
+        assertThrows(MatchNotFoundException.class, () -> DotaJsonParser.readMatch(10L));
     }
 
     @Test
@@ -33,5 +31,16 @@ public class MatchTests {
             fail("Match wasn't found");
         }
         assertEquals(10, match.getPlayers().length);
+    }
+
+    @Test
+    void matchDurationShouldNotBeZero() {
+        Match match = null;
+        try {
+            match = DotaJsonParser.readMatch(6634785915L);
+        } catch (MatchNotFoundException e) {
+            fail("Match wasn't found");
+        }
+        assertNotEquals(0, match.getDuration());
     }
 }
