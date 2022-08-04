@@ -43,4 +43,15 @@ public class MatchTests {
         }
         assertNotEquals(0, match.getDuration());
     }
+
+    @Test
+    void minutesPlayedShouldNotEqualZero() {
+        Match match = null;
+        try {
+            match = DotaJsonParser.readMatch(6634785915L);
+        } catch (MatchNotFoundException e) {
+            fail("Match wasn't found");
+        }
+        assertNotEquals(0, match.getMinutesPlayed());
+    }
 }
