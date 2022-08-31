@@ -46,7 +46,7 @@ public class MatchTests {
 
     @Test
     void minutesPlayedShouldNotEqualZero() {
-        // Minutes = zero means an error occured
+        // Minutes = zero means an error occurred
         Match match = null;
         try {
             match = DotaJsonParser.readMatch(6634785915L);
